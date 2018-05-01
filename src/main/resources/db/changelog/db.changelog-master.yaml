@@ -1,0 +1,19 @@
+databaseChangeLog:
+
+- changeSet:
+      id: 1
+      author: cfuchs
+      changes:
+        - createTable:
+            tableName: Greeting
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: content
+                  type: varchar(50)
