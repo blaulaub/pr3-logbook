@@ -26,7 +26,8 @@
   </properties>
 
   <modules>
-	  <module>web</module>
+    <module>base</module>
+    <module>web</module>
   </modules>
 
 </project>
