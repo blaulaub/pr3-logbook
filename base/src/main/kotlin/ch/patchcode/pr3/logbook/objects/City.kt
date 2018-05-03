@@ -13,3 +13,9 @@ data class CityPopulation(
 		val date: LocalDate,
 		val population: Int
 )
+
+data class CityProduct(
+		val id: Long,
+		val city: City,
+		val good: Good
+)

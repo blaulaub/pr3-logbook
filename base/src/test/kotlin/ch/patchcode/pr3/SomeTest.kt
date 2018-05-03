@@ -10,6 +10,7 @@ import ch.patchcode.pr3.logbook.objects.FacilityConsumption
 import ch.patchcode.pr3.logbook.objects.FacilityProduction
 import java.time.LocalDate
 import ch.patchcode.pr3.logbook.objects.CityPopulation
+import ch.patchcode.pr3.logbook.objects.CityProduct
 
 class SomeTest {
 
@@ -79,5 +80,14 @@ class SomeTest {
 		val game = Game(1L, "Cpt Hook")
 		val dorf = City(1L, game, "Dorf")
 		CityPopulation(dorf, LocalDate.parse("1561-12-18"), 1200)
+		CityPopulation(dorf, LocalDate.parse("1562-03-12"), 1300)
+	}
+
+	@Test
+	fun `I can declare goods a city produces within a game`() {
+		val game = Game(1L, "Cpt Hook")
+		val dorf = City(1L, game, "Dorf")
+		CityProduct(1L, dorf, Good(1L, game, "Holz"))
+		CityProduct(2L, dorf, Good(2L, game, "Tuch"))
 	}
 }
