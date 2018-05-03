@@ -8,6 +8,8 @@ import ch.patchcode.pr3.logbook.objects.Facility
 import ch.patchcode.pr3.logbook.objects.ConstructionMaterial
 import ch.patchcode.pr3.logbook.objects.FacilityConsumption
 import ch.patchcode.pr3.logbook.objects.FacilityProduction
+import java.time.LocalDate
+import ch.patchcode.pr3.logbook.objects.CityPopulation
 
 class SomeTest {
 
@@ -72,5 +74,10 @@ class SomeTest {
 		FacilityProduction(taylor, clothes, 1)
 	}
 
-
+	@Test
+	fun `I can update the city population within a game`() {
+		val game = Game(1L, "Cpt Hook")
+		val dorf = City(1L, game, "Dorf")
+		CityPopulation(dorf, LocalDate.parse("1561-12-18"), 1200)
+	}
 }
