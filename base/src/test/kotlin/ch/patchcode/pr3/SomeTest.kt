@@ -6,6 +6,8 @@ import ch.patchcode.pr3.logbook.objects.City
 import ch.patchcode.pr3.logbook.objects.Good
 import ch.patchcode.pr3.logbook.objects.Facility
 import ch.patchcode.pr3.logbook.objects.ConstructionMaterial
+import ch.patchcode.pr3.logbook.objects.FacilityConsumption
+import ch.patchcode.pr3.logbook.objects.FacilityProduction
 
 class SomeTest {
 
@@ -33,20 +35,42 @@ class SomeTest {
 	}
 
 	@Test
-	fun `I can tell the construction cost of a facility within a game`() {
+	fun `I can tell the construction cost of a store house within a game`() {
 		val game = Game(1L, "Cpt Hook")
 
 		val wood = Good(1L, game, "Holz")
 		val bricks = Good(1L, game, "Lehmziegel")
 
 		val store = Facility(1L, game, "Lagerhaus",
-				constructionCost = 6000,
+				constructionCost = 6_000,
 				constructionDays = 5,
-				maintenance = 500)
+				maintenancePerDay = 50)
 		ConstructionMaterial(store, wood, 20)
 		ConstructionMaterial(store, bricks, 40)
 	}
 
-	
+	@Test
+	fun `I can tell production and consumption of a taylor within a game`() {
+		val game = Game(1L, "Cpt Hook")
+
+		val wood = Good(1L, game, "Holz")
+		val bricks = Good(1L, game, "Lehmziegel")
+
+		val taylor = Facility(1L, game, "Schneiderei",
+				constructionCost = 18_000,
+				constructionDays = 17,
+				maintenancePerDay = 200)
+		ConstructionMaterial(taylor, wood, 60)
+		ConstructionMaterial(taylor, bricks, 120)
+
+		val textiles = Good(1L, game, "Tuch")
+		val dyes = Good(1L, game, "Farbstoffe")
+		val clothes = Good(1L, game, "Kleidung")
+
+		FacilityConsumption(taylor, textiles, 1)
+		FacilityConsumption(taylor, dyes, 1)
+		FacilityProduction(taylor, clothes, 1)
+	}
+
 
 }
