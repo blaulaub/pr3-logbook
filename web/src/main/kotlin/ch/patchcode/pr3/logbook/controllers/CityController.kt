@@ -1,11 +1,10 @@
-package ch.patchcode.pr3.logbook.controller
+package ch.patchcode.pr3.logbook.controllers
 
 import ch.patchcode.pr3.logbook.entities.CityJpa
-import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.model.CityModel
 import ch.patchcode.pr3.logbook.repositories.CityRepository
-import ch.patchcode.pr3.logbook.repositories.GameRepository
+import ch.patchcode.pr3.logbook.services.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class CityController @Autowired constructor(
-		private val gameRepository: GameRepository,
+		private val gameService: GameService,
 		private val cityRepository: CityRepository
 ) {
 
@@ -24,14 +23,14 @@ class CityController @Autowired constructor(
 	@Transactional
 	fun getCities(
 			@PathVariable gameId: Long
-	) = cityRepository.findByGame(resolveGame(gameId)).map { it -> it.toModel() }
+	) = cityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
 	@PostMapping("/games/{gameId}/cities")
 	@Transactional
 	fun createCity(
 			@PathVariable gameId: Long,
 			@RequestParam name: String
-	) = cityRepository.save(CityJpa(game = resolveGame(gameId), name = name)).toModel()
+	) = cityRepository.save(CityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 
 	@GetMapping("/games/{gameId}/cities/{cityId}")
 	@Transactional
@@ -39,7 +38,7 @@ class CityController @Autowired constructor(
 			@PathVariable gameId: Long,
 			@PathVariable cityId: Long
 	): CityModel {
-		resolveGame(gameId)
+		gameService.resolveGame(gameId)
 		val city = resolveCity(cityId)
 		if (city.game.id != gameId) throw EntityNotFoundException("City #" + cityId)
 		return city.toModel()
@@ -49,11 +48,5 @@ class CityController @Autowired constructor(
 		val city = cityRepository.findById(cityId)
 		if (!city.isPresent) throw EntityNotFoundException("City #" + cityId)
 		return city.get()
-	}
-
-	private fun resolveGame(gameId: Long): GameJpa {
-		val game = gameRepository.findById(gameId)
-		if (!game.isPresent) throw EntityNotFoundException("Game #" + gameId)
-		return game.get()
 	}
 }

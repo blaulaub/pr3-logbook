@@ -1,4 +1,4 @@
-package ch.patchcode.pr3.logbook.controller
+package ch.patchcode.pr3.logbook.controllers
 
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
@@ -11,29 +11,24 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import ch.patchcode.pr3.logbook.services.GameService
 
 @RestController
 class GameController @Autowired constructor(
-		private val gameRepository: GameRepository
+		private val gameService: GameService
 ) {
 
 	@GetMapping("/games")
 	@Transactional
-	fun getGames() = gameRepository.findAll()
+	fun getGames() = gameService.getAll()
 
 	@PostMapping("/games")
 	@Transactional
 	fun createGame(
 			@RequestParam captainsName: String
-	) = gameRepository.save(GameJpa(captainsName = captainsName)).toDto()
+	) = gameService.createGame(captainsName)
 
 	@GetMapping("/games/{gameId}")
 	@Transactional
-	fun getGame(@PathVariable gameId: Long) = resolveGame(gameId).toDto()
-
-	private fun resolveGame(gameId: Long): GameJpa {
-		val game = gameRepository.findById(gameId)
-		if (!game.isPresent) throw EntityNotFoundException("Game #" + gameId)
-		return game.get()
-	}
+	fun getGame(@PathVariable gameId: Long) = gameService.resolveGame(gameId).toDto()
 }
