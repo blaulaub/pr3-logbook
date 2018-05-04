@@ -3,7 +3,7 @@ package ch.patchcode.pr3.logbook.controller
 import ch.patchcode.pr3.logbook.entities.CityJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.objects.City
+import ch.patchcode.pr3.logbook.model.CityModel
 import ch.patchcode.pr3.logbook.repositories.CityRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,25 +24,25 @@ class CityController @Autowired constructor(
 	@Transactional
 	fun getCities(
 			@PathVariable gameId: Long
-	) = cityRepository.findByGame(resolveGame(gameId))
+	) = cityRepository.findByGame(resolveGame(gameId)).map { it -> it.toModel() }
 
 	@PostMapping("/games/{gameId}/cities")
 	@Transactional
 	fun createCity(
 			@PathVariable gameId: Long,
 			@RequestParam name: String
-	) = cityRepository.save(CityJpa(game = resolveGame(gameId), name = name)).toDto()
+	) = cityRepository.save(CityJpa(game = resolveGame(gameId), name = name)).toModel()
 
 	@GetMapping("/games/{gameId}/cities/{cityId}")
 	@Transactional
 	fun getCity(
 			@PathVariable gameId: Long,
 			@PathVariable cityId: Long
-	): City {
+	): CityModel {
 		resolveGame(gameId)
 		val city = cityRepository.findById(cityId).get()
 		if (city.game.id != gameId) throw EntityNotFoundException("City #" + cityId)
-		return city.toDto()
+		return city.toModel()
 	}
 
 	private fun resolveGame(gameId: Long): GameJpa {

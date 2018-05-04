@@ -1,5 +1,6 @@
 package ch.patchcode.pr3.logbook.entities
 
+import ch.patchcode.pr3.logbook.model.CityModel
 import ch.patchcode.pr3.logbook.objects.City
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -20,6 +21,11 @@ data class CityJpa(
 	fun toDto() = City(
 			id = this.id!!,
 			game = this.game.toDto(),
+			name = this.name
+	)
+
+	fun toModel() = CityModel(
+			id = this.id!!,
 			name = this.name
 	)
 }
