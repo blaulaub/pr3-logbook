@@ -1,11 +1,11 @@
 package ch.patchcode.pr3.logbook.entities
 
+import ch.patchcode.pr3.logbook.objects.Game
+import java.time.LocalDateTime
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import java.time.LocalDate
-import java.time.LocalDateTime
-import ch.patchcode.pr3.logbook.objects.Game
 
 /**
  * The anchor entity for any game data.
@@ -13,8 +13,8 @@ import ch.patchcode.pr3.logbook.objects.Game
 @Entity(name = "Game")
 data class GameJpa(
 		@Id @GeneratedValue val id: Long? = null,
-		val captainsName: String,
-		val created: LocalDateTime = LocalDateTime.now()
+		@Column(nullable = false) val captainsName: String,
+		@Column(nullable = false) val created: LocalDateTime = LocalDateTime.now()
 ) {
 
 	fun toDto() = Game(
@@ -22,13 +22,4 @@ data class GameJpa(
 			captainsName = this.captainsName,
 			created = this.created
 	)
-
-	companion object {
-
-		fun fromDto(dto: Game) = GameJpa(
-				id = dto.id,
-				captainsName = dto.captainsName,
-				created = dto.created
-		)
-	}
 }

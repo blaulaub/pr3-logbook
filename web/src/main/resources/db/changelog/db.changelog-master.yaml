@@ -1,9 +1,11 @@
 databaseChangeLog:
 
 - changeSet:
+
       id: 1
       author: cfuchs
       changes:
+
         - createTable:
             tableName: Game
             columns:
@@ -22,3 +24,28 @@ databaseChangeLog:
               - column:
                   name: created
                   type: datetime
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: City
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_City_Game_id
+                    references: Game(id)
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
