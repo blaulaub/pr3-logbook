@@ -20,15 +20,15 @@ class GameController @Autowired constructor(
 
 	@GetMapping("/games")
 	@Transactional
-	fun getGames() = gameService.getAll()
+	fun getGames(): List<Game> = gameService.getAll().map { it -> it.toDto() }
 
 	@PostMapping("/games")
 	@Transactional
 	fun createGame(
 			@RequestParam captainsName: String
-	) = gameService.createGame(captainsName)
+	): Game = gameService.createGame(captainsName)
 
 	@GetMapping("/games/{gameId}")
 	@Transactional
-	fun getGame(@PathVariable gameId: Long) = gameService.resolveGame(gameId).toDto()
+	fun getGame(@PathVariable gameId: Long): Game = gameService.resolveGame(gameId).toDto()
 }

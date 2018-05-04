@@ -23,14 +23,14 @@ class CityController @Autowired constructor(
 	@Transactional
 	fun getCities(
 			@PathVariable gameId: Long
-	) = cityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
+	): List<CityModel> = cityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
 	@PostMapping("/games/{gameId}/cities")
 	@Transactional
 	fun createCity(
 			@PathVariable gameId: Long,
 			@RequestParam name: String
-	) = cityRepository.save(CityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
+	): CityModel = cityRepository.save(CityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 
 	@GetMapping("/games/{gameId}/cities/{cityId}")
 	@Transactional
