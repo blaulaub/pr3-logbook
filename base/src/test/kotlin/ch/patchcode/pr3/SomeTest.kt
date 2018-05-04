@@ -62,7 +62,7 @@ class SomeTest {
 		val taylor = Facility(1L, game, "Schneiderei",
 				constructionCost = 18_000,
 				constructionDays = 17,
-				maintenancePerDay = 200)
+				maintenancePerDay = 50)
 		ConstructionMaterial(taylor, wood, 60)
 		ConstructionMaterial(taylor, bricks, 120)
 

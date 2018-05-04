@@ -5,7 +5,7 @@ databaseChangeLog:
       author: cfuchs
       changes:
         - createTable:
-            tableName: Greeting
+            tableName: Game
             columns:
               - column:
                   name: id
@@ -15,5 +15,10 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: content
+                  name: captainsName
                   type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: datetime
