@@ -1,6 +1,8 @@
 package ch.patchcode.pr3.logbook.controller
 
 import ch.patchcode.pr3.logbook.entities.GameJpa
+import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
+import ch.patchcode.pr3.logbook.objects.Game
 import ch.patchcode.pr3.logbook.repositories.GameRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
@@ -27,5 +29,11 @@ class GameController @Autowired constructor(
 
 	@GetMapping("/games/{gameId}")
 	@Transactional
-	fun getGame(@PathVariable gameId: Long) = gameRepository.findById(gameId).get().toDto()
+	fun getGame(@PathVariable gameId: Long) = resolveGame(gameId).toDto()
+
+	private fun resolveGame(gameId: Long): GameJpa {
+		val game = gameRepository.findById(gameId)
+		if (!game.isPresent) throw EntityNotFoundException("Game #" + gameId)
+		return game.get()
+	}
 }

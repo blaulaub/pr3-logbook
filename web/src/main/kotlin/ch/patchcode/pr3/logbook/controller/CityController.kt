@@ -40,9 +40,15 @@ class CityController @Autowired constructor(
 			@PathVariable cityId: Long
 	): CityModel {
 		resolveGame(gameId)
-		val city = cityRepository.findById(cityId).get()
+		val city = resolveCity(cityId)
 		if (city.game.id != gameId) throw EntityNotFoundException("City #" + cityId)
 		return city.toModel()
+	}
+
+	private fun resolveCity(cityId: Long): CityJpa {
+		val city = cityRepository.findById(cityId)
+		if (!city.isPresent) throw EntityNotFoundException("City #" + cityId)
+		return city.get()
 	}
 
 	private fun resolveGame(gameId: Long): GameJpa {
