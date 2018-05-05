@@ -13,11 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
 import org.springframework.test.web.servlet.ResultActions
+import org.hamcrest.core.IsCollectionContaining.hasItem
 
 
 @RunWith(SpringRunner::class)
@@ -36,10 +39,26 @@ class RestTest {
 
 	@Test
 	@Transactional
-	fun test() {
+	fun `can post new game`() {
+		// act
 		val result = mvc.perform(post("/games").param("captainsName", "Morgan"))
 
+		// assert
 		result.andExpect(status().isCreated())
 		assertThat(result.contentAs<Game>().captainsName, equalTo("Morgan"))
+	}
+
+	@Test
+	@Transactional
+	fun `can get list of games`() {
+		// arrange
+		val game = mvc.perform(post("/games").param("captainsName", "Morgan")).andExpect(status().isCreated()).contentAs<Game>()
+
+		// act
+		val result = mvc.perform(get("/games")).andDo(print())
+
+		// assert
+		result.andExpect(status().isOk())
+		assertThat(result.contentAs<List<Game>>(), hasItem(game))
 	}
 }
