@@ -42,10 +42,16 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_City_Game_id
-                    references: Game(id)
               - column:
                   name: name
                   type: varchar(50)
                   constraints:
                     nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_City_Game_id
+            baseTableName: City
+            baseColumnNames: game_id
+            referencedTableName: Game
+            referencedColumnNames: id
+            onDelete: CASCADE

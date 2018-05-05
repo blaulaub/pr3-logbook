@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
+import ch.patchcode.pr3.logbook.utils.CustomObjectMapper
 
 
 @RunWith(SpringRunner::class)
@@ -164,12 +165,31 @@ class RestTest {
 		val city2 = cityRepository.save(CityJpa(game = game, name = "Tortuga"))
 
 		// act
-		val result = mvc.perform(delete("/games/{gameId}/cities/{cityId}", game.id, city1.id)).andDo(print())
+		val result = mvc.perform(delete("/games/{gameId}/cities/{cityId}", game.id, city1.id))
 
 		// assert
 		result.andExpect(status().isNoContent)
 		assertThat(cityRepository.findAll(), allOf(
 				not(hasItem(city1)),
 				hasItem(city2)))
+	}
+
+	@Test
+	@Transactional
+	fun `deleting a game deletes all its cities`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Kurt"))
+		val city1 = cityRepository.save(CityJpa(game = game, name = "Engelberg"))
+		val city2 = cityRepository.save(CityJpa(game = game, name = "Sion"))
+
+		// act
+		val result = mvc.perform(delete("/games/{gameId}", game.id)).andDo(print())
+
+		// assert
+		result.andExpect(status().isNoContent)
+		assertThat(gameRepository.findAll(), not(hasItem(game)))
+		assertThat(cityRepository.findAll(), allOf(
+				not(hasItem(city1)),
+				not(hasItem(city2))))
 	}
 }
