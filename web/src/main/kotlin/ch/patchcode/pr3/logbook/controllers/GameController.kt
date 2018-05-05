@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ch.patchcode.pr3.logbook.services.GameService
+import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.http.HttpStatus
 
 @RestController
 class GameController @Autowired constructor(
@@ -23,6 +25,7 @@ class GameController @Autowired constructor(
 	fun getGames(): List<Game> = gameService.getAll().map { it -> it.toDto() }
 
 	@PostMapping("/games")
+	@ResponseStatus(HttpStatus.CREATED)
 	@Transactional
 	fun createGame(
 			@RequestParam captainsName: String
