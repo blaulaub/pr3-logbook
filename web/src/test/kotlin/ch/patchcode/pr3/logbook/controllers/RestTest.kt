@@ -1,7 +1,10 @@
 package ch.patchcode.pr3.logbook.controllers
 
+import ch.patchcode.pr3.logbook.entities.CityJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
+import ch.patchcode.pr3.logbook.model.CityModel
 import ch.patchcode.pr3.logbook.objects.Game
+import ch.patchcode.pr3.logbook.repositories.CityRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository
 import ch.patchcode.pr3.logbook.utils.contentAs
 import org.hamcrest.MatcherAssert.assertThat
@@ -35,6 +38,9 @@ class RestTest {
 
 	@Autowired
 	lateinit var gameRepository: GameRepository
+
+	@Autowired
+	lateinit var cityRepository: CityRepository
 
 	lateinit var mvc: MockMvc
 
@@ -78,7 +84,7 @@ class RestTest {
 		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
 
 		// act
-		val result = mvc.perform(get("/games/{gameId}", game.id)).andDo(print())
+		val result = mvc.perform(get("/games/{gameId}", game.id))
 
 		// assert
 		result.andExpect(status().isOk())
@@ -96,9 +102,74 @@ class RestTest {
 		val result = mvc.perform(delete("/games/{gameId}", game1.id))
 
 		// assert
-		result.andExpect(status().isOk)
+		result.andExpect(status().isNoContent)
 		assertThat(gameRepository.findAll(), allOf(
 				not(hasItem(game1)),
 				hasItem(game2)))
+	}
+
+	@Test
+	@Transactional
+	fun `can post new city in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+
+		// act
+		val result = mvc.perform(post("/games/{gameId}/cities", game.id).param("name", "Cat Island"))
+
+		// assert
+		result.andExpect(status().isCreated())
+		assertThat(result.contentAs<CityModel>().name, equalTo("Cat Island"))
+	}
+
+	@Test
+	@Transactional
+	fun `can get list of cities in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+		val city1 = cityRepository.save(CityJpa(game = game, name = "Cat Island"))
+		val city2 = cityRepository.save(CityJpa(game = game, name = "Tortuga"))
+
+		// act
+		val result = mvc.perform(get("/games/{gameId}/cities", game.id))
+
+		// assert
+		result.andExpect(status().isOk())
+		assertThat(result.contentAs<List<CityModel>>(), allOf(
+				hasItem(city1.toModel()),
+				hasItem(city2.toModel())))
+	}
+
+	@Test
+	@Transactional
+	fun `can get an existing city in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+		val city = cityRepository.save(CityJpa(game = game, name = "Cat Island"))
+
+		// act
+		val result = mvc.perform(get("/games/{gameId}/cities/{cityId}", game.id, city.id))
+
+		// assert
+		result.andExpect(status().isOk())
+		assertThat(result.contentAs<CityModel>(), equalTo(city.toModel()))
+	}
+
+	@Test
+	@Transactional
+	fun `can delete a city in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+		val city1 = cityRepository.save(CityJpa(game = game, name = "Cat Island"))
+		val city2 = cityRepository.save(CityJpa(game = game, name = "Tortuga"))
+
+		// act
+		val result = mvc.perform(delete("/games/{gameId}/cities/{cityId}", game.id, city1.id)).andDo(print())
+
+		// assert
+		result.andExpect(status().isNoContent)
+		assertThat(cityRepository.findAll(), allOf(
+				not(hasItem(city1)),
+				hasItem(city2)))
 	}
 }

@@ -37,6 +37,7 @@ class GameController @Autowired constructor(
 	fun getGame(@PathVariable gameId: Long): Game = gameService.resolveGame(gameId).toDto()
 
 	@DeleteMapping("/games/{gameId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@Transactional
 	fun deleteGame(@PathVariable gameId: Long) {
 		gameService.deleteGame(gameId)
