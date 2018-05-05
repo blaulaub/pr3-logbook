@@ -1,9 +1,7 @@
 package ch.patchcode.pr3.logbook.controllers
 
 import ch.patchcode.pr3.logbook.objects.Game
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import ch.patchcode.pr3.logbook.utils.CustomObjectMapper
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Before
@@ -41,7 +39,7 @@ class RestTest {
 
 		result.andExpect(status().isCreated())
 		val content = result.andReturn().getResponse().getContentAsString()
-		val game = ObjectMapper().registerKotlinModule().registerModule(JavaTimeModule()).readValue(content, Game::class.java)
+		val game = CustomObjectMapper.readValue(content, Game::class.java)
 		assertThat(game.captainsName, equalTo("Morgan"))
 	}
 }
