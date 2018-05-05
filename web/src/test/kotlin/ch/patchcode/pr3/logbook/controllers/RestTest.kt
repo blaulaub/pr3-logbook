@@ -55,10 +55,24 @@ class RestTest {
 		val game = mvc.perform(post("/games").param("captainsName", "Morgan")).andExpect(status().isCreated()).contentAs<Game>()
 
 		// act
-		val result = mvc.perform(get("/games")).andDo(print())
+		val result = mvc.perform(get("/games"))
 
 		// assert
 		result.andExpect(status().isOk())
 		assertThat(result.contentAs<List<Game>>(), hasItem(game))
+	}
+
+	@Test
+	@Transactional
+	fun `can get an existing game`() {
+		// arrange
+		val game = mvc.perform(post("/games").param("captainsName", "Morgan")).andExpect(status().isCreated()).contentAs<Game>()
+
+		// act
+		val result = mvc.perform(get("/games/{gameId}", game.id)).andDo(print())
+
+		// assert
+		result.andExpect(status().isOk())
+		assertThat(result.contentAs<Game>(), equalTo(game))
 	}
 }
