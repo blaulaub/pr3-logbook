@@ -22,4 +22,7 @@ class GameService @Autowired constructor(
 		return game.get()
 	}
 
+	fun deleteGame(gameId: Long) {
+		gameRepository.deleteById(gameId)
+	}
 }
