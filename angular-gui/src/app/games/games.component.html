@@ -1,3 +1,8 @@
-<h2>{{ game.captainsName }} Details</h2>
-<div><span>Id: </span>{{game.id}}</div>
-<div><span>Captain: </span>{{game.captainsName}}</div>
+<h2>Games</h2>
+<ul>
+  <li *ngFor="let game of games">
+    <div><span>Id: </span>{{game.id}}</div>
+    <div><span>Captain: </span>{{game.captainsName}}</div>
+    <div><span>Created: </span>{{game.created}}</div>
+  </li>
+</ul>
