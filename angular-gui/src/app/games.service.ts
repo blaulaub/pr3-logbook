@@ -13,6 +13,6 @@ export class GamesService {
   ) { }
 
   getGames(): Observable<Game[]> {
-    return this.http.get<Game[]>('/games');
+    return this.http.get<Game[]>('/api/games');
   }
 }
