@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../entities/game';
+import { GamesService } from '../games.service';
 
 @Component({
   selector: 'app-games',
@@ -8,22 +9,16 @@ import { Game } from '../entities/game';
 })
 export class GamesComponent implements OnInit {
 
-  games: Game[] = [
-    {
-      id: 10,
-      captainsName: 'Morgan',
-      created: new Date("2018-05-06T17:09:14.682")
-    },
-    {
-      id: 11,
-      captainsName: 'Störtebecker',
-      created: new Date("2018-05-06T17:19:00.000")
-    }
-  ];
+  games: Game[];
 
-  constructor() { }
+  constructor(private gamesService: GamesService) { }
 
   ngOnInit() {
+    this.getGames();
   }
 
+  getGames(): void {
+    this.gamesService.getGames()
+      .subscribe(games => this.games = games);
+  }
 }
