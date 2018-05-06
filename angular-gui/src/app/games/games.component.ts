@@ -11,6 +11,8 @@ export class GamesComponent implements OnInit {
 
   games: Game[];
 
+  selectedGame: Game;
+
   constructor(private gamesService: GamesService) { }
 
   ngOnInit() {
@@ -20,5 +22,9 @@ export class GamesComponent implements OnInit {
   getGames(): void {
     this.gamesService.getGames()
       .subscribe(games => this.games = games);
+  }
+
+  onSelect(game: Game): void {
+    this.selectedGame = game;
   }
 }

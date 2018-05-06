@@ -1,0 +1,29 @@
+.games {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 17em;
+}
+.games li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em .3em;
+  height: 2em;
+  border-radius: 4px;
+}
+.games li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.games li.selected {
+  background-color: #369 !important;
+  color: white;
+}
+.games li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
