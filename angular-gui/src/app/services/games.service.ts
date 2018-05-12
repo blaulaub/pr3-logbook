@@ -15,4 +15,9 @@ export class GamesService {
   getGames(): Observable<Game[]> {
     return this.http.get<Game[]>('/api/games');
   }
+
+  addGame(captainsName: string) {
+    console.log("adding captain " + captainsName);
+    // TODO return something useful
+  }
 }

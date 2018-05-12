@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-game-add',
@@ -10,9 +12,15 @@ export class GameAddComponent implements OnInit {
 
   captainsName: string;
 
-  constructor() { }
+  constructor(
+    private gamesService: GamesService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.gamesService.addGame(this.captainsName);
   }
 
   resetModel() {
