@@ -12,11 +12,11 @@ import { FleetsComponent } from './app/games/fleets/fleets.component';
 const routes: Routes = [
   { path: '', redirectTo: '/games', pathMatch: 'full' },
   { path: 'games', component: GamesComponent },
-  { path: 'games/:gameId', component: GameComponent }
-  { path: 'games/:gameId/cities', component: CitiesComponent }
-  { path: 'games/:gameId/facilities', component: FacilitiesComponent }
-  { path: 'games/:gameId/goods', component: GoodsComponent }
-  { path: 'games/:gameId/ship-types', component: ShipTypesComponent }
+  { path: 'games/:gameId', component: GameComponent },
+  { path: 'games/:gameId/cities', component: CitiesComponent },
+  { path: 'games/:gameId/facilities', component: FacilitiesComponent },
+  { path: 'games/:gameId/goods', component: GoodsComponent },
+  { path: 'games/:gameId/ship-types', component: ShipTypesComponent },
   { path: 'games/:gameId/fleets', component: FleetsComponent }
 ];
 
