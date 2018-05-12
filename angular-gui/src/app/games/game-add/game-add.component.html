@@ -1,0 +1,11 @@
+<form #gameForm="ngForm">
+  <div>
+    <label for="captainsName">Captain's Name</label>
+    <input type="text" id="captainsName" required [(ngModel)]="captainsName" name="captainsName" #captainsNameInput="ngModel">
+  </div>
+  <div [hidden]="captainsNameInput.valid || captainsNameInput.pristine">
+    Captain's name is required
+  </div>
+  <button type="submit">Add</button>
+  <button type="button" (click)="resetModel(); gameForm.reset()">Reset</button>
+</form>

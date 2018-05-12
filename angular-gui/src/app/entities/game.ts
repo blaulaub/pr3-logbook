@@ -1,5 +1,8 @@
 export class Game {
-  id: number;
-  captainsName: string;
-  created: Date;
+
+  constructor(
+    public id: number,
+    public captainsName: string,
+    public created: Date
+  ) {}
 }

@@ -13,6 +13,7 @@ import { GoodsComponent } from './games/goods/goods.component';
 import { ShipTypesComponent } from './games/ship-types/ship-types.component';
 import { FleetsComponent } from './games/fleets/fleets.component';
 import { GameComponent } from './games/game/game.component';
+import { GameAddComponent } from './games/game-add/game-add.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { GameComponent } from './games/game/game.component';
     GoodsComponent,
     FleetsComponent,
     ShipTypesComponent,
-    GameComponent
+    GameComponent,
+    GameAddComponent
   ],
   imports: [
     BrowserModule,
