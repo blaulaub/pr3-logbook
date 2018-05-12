@@ -1,9 +1,8 @@
 <h2>Games</h2>
 <ul class="games">
-  <li *ngFor="let game of games"
-      (click)="onSelect(game)"
-      [class.selected]="game === selectedGame">
-    <div><span>Captain: </span>{{game.captainsName}}</div>
-    <div><span>Created: </span>{{game.created}}</div>
+  <li *ngFor="let game of games">
+    <a routerLink="/games/{{game.id}}">
+      Captain: {{game.captainsName}}, Created: {{game.created}}
+    </a>
   </li>
 </ul>
