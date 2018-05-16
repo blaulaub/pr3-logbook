@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
 
@@ -13,7 +12,6 @@ import { GoodsComponent } from './games/goods/goods.component';
 import { ShipTypesComponent } from './games/ship-types/ship-types.component';
 import { FleetsComponent } from './games/fleets/fleets.component';
 import { GameComponent } from './games/game/game.component';
-import { GameAddComponent } from './games/game-add/game-add.component';
 
 
 @NgModule({
@@ -25,13 +23,11 @@ import { GameAddComponent } from './games/game-add/game-add.component';
     GoodsComponent,
     FleetsComponent,
     ShipTypesComponent,
-    GameComponent,
-    GameAddComponent
+    GameComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
     AppRoutingModule
   ],
   providers: [],
