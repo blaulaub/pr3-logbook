@@ -12,8 +12,6 @@ export class GamesComponent implements OnInit {
 
   games: Game[];
 
-  selectedGame: Game;
-
   expandAdd: boolean;
 
   text: Game;
@@ -29,10 +27,6 @@ export class GamesComponent implements OnInit {
   getGames(): void {
     this.gamesService.getGames()
       .subscribe(games => this.games = games);
-  }
-
-  onSelect(game: Game): void {
-    this.selectedGame = game;
   }
 
   gameAdded(game: Game) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Game } from '../entities/game';
 
@@ -16,8 +16,10 @@ export class GamesService {
     return this.http.get<Game[]>('/api/games');
   }
 
-  addGame(captainsName: string) {
+  addGame(captainsName: string): Observable<Game> {
     console.log("adding captain " + captainsName);
-    // TODO return something useful
+    return this.http.post<Game>('/api/games', null, {
+      params: new HttpParams().set('captainsName', captainsName)
+    });
   }
 }

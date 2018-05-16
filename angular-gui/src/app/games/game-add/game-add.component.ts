@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Game } from '../../entities/game';
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-game-add',
@@ -15,6 +16,7 @@ export class GameAddComponent {
   gameForm: FormGroup;
 
   constructor(
+    private gamesService: GamesService,
     private fb: FormBuilder
   ) {
     this.createForm();
@@ -22,17 +24,12 @@ export class GameAddComponent {
 
   createForm() {
     this.gameForm = this.fb.group({
-      captainsName: [ '', Validators.required ]
+      captainsName: [ null, Validators.required ]
     });
   }
 
   onSubmit() {
-    // TODO persist
-    console.log("not implemented: persist");
-    this.onGameAdded.emit({
-      captainsName: "WerAuchImmer",
-      created: Date.now()
-    }});
+    this.gamesService.addGame(this.gameForm.get('captainsName').value).subscribe(game => this.onGameAdded.emit(game));
   }
 
 }
