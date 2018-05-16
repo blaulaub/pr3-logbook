@@ -1,4 +1,14 @@
-<p>
-  cities works!
-</p>
-<a routerLink="/games/{{gameId}}">... back to game overview</a>
+<h2>Cities</h2>
+
+<ul>
+  <li *ngFor="let city of cities">
+    <a routerLink="/games/{{gameId}}/cities/{{city.id}}">
+      City: {{ city.name }}
+    </a>
+  </li>
+</ul>
+
+<button *ngIf="!expandAdd" (click)="expandAdd = true">Add City...</button>
+<app-city-add *ngIf="expandAdd" [gameId]="gameId" (onCityAdded)="cityAdded($event)"></app-city-add>
+
+<p><a routerLink="/games/{{gameId}}">... back to game overview</a></p>

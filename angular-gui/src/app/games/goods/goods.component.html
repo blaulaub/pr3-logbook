@@ -1,4 +1,14 @@
-<p>
-  goods works!
-</p>
-<a routerLink="/games/{{gameId}}">... back to game overview</a>
+<h2>Goods</h2>
+
+<ul>
+  <li *ngFor="let good of goods">
+    <a routerLink="/games/{{gameId}}/goods/{{good.id}}">
+      Good: {{ good.name }}
+    </a>
+  </li>
+</ul>
+
+<button *ngIf="!expandAdd" (click)="expandAdd = true">Add Good...</button>
+<app-good-add *ngIf="expandAdd" [gameId]="gameId" (onGoodAdded)="goodAdded($event)"></app-good-add>
+
+<p><a routerLink="/games/{{gameId}}">... back to game overview</a></p>

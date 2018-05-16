@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Game } from '../entities/game';
+import { Game } from '../entities/data_model';
 import { GamesService } from '../services/games.service';
 
 @Component({
@@ -11,10 +11,7 @@ import { GamesService } from '../services/games.service';
 export class GamesComponent implements OnInit {
 
   games: Game[];
-
   expandAdd: boolean;
-
-  text: Game;
 
   constructor(
     private gamesService: GamesService

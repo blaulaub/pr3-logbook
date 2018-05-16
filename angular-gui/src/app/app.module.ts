@@ -14,6 +14,8 @@ import { ShipTypesComponent } from './games/ship-types/ship-types.component';
 import { FleetsComponent } from './games/fleets/fleets.component';
 import { GameComponent } from './games/game/game.component';
 import { GameAddComponent } from './games/game-add/game-add.component';
+import { CityAddComponent } from './games/cities/city-add/city-add.component';
+import { GoodAddComponent } from './games/goods/good-add/good-add.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { GameAddComponent } from './games/game-add/game-add.component';
     FleetsComponent,
     ShipTypesComponent,
     GameComponent,
-    GameAddComponent
+    GameAddComponent,
+    CityAddComponent,
+    GoodAddComponent
   ],
   imports: [
     BrowserModule,

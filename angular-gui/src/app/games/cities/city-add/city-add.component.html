@@ -1,0 +1,6 @@
+<form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+  <label>City:
+    <input formControlName="name">
+  </label>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>
