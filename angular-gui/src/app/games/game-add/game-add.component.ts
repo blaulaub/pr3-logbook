@@ -32,4 +32,8 @@ export class GameAddComponent {
     this.gamesService.addGame(this.gameForm.get('captainsName').value).subscribe(game => this.onGameAdded.emit(game));
   }
 
+  onCancel() {
+    this.onGameAdded.emit(null);
+  }
+
 }
