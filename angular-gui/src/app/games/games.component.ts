@@ -14,6 +14,10 @@ export class GamesComponent implements OnInit {
 
   selectedGame: Game;
 
+  expandAdd: boolean;
+
+  text: Game;
+
   constructor(
     private gamesService: GamesService
   ) { }
@@ -29,5 +33,12 @@ export class GamesComponent implements OnInit {
 
   onSelect(game: Game): void {
     this.selectedGame = game;
+  }
+
+  gameAdded(game: Game) {
+    if (game != null) {
+      this.games.push(game);
+    }
+    this.expandAdd = false;
   }
 }

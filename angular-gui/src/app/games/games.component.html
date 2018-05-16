@@ -7,3 +7,6 @@
     </a>
   </li>
 </ul>
+
+<button *ngIf="!expandAdd" (click)="expandAdd = true">Add Game...</button>
+<app-game-add *ngIf="expandAdd" (onGameAdded)="gameAdded($event)"></app-game-add>
