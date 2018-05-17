@@ -1,0 +1,6 @@
+<form [formGroup]="shiptypeForm" (ngSubmit)="onSubmit()">
+  <label>Shiptype:
+    <input formControlName="name">
+  </label>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

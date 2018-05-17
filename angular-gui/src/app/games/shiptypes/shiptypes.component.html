@@ -1,0 +1,14 @@
+<h2>Shiptypes</h2>
+
+<ul>
+  <li *ngFor="let shiptype of shiptypes">
+    <a routerLink="/games/{{gameId}}/shiptypes/{{shiptype.id}}">
+      Shiptype: {{ shiptype.name }}
+    </a>
+  </li>
+</ul>
+
+<button *ngIf="!expandAdd" (click)="expandAdd = true">Add Shiptype...</button>
+<app-shiptype-add *ngIf="expandAdd" [gameId]="gameId" (onShiptypeAdded)="shiptypeAdded($event)"></app-shiptype-add>
+
+<p><a routerLink="/games/{{gameId}}">... back to game overview</a></p>

@@ -1,0 +1,6 @@
+<form [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
+  <label>Facility:
+    <input formControlName="name">
+  </label>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

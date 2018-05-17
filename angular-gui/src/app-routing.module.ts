@@ -6,7 +6,7 @@ import { GameComponent } from './app/games/game/game.component';
 import { CitiesComponent } from './app/games/cities/cities.component';
 import { FacilitiesComponent } from './app/games/facilities/facilities.component';
 import { GoodsComponent } from './app/games/goods/goods.component';
-import { ShipTypesComponent } from './app/games/ship-types/ship-types.component';
+import { ShiptypesComponent } from './app/games/shiptypes/shiptypes.component';
 import { FleetsComponent } from './app/games/fleets/fleets.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'games/:gameId/cities', component: CitiesComponent },
   { path: 'games/:gameId/facilities', component: FacilitiesComponent },
   { path: 'games/:gameId/goods', component: GoodsComponent },
-  { path: 'games/:gameId/ship-types', component: ShipTypesComponent },
+  { path: 'games/:gameId/shiptypes', component: ShiptypesComponent },
   { path: 'games/:gameId/fleets', component: FleetsComponent }
 ];
 

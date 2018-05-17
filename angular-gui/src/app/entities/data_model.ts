@@ -19,3 +19,24 @@ export class Good {
     public name: string
   ) {}
 }
+
+export class Facility {
+  constructor(
+    public id: number,
+    public name: string
+  ) {}
+}
+
+export class Fleet {
+  constructor(
+    public id: number,
+    public name: string
+  ) {}
+}
+
+export class Shiptype {
+  constructor(
+    public id: number,
+    public name: string
+  ) {}
+}

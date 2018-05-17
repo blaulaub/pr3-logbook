@@ -1,0 +1,6 @@
+<form [formGroup]="fleetForm" (ngSubmit)="onSubmit()">
+  <label>Fleet:
+    <input formControlName="name">
+  </label>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

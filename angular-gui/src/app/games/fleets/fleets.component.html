@@ -1,4 +1,14 @@
-<p>
-  fleets works!
-</p>
-<a routerLink="/games/{{gameId}}">... back to game overview</a>
+<h2>Fleets</h2>
+
+<ul>
+  <li *ngFor="let fleet of fleets">
+    <a routerLink="/games/{{gameId}}/fleets/{{fleet.id}}">
+      Fleet: {{ fleet.name }}
+    </a>
+  </li>
+</ul>
+
+<button *ngIf="!expandAdd" (click)="expandAdd = true">Add Fleet...</button>
+<app-fleet-add *ngIf="expandAdd" [gameId]="gameId" (onFleetAdded)="fleetAdded($event)"></app-fleet-add>
+
+<p><a routerLink="/games/{{gameId}}">... back to game overview</a></p>

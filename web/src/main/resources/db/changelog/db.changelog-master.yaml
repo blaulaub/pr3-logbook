@@ -84,3 +84,91 @@ databaseChangeLog:
             referencedTableName: Game
             referencedColumnNames: id
             onDelete: CASCADE
+
+        - createTable:
+            tableName: Facility
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_Facility_Game_id
+            baseTableName: Facility
+            baseColumnNames: game_id
+            referencedTableName: Game
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: Fleet
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_Fleet_Game_id
+            baseTableName: Fleet
+            baseColumnNames: game_id
+            referencedTableName: Game
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: Shiptype
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_Shiptype_Game_id
+            baseTableName: Shiptype
+            baseColumnNames: game_id
+            referencedTableName: Game
+            referencedColumnNames: id
+            onDelete: CASCADE
+            

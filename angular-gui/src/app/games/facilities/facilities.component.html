@@ -1,4 +1,14 @@
-<p>
-  facilities works!
-</p>
-<a routerLink="/games/{{gameId}}">... back to game overview</a>
+<h2>Facilities</h2>
+
+<ul>
+  <li *ngFor="let facility of facilities">
+    <a routerLink="/games/{{gameId}}/facilities/{{facility.id}}">
+      Facility: {{ facility.name }}
+    </a>
+  </li>
+</ul>
+
+<button *ngIf="!expandAdd" (click)="expandAdd = true">Add Facility...</button>
+<app-facility-add *ngIf="expandAdd" [gameId]="gameId" (onFacilityAdded)="facilityAdded($event)"></app-facility-add>
+
+<p><a routerLink="/games/{{gameId}}">... back to game overview</a></p>
