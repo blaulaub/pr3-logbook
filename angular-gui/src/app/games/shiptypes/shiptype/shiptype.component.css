@@ -1,0 +1,9 @@
+label {
+  width: 10em;
+  display:inline-block
+}
+
+input {
+  width: 15em;
+  height: 1em;
+}

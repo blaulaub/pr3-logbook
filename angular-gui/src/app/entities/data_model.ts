@@ -37,6 +37,16 @@ export class Fleet {
 export class Shiptype {
   constructor(
     public id: number,
-    public name: string
+    public name: string,
+    public cargoSpace?: number,
+    public maneuverability?: number,
+    public draft?: number,
+    public minSpeed?: number,
+    public maxSpeed?: number,
+    public cannons?: number,
+    public sailors?: number,
+    public hitPoints?: number,
+    public dailyCost?: number,
+    public price?: number
   ) {}
 }

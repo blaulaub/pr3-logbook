@@ -1,0 +1,52 @@
+<form *ngIf="shiptypeForm" [formGroup]="shiptypeForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Shiptype:</label>
+    <input id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="cargoSpace">Cargo Space:</label>
+    <input id="cargoSpace" formControlName="cargoSpace" type="number">
+  </div>
+  <div>
+    <label for="maneuverability">Maneuverability:</label>
+    <input id="maneuverability" formControlName="maneuverability" type="number">
+  </div>
+  <div>
+    <label for="draft">Draft:</label>
+    <input id="draft" formControlName="draft" type="number">
+  </div>
+  <div>
+    <label for="minSpeed">Min Speed:</label>
+    <input id="minSpeed" formControlName="minSpeed" type="number">
+  </div>
+  <div>
+    <label for="maxSpeed">Max Speed:</label>
+    <input id="maxSpeed" formControlName="maxSpeed" type="number">
+  </div>
+  <div>
+    <label for="cannons">Cannons:</label>
+    <input id="cannons" formControlName="cannons" type="number">
+  </div>
+  <div>
+    <label for="sailors">Sailors:</label>
+    <input id="sailors" formControlName="sailors" type="number">
+  </div>
+  <div>
+    <label for="hitPoints">Hit Points:</label>
+    <input id="hitPoints" formControlName="hitPoints" type="number">
+  </div>
+  <div>
+    <label for="dailyCost">Daily Cost:</label>
+    <input id="dailyCost" formControlName="dailyCost" type="number">
+  </div>
+  <div>
+    <label for="price">Price:</label>
+    <input id="price" formControlName="price" type="number">
+  </div>
+  <button type="submit">Update</button>
+</form>
+
+<p>
+  <a routerLink="/games/{{gameId}}/shiptypes">... back to shiptypes</a><br>
+  <a routerLink="/games/{{gameId}}">... back to game overview</a><br>
+</p>

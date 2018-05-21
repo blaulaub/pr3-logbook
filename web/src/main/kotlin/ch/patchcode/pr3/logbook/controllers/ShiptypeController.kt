@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 
 @RestController
 class ShiptypeController @Autowired constructor(
@@ -40,6 +42,14 @@ class ShiptypeController @Autowired constructor(
 			@PathVariable gameId: Long,
 			@PathVariable shiptypeId: Long
 	): ShiptypeModel = shiptypeService.getShiptype(gameId, shiptypeId)
+
+	@PutMapping("/games/{gameId}/shiptypes/{shiptypeId}")
+	@Transactional
+	fun updateShiptype(
+			@PathVariable gameId: Long,
+			@PathVariable shiptypeId: Long,
+			@RequestBody shiptype: ShiptypeModel
+	): ShiptypeModel = shiptypeService.updateShiptype(gameId, shiptypeId, shiptype)
 
 	@DeleteMapping("/games/{gameId}/shiptypes/{shiptypeId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

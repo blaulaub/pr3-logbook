@@ -163,6 +163,36 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+              - column:
+                  name: cargoSpace
+                  type: int
+              - column:
+                  name: maneuverability
+                  type: int
+              - column:
+                  name: draft
+                  type: int
+              - column:
+                  name: minSpeed
+                  type: int
+              - column:
+                  name: maxSpeed
+                  type: int
+              - column:
+                  name: cannons
+                  type: int
+              - column:
+                  name: sailors
+                  type: int
+              - column:
+                  name: hitPoints
+                  type: int
+              - column:
+                  name: dailyCost
+                  type: int
+              - column:
+                  name: price
+                  type: int
 
         - addForeignKeyConstraint:
             constraintName: fk_Shiptype_Game_id

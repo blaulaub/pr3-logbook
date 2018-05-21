@@ -16,10 +16,21 @@ export class ShiptypesService {
     return this.http.get<Shiptype[]>('/api/games/' + gameId + '/shiptypes');
   }
 
+  getShiptype(gameId: number, shiptypeId: number): Observable<Shiptype> {
+    return this.http.get<Shiptype>('/api/games/' + gameId + '/shiptypes/' + shiptypeId);
+  }
+
   addShiptype(gameId: number, name: string): Observable<Shiptype> {
     console.log("adding shiptype " + name);
     return this.http.post<Shiptype>('/api/games/' + gameId + '/shiptypes', null, {
       params: new HttpParams().set('name', name)
     });
+  }
+
+  updateShiptype(gameId: number, shiptype: Shiptype): Observable<Shiptype> {
+    console.log("updating shiptype " + name);
+    return this.http.put<Shiptype>(
+      '/api/games/' + gameId + '/shiptypes/' + shiptype.id,
+      shiptype);
   }
 }
