@@ -22,12 +22,20 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
 import ch.patchcode.pr3.logbook.utils.CustomObjectMapper
+import ch.patchcode.pr3.logbook.model.GoodModel
+import ch.patchcode.pr3.logbook.model.FacilityModel
+import ch.patchcode.pr3.logbook.repositories.GoodRepository
+import ch.patchcode.pr3.logbook.repositories.FacilityRepository
+import ch.patchcode.pr3.logbook.entities.FacilityJpa
+import ch.patchcode.pr3.logbook.entities.GoodJpa
+import com.fasterxml.jackson.databind.ObjectMapper
 
 
 @RunWith(SpringRunner::class)
@@ -191,5 +199,33 @@ class RestTest {
 		assertThat(cityRepository.findAll(), allOf(
 				not(hasItem(city1)),
 				not(hasItem(city2))))
+	}
+
+	@Test
+	@Transactional
+	fun `can post new facility in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+
+		// act
+		val result = mvc.perform(post("/games/{gameId}/facilities", game.id).param("name", "Sägewerk"))
+
+		// assert
+		result.andExpect(status().isCreated())
+		assertThat(result.contentAs<FacilityModel>().name, equalTo("Sägewerk"))
+	}
+
+	@Test
+	@Transactional
+	fun `can post new good in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+
+		// act
+		val result = mvc.perform(post("/games/{gameId}/goods", game.id).param("name", "Holz"))
+
+		// assert
+		result.andExpect(status().isCreated())
+		assertThat(result.contentAs<GoodModel>().name, equalTo("Holz"))
 	}
 }

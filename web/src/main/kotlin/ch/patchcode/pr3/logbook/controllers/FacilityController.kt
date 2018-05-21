@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 
 @RestController
 class FacilityController @Autowired constructor(
@@ -40,6 +42,14 @@ class FacilityController @Autowired constructor(
 			@PathVariable gameId: Long,
 			@PathVariable facilityId: Long
 	): FacilityModel = facilityService.getFacility(gameId, facilityId)
+
+	@PutMapping("/games/{gameId}/facilities/{facilityId}")
+	@Transactional
+	fun updateShiptype(
+			@PathVariable gameId: Long,
+			@PathVariable facilityId: Long,
+			@RequestBody facility: FacilityModel
+	): FacilityModel = facilityService.updateFacility(gameId, facilityId, facility)
 
 	@DeleteMapping("/games/{gameId}/facilities/{facilityId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

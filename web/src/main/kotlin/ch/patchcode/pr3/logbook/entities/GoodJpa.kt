@@ -11,7 +11,8 @@ import javax.persistence.Table
 import javax.persistence.UniqueConstraint
 
 @Entity(name = "Good")
-@Table(uniqueConstraints = arrayOf(UniqueConstraint(columnNames = arrayOf("game_id", "name"))))
+@Table(uniqueConstraints = arrayOf(UniqueConstraint(
+		columnNames = arrayOf("game_id", "name"))))
 data class GoodJpa(
 		@Id @GeneratedValue val id: Long? = null,
 		@ManyToOne(optional = false) val game: GameJpa,

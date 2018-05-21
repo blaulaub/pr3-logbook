@@ -9,13 +9,22 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 import javax.persistence.UniqueConstraint
+import javax.persistence.OneToMany
+import javax.persistence.OneToOne
 
 @Entity(name = "Facility")
-@Table(uniqueConstraints = arrayOf(UniqueConstraint(columnNames = arrayOf("game_id", "name"))))
+@Table(uniqueConstraints = arrayOf(UniqueConstraint(
+		columnNames = arrayOf("game_id", "name"))))
 data class FacilityJpa(
 		@Id @GeneratedValue val id: Long? = null,
 		@ManyToOne(optional = false) val game: GameJpa,
-		@Column(nullable = false) val name: String
+		@Column(nullable = false) val name: String,
+		@Column val constructionCost: Int? = null,
+		@Column val constructionDays: Int? = null,
+		@Column val maintenancePerDay: Int? = null,
+		@Column val workers: Int? = null,
+		@OneToMany(mappedBy = "facility") val consumption: List<TurnoverJpa> = ArrayList(),
+		@OneToOne(mappedBy = "facility") val production: TurnoverJpa? = null
 ) {
 
 	fun toDto() = Facility(
@@ -26,6 +35,12 @@ data class FacilityJpa(
 
 	fun toModel() = FacilityModel(
 			id = this.id!!,
-			name = this.name
+			name = this.name,
+			constructionCost = this.constructionCost,
+			constructionDays = this.constructionDays,
+			maintenancePerDay = this.maintenancePerDay,
+			workers = this.workers,
+			consumption = this.consumption.map { it -> it.toModel() },
+			production = this.production?.toModel()
 	)
 }

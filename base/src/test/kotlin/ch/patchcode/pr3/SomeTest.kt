@@ -70,9 +70,9 @@ class SomeTest {
 		val dyes = Good(1L, game, "Farbstoffe")
 		val clothes = Good(1L, game, "Kleidung")
 
-		FacilityConsumption(taylor, textiles, 1)
-		FacilityConsumption(taylor, dyes, 1)
-		FacilityProduction(taylor, clothes, 1)
+		FacilityConsumption(taylor, textiles, 1.0)
+		FacilityConsumption(taylor, dyes, 1.0)
+		FacilityProduction(taylor, clothes, 1.0)
 	}
 
 	@Test

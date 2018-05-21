@@ -6,17 +6,18 @@ data class Facility(
 		val name: String,
 		val constructionCost: Int = 0,
 		val constructionDays: Int = 0,
-		val maintenancePerDay: Int = 0
+		val maintenancePerDay: Int = 0,
+		val workers: Int = 0
 )
 
 data class FacilityConsumption(
 		val facility: Facility,
 		val good: Good,
-		val amount: Int
+		val amount: Double
 )
 
 data class FacilityProduction(
 		val facility: Facility,
 		val good: Good,
-		val amount: Int
+		val amount: Double
 )
