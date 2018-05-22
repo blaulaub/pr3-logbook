@@ -9,13 +9,14 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 import javax.persistence.UniqueConstraint
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity(name = "Good")
 @Table(uniqueConstraints = arrayOf(UniqueConstraint(
 		columnNames = arrayOf("game_id", "name"))))
 data class GoodJpa(
 		@Id @GeneratedValue val id: Long? = null,
-		@ManyToOne(optional = false) val game: GameJpa,
+		@ManyToOne(optional = false) @JsonIgnore val game: GameJpa,
 		@Column(nullable = false) val name: String
 ) {
 

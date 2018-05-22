@@ -1,0 +1,28 @@
+<form *ngIf="facilityForm" [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Facility:</label>
+    <input id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="constructionCost">Construction Cost:</label>
+    <input id="constructionCost" formControlName="constructionCost" type="number">
+  </div>
+  <div>
+    <label for="constructionDays">Construction Days:</label>
+    <input id="constructionDays" formControlName="constructionDays" type="number">
+  </div>
+  <div>
+    <label for="maintenancePerDay">Maintenance per Day:</label>
+    <input id="maintenancePerDay" formControlName="maintenancePerDay" type="number">
+  </div>
+  <div>
+    <label for="workers">Workers:</label>
+    <input id="workers" formControlName="workers" type="number">
+  </div>
+  <button type="submit">Update</button>
+</form>
+
+<p>
+  <a routerLink="/games/{{gameId}}/facilities">... back to facilities</a><br>
+  <a routerLink="/games/{{gameId}}">... back to game overview</a><br>
+</p>

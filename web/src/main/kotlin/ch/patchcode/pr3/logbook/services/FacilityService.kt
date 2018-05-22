@@ -1,16 +1,22 @@
 package ch.patchcode.pr3.logbook.services
 
+import ch.patchcode.pr3.logbook.entities.ConsumptionJpa
+import ch.patchcode.pr3.logbook.entities.FacilityJpa
+import ch.patchcode.pr3.logbook.entities.GoodJpa
+import ch.patchcode.pr3.logbook.entities.ProductionJpa
+import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
+import ch.patchcode.pr3.logbook.model.ConsumptionModel
+import ch.patchcode.pr3.logbook.model.FacilityModel
 import ch.patchcode.pr3.logbook.repositories.FacilityRepository
+import ch.patchcode.pr3.logbook.repositories.GoodRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ch.patchcode.pr3.logbook.entities.FacilityJpa
-import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.model.FacilityModel
-import ch.patchcode.pr3.logbook.entities.TurnoverJpa
+import com.fasterxml.jackson.databind.ObjectMapper
 
 @Service
 class FacilityService @Autowired constructor(
 		private val facilityRepository: FacilityRepository,
+		private val goodRepository: GoodRepository,
 		private val gameService: GameService
 ) {
 
@@ -27,33 +33,48 @@ class FacilityService @Autowired constructor(
 
 	fun updateFacility(gameId: Long, facilityId: Long, facility: FacilityModel): FacilityModel {
 		if (facilityId != facility.id) throw IllegalArgumentException("URL facilityId does not match model facility id")
-		gameService.resolveGame(gameId)
-	  val oldFacility = resolveFacility(facility.id);
+		val game = gameService.resolveGame(gameId)
+		val oldFacility = resolveFacility(facility.id);
 		if (oldFacility.game.id != gameId) throw EntityNotFoundException("Facility #" + facility.id)
 
-		// before anything else, we have to dive into production and consumption entities
-		// if they go fine, we may save-return a new FacilityJpa (see ShiptypeService.updateShiptype)
-		if (oldFacility.consumption.isNotEmpty() || oldFacility.production != null) {
-			throw RuntimeException("not implemented")
-		}
-		if (facility.consumption.isNotEmpty() || facility.production != null) {
-			throw RuntimeException("not implemented")
+		oldFacility.name = facility.name
+		oldFacility.constructionCost = facility.constructionCost
+		oldFacility.constructionDays = facility.constructionDays
+		oldFacility.maintenancePerDay = facility.maintenancePerDay
+		oldFacility.workers = facility.workers
+
+		val oldConsumptions = oldFacility.consumption.associateBy({ item -> item.good.name }, { item -> item })
+		val newConsumptions = facility.consumption.associateBy({ item -> item.good.name }, { item -> item })
+
+		val obsolete = oldConsumptions.keys.minus(newConsumptions.keys)
+
+		oldFacility.consumption.removeAll { item -> obsolete.contains(item.good.name) }
+		for (item in newConsumptions.values) {
+			var itemJpa = oldConsumptions.get(item.good.name)
+			if (itemJpa == null) {
+				val good = goodRepository.findOneByGameAndName(game, item.good.name)!!
+				itemJpa = ConsumptionJpa(
+						facility = oldFacility,
+						good = good)
+				oldFacility.consumption.add(itemJpa)
+			}
+			itemJpa.amount = item.amount
 		}
 
-		val tempConsumption: List<TurnoverJpa> = ArrayList()
-		val tempProduction: TurnoverJpa? = null
+		if (facility.production == null) {
+			oldFacility.production = null
+		} else {
+			var itemJpa = oldFacility.production
+			if (itemJpa == null || itemJpa.good.name == facility.production.good.name) {
+				itemJpa = ProductionJpa(
+						facility = oldFacility,
+						good = goodRepository.findOneByGameAndName(game, facility.production.good.name)!!)
+				oldFacility.production = itemJpa
+			}
+			itemJpa.amount = facility.production.amount
+		}
 
-		return facilityRepository.save(FacilityJpa(
-				id = facility.id,
-				game = oldFacility.game,
-				name = facility.name,
-				constructionCost = facility.constructionCost,
-				constructionDays = facility.constructionDays,
-				maintenancePerDay = facility.maintenancePerDay,
-				workers = facility.workers,
-				consumption = tempConsumption,
-				production = tempProduction
-		)).toModel()
+		return facilityRepository.save(oldFacility).toModel()
 	}
 
 	fun deleteFacility(gameId: Long, facilityId: Long) {
@@ -66,5 +87,4 @@ class FacilityService @Autowired constructor(
 		if (!facility.isPresent) throw EntityNotFoundException("Facility #" + facilityId)
 		return facility.get()
 	}
-
 }

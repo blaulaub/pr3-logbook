@@ -23,8 +23,7 @@ export class ShiptypeComponent implements OnInit {
     private location: Location,
     private shiptypesService: ShiptypesService,
     private fb: FormBuilder
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.gameId = +this.route.snapshot.paramMap.get('gameId');

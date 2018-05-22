@@ -11,20 +11,22 @@ import javax.persistence.Table
 import javax.persistence.UniqueConstraint
 import javax.persistence.OneToMany
 import javax.persistence.OneToOne
+import com.fasterxml.jackson.annotation.JsonIgnore
+import javax.persistence.CascadeType
 
 @Entity(name = "Facility")
 @Table(uniqueConstraints = arrayOf(UniqueConstraint(
 		columnNames = arrayOf("game_id", "name"))))
 data class FacilityJpa(
 		@Id @GeneratedValue val id: Long? = null,
-		@ManyToOne(optional = false) val game: GameJpa,
-		@Column(nullable = false) val name: String,
-		@Column val constructionCost: Int? = null,
-		@Column val constructionDays: Int? = null,
-		@Column val maintenancePerDay: Int? = null,
-		@Column val workers: Int? = null,
-		@OneToMany(mappedBy = "facility") val consumption: List<TurnoverJpa> = ArrayList(),
-		@OneToOne(mappedBy = "facility") val production: TurnoverJpa? = null
+		@ManyToOne(optional = false) @JsonIgnore val game: GameJpa,
+		@Column(nullable = false) var name: String,
+		@Column var constructionCost: Int? = null,
+		@Column var constructionDays: Int? = null,
+		@Column var maintenancePerDay: Int? = null,
+		@Column var workers: Int? = null,
+		@OneToMany(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) val consumption: MutableList<ConsumptionJpa> = ArrayList(),
+		@OneToOne(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) var production: ProductionJpa? = null
 ) {
 
 	fun toDto() = Facility(
@@ -40,7 +42,7 @@ data class FacilityJpa(
 			constructionDays = this.constructionDays,
 			maintenancePerDay = this.maintenancePerDay,
 			workers = this.workers,
-			consumption = this.consumption.map { it -> it.toModel() },
+			consumption = this.consumption.map{ it -> it.toModel() }.toList(),
 			production = this.production?.toModel()
 	)
 }

@@ -28,7 +28,6 @@ export class ShiptypesService {
   }
 
   updateShiptype(gameId: number, shiptype: Shiptype): Observable<Shiptype> {
-    console.log("updating shiptype " + name);
     return this.http.put<Shiptype>(
       '/api/games/' + gameId + '/shiptypes/' + shiptype.id,
       shiptype);

@@ -20,6 +20,7 @@ import { FacilityAddComponent } from './games/facilities/facility-add/facility-a
 import { FleetAddComponent } from './games/fleets/fleet-add/fleet-add.component';
 import { ShiptypeAddComponent } from './games/shiptypes/shiptype-add/shiptype-add.component';
 import { ShiptypeComponent } from './games/shiptypes/shiptype/shiptype.component';
+import { FacilityComponent } from './games/facilities/facility/facility.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ShiptypeComponent } from './games/shiptypes/shiptype/shiptype.component
     FacilityAddComponent,
     FleetAddComponent,
     ShiptypeAddComponent,
-    ShiptypeComponent
+    ShiptypeComponent,
+    FacilityComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
 import org.springframework.http.MediaType
+import ch.patchcode.pr3.logbook.model.ConsumptionModel
+import ch.patchcode.pr3.logbook.model.ProductionModel
 
 
 @RunWith(SpringRunner::class)
@@ -72,7 +74,8 @@ class FacilityControllerTest {
 		// arrange
 		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
 		val facility = facilityRepository.save(FacilityJpa(game = game, name = "Sägewerk"))
-		val good = goodRepository.save(GoodJpa(game = game, name = "Holz"))
+		val goodIn = goodRepository.save(GoodJpa(game = game, name = "Bäume"))
+		val goodEx = goodRepository.save(GoodJpa(game = game, name = "Bretter"))
 
 		// act
 		val updated = FacilityModel(
@@ -81,7 +84,9 @@ class FacilityControllerTest {
 				constructionCost = 1001,
 				constructionDays = 1002,
 				maintenancePerDay = 1003,
-				workers = 1004
+				workers = 1004,
+				consumption = listOf(ConsumptionModel(good = goodIn.toModel(), amount = 10.0)),
+				production = ProductionModel(good = goodEx.toModel(), amount = 2.0)
 		)
 		val result = mvc.perform(put("/games/{gameId}/facilities/{facilityId}", game.id, facility.id)
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -96,5 +101,9 @@ class FacilityControllerTest {
 		assertThat(model.constructionDays, equalTo(1002))
 		assertThat(model.maintenancePerDay, equalTo(1003))
 		assertThat(model.workers, equalTo(1004))
+
+		val production = model.production!!
+		assertThat(production.good.name, equalTo("Bretter"))
+		assertThat(production.amount, equalTo(2.0))
 	}
 }

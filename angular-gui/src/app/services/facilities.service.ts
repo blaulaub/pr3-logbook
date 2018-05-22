@@ -16,10 +16,20 @@ export class FacilitiesService {
     return this.http.get<Facility[]>('/api/games/' + gameId + '/facilities');
   }
 
+  getFacility(gameId: number, facilityId: number): Observable<Facility> {
+    return this.http.get<Facility>('/api/games/' + gameId + '/facilities/' + facilityId);
+  }
+
   addFacility(gameId: number, name: string): Observable<Facility> {
     console.log("adding facility " + name);
     return this.http.post<Facility>('/api/games/' + gameId + '/facilities', null, {
       params: new HttpParams().set('name', name)
     });
+  }
+
+  updateFacility(gameId: number, facility: Facility): Observable<Facility> {
+    return this.http.put<Facility>(
+      '/api/games/' + gameId + '/facilities/' + facility.id,
+      facility);
   }
 }

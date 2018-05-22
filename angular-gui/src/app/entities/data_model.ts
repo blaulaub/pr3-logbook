@@ -21,9 +21,24 @@ export class Good {
 }
 
 export class Facility {
+
   constructor(
     public id: number,
     public name: string
+  ) {}
+
+  constructionCost: number?;
+  constructionDays: number;
+  maintenancePerDay: number;
+  workers: number;
+  consumption: Turnover[];
+  production: Turnover;
+}
+
+export class Turnover {
+  constructor(
+    public good: Good;
+    public amount: number;
   ) {}
 }
 
@@ -35,18 +50,20 @@ export class Fleet {
 }
 
 export class Shiptype {
+
   constructor(
     public id: number,
     public name: string,
-    public cargoSpace?: number,
-    public maneuverability?: number,
-    public draft?: number,
-    public minSpeed?: number,
-    public maxSpeed?: number,
-    public cannons?: number,
-    public sailors?: number,
-    public hitPoints?: number,
-    public dailyCost?: number,
-    public price?: number
   ) {}
+
+  cargoSpace: number;
+  maneuverability: number;
+  draft: number;
+  minSpeed: number;
+  maxSpeed: number;
+  cannons: number;
+  sailors: number;
+  hitPoints: number;
+  dailyCost: number;
+  price: number;
 }
