@@ -16,7 +16,7 @@ export class FacilityComponent implements OnInit {
   gameId: number;
   facility: Facility;
 
-  facilityForm: FacilityForm;
+  facilityForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,8 +54,10 @@ export class FacilityComponent implements OnInit {
       constructionCost: facilityModel.constructionCost,
       constructionDays: facilityModel.constructionDays,
       maintenancePerDay: facilityModel.maintenancePerDay,
-      workers: facilityModel.workers
+      workers: facilityModel.workers,
       // TODO: consumption and production
+      consumption: this.facility.consumption,
+      production: this.facility.production
     };
     this.facilitiesService.updateFacility(this.gameId, saveFacility)
     .subscribe(facility => {});

@@ -27,7 +27,7 @@ export class Facility {
     public name: string
   ) {}
 
-  constructionCost: number?;
+  constructionCost: number;
   constructionDays: number;
   maintenancePerDay: number;
   workers: number;
@@ -37,8 +37,8 @@ export class Facility {
 
 export class Turnover {
   constructor(
-    public good: Good;
-    public amount: number;
+    public good: Good,
+    public amount: number
   ) {}
 }
 
@@ -53,7 +53,7 @@ export class Shiptype {
 
   constructor(
     public id: number,
-    public name: string,
+    public name: string
   ) {}
 
   cargoSpace: number;
