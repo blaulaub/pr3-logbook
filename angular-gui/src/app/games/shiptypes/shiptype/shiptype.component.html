@@ -1,47 +1,47 @@
 <form *ngIf="shiptypeForm" [formGroup]="shiptypeForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Shiptype:</label>
-    <input id="name" formControlName="name">
+    <input formControlName="name">
   </div>
   <div>
     <label for="cargoSpace">Cargo Space:</label>
-    <input id="cargoSpace" formControlName="cargoSpace" type="number">
+    <input formControlName="cargoSpace" type="number">
   </div>
   <div>
     <label for="maneuverability">Maneuverability:</label>
-    <input id="maneuverability" formControlName="maneuverability" type="number">
+    <input formControlName="maneuverability" type="number">
   </div>
   <div>
     <label for="draft">Draft:</label>
-    <input id="draft" formControlName="draft" type="number">
+    <input formControlName="draft" type="number">
   </div>
   <div>
     <label for="minSpeed">Min Speed:</label>
-    <input id="minSpeed" formControlName="minSpeed" type="number">
+    <input formControlName="minSpeed" type="number">
   </div>
   <div>
     <label for="maxSpeed">Max Speed:</label>
-    <input id="maxSpeed" formControlName="maxSpeed" type="number">
+    <input formControlName="maxSpeed" type="number">
   </div>
   <div>
     <label for="cannons">Cannons:</label>
-    <input id="cannons" formControlName="cannons" type="number">
+    <input formControlName="cannons" type="number">
   </div>
   <div>
     <label for="sailors">Sailors:</label>
-    <input id="sailors" formControlName="sailors" type="number">
+    <input formControlName="sailors" type="number">
   </div>
   <div>
     <label for="hitPoints">Hit Points:</label>
-    <input id="hitPoints" formControlName="hitPoints" type="number">
+    <input formControlName="hitPoints" type="number">
   </div>
   <div>
     <label for="dailyCost">Daily Cost:</label>
-    <input id="dailyCost" formControlName="dailyCost" type="number">
+    <input formControlName="dailyCost" type="number">
   </div>
   <div>
     <label for="price">Price:</label>
-    <input id="price" formControlName="price" type="number">
+    <input formControlName="price" type="number">
   </div>
   <button type="submit">Update</button>
 </form>

@@ -1,23 +1,23 @@
 <form *ngIf="facilityForm" [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Facility:</label>
-    <input id="name" formControlName="name">
+    <input formControlName="name">
   </div>
   <div>
     <label for="constructionCost">Construction Cost:</label>
-    <input id="constructionCost" formControlName="constructionCost" type="number">
+    <input formControlName="constructionCost" type="number">
   </div>
   <div>
     <label for="constructionDays">Construction Days:</label>
-    <input id="constructionDays" formControlName="constructionDays" type="number">
+    <input formControlName="constructionDays" type="number">
   </div>
   <div>
     <label for="maintenancePerDay">Maintenance per Day:</label>
-    <input id="maintenancePerDay" formControlName="maintenancePerDay" type="number">
+    <input formControlName="maintenancePerDay" type="number">
   </div>
   <div>
     <label for="workers">Workers:</label>
-    <input id="workers" formControlName="workers" type="number">
+    <input formControlName="workers" type="number">
   </div>
   <div formGroupName="production">
     <fieldset style="width: 28em">
@@ -30,7 +30,7 @@
       </div>
       <div>
         <label for="amount">Amount:</label>
-        <input id="amount" formControlName="amount" type="number">
+        <input formControlName="amount" type="number">
       </div>
     </fieldset>
   </div>
