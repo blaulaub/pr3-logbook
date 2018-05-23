@@ -106,4 +106,58 @@ class FacilityControllerTest {
 		assertThat(production.good.name, equalTo("Bretter"))
 		assertThat(production.amount, equalTo(2.0))
 	}
+
+	@Test
+	@Transactional
+	fun `can update facility production amount in a game`() {
+		// arrange
+		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
+		val facility = facilityRepository.save(FacilityJpa(game = game, name = "Sägewerk"))
+		val goodEx = goodRepository.save(GoodJpa(game = game, name = "Bretter"))
+
+		val before = FacilityModel(
+				id = facility.id!!,
+				name = "Sägewerk 2",
+				constructionCost = 1001,
+				constructionDays = 1002,
+				maintenancePerDay = 1003,
+				workers = 1004,
+				consumption = listOf(),
+				production = ProductionModel(good = goodEx.toModel(), amount = 2.0)
+		)
+		mvc.perform(put("/games/{gameId}/facilities/{facilityId}", game.id, facility.id)
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(ObjectMapper().writeValueAsString(before)))
+				.andExpect(status().isOk())
+
+		// act
+		val after = FacilityModel(
+				id = before.id,
+				name = before.name,
+				constructionCost = before.constructionCost,
+				constructionDays = before.constructionDays,
+				maintenancePerDay = before.maintenancePerDay,
+				workers = before.workers,
+				consumption = before.consumption,
+				production = ProductionModel(good = goodEx.toModel(), amount = 4.0)
+		)
+
+		val result = mvc.perform(put("/games/{gameId}/facilities/{facilityId}", game.id, facility.id)
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(ObjectMapper().writeValueAsString(after)))
+
+		// assert
+		result.andExpect(status().isOk())
+
+		val model = result.contentAs<FacilityModel>()
+		assertThat(model.name, equalTo("Sägewerk 2"))
+		assertThat(model.constructionCost, equalTo(1001))
+		assertThat(model.constructionDays, equalTo(1002))
+		assertThat(model.maintenancePerDay, equalTo(1003))
+		assertThat(model.workers, equalTo(1004))
+
+		val production = model.production!!
+		assertThat(production.good.name, equalTo("Bretter"))
+		assertThat(production.amount, equalTo(4.0))
+	}
 }

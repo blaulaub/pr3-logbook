@@ -65,7 +65,7 @@ class FacilityService @Autowired constructor(
 			oldFacility.production = null
 		} else {
 			var itemJpa = oldFacility.production
-			if (itemJpa == null || itemJpa.good.name == facility.production.good.name) {
+			if (itemJpa == null || itemJpa.good.name != facility.production.good.name) {
 				itemJpa = ProductionJpa(
 						facility = oldFacility,
 						good = goodRepository.findOneByGameAndName(game, facility.production.good.name)!!)
