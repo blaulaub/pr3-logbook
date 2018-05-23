@@ -19,6 +19,21 @@
     <label for="workers">Workers:</label>
     <input id="workers" formControlName="workers" type="number">
   </div>
+  <div formGroupName="production">
+    <fieldset style="width: 28em">
+      <legend>Production</legend>
+      <div>
+        <label for="good">Good:</label>
+        <select class="form-control" formControlName="good">
+          <option *ngFor="let g of goods" [value]="g.name">{{g.name}}</option>
+        </select>
+      </div>
+      <div>
+        <label for="amount">Amount:</label>
+        <input id="amount" formControlName="amount" type="number">
+      </div>
+    </fieldset>
+  </div>
   <button type="submit">Update</button>
 </form>
 
