@@ -10,7 +10,7 @@ import javax.persistence.UniqueConstraint
 import ch.patchcode.pr3.logbook.model.ProductionModel
 import com.fasterxml.jackson.annotation.JsonIgnore
 
-@Entity(name = "Consumption")
+@Entity(name = "Production")
 @Table(uniqueConstraints = arrayOf(UniqueConstraint(
 		columnNames = arrayOf("facility_id", "good_id"))))
 data class ProductionJpa(
