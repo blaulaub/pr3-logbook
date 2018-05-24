@@ -24,7 +24,7 @@
       <legend>Consumptions</legend>
       <div *ngFor="let consumption of consumptions.controls; let i=index" [formGroupName]="i">
         <fieldset style="width: 28em">
-          <app-turnover-edit [goods]="goods" [turnover]="consumption"></app-turnover-edit>
+          <app-turnover-edit [goods]="goods" [turnover]="consumption" (onClear)="clearConsumption(i)"></app-turnover-edit>
         </fieldset>
       </div>
       <button (click)="addConsumption()" type="button">Add Consumption</button>
@@ -33,7 +33,7 @@
   <div formGroupName="production">
     <fieldset style="width: 28em">
       <legend>Production</legend>
-      <app-turnover-edit [goods]="goods" [turnover]="production"></app-turnover-edit>
+      <app-turnover-edit [goods]="goods" [turnover]="production" (onClear)="clearProduction()"></app-turnover-edit>
     </fieldset>
   </div>
   <button type="submit">Update</button>

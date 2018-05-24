@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Good } from '../../../../entities/data_model';
@@ -8,14 +8,15 @@ import { Good } from '../../../../entities/data_model';
   templateUrl: './turnover-edit.component.html',
   styleUrls: ['./turnover-edit.component.css']
 })
-export class TurnoverEditComponent implements OnInit {
+export class TurnoverEditComponent {
 
   @Input() goods: Good[];
   @Input() turnover: FormGroup;
+  @Output() onClear: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
+  clear() {
+    this.onClear.emit();
   }
-
 }

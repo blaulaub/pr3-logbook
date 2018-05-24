@@ -80,6 +80,15 @@ export class FacilityComponent implements OnInit {
     this.consumptions.push(this.fb.group(this.toTurnoverModel(null)));
   }
 
+  clearConsumption(i: number) {
+    this.consumptions.removeAt(i);
+  }
+
+  clearProduction() {
+    this.production.setValue(this.toTurnoverModel(null));
+    console.log("not implemented: clearProduction");
+  }
+
   onSubmit() {
     const facilityModel = this.facilityForm.value;
     const saveFacility : Facility = {
