@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import { Facility, Good, Turnover } from '../../../entities/data_model';
 import { FacilitiesService } from '../../../services/facilities.service';
@@ -49,9 +49,13 @@ export class FacilityComponent implements OnInit {
       constructionDays: this.facility.constructionDays,
       maintenancePerDay: this.facility.maintenancePerDay,
       workers: this.facility.workers,
-      // TODO: consumption and production
+      consumptions: this.fb.array( this.facility.consumption.map(x => this.fb.group(this.toTurnoverModel(x))) ),
       production: this.fb.group(this.toTurnoverModel(this.facility.production))
     });
+  }
+
+  get consumptions(): FormArray {
+    return this.facilityForm.get('consumptions') as FormArray;
   }
 
   toTurnoverModel(t : Turnover) {
@@ -68,6 +72,10 @@ export class FacilityComponent implements OnInit {
     }
   }
 
+  addConsumption() {
+    this.consumptions.push(this.fb.group(this.toTurnoverModel(null)));
+  }
+
   onSubmit() {
     const facilityModel = this.facilityForm.value;
     const saveFacility : Facility = {
@@ -77,8 +85,7 @@ export class FacilityComponent implements OnInit {
       constructionDays: facilityModel.constructionDays,
       maintenancePerDay: facilityModel.maintenancePerDay,
       workers: facilityModel.workers,
-      // TODO: consumption and production
-      consumption: this.facility.consumption,
+      consumption: facilityModel.consumptions.map(x => this.toTurnover(x)),
       production: this.toTurnover(facilityModel.production)
     };
     this.facilitiesService.updateFacility(this.gameId, saveFacility)

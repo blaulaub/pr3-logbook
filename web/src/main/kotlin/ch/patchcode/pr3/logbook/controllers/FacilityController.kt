@@ -45,7 +45,7 @@ class FacilityController @Autowired constructor(
 
 	@PutMapping("/games/{gameId}/facilities/{facilityId}")
 	@Transactional
-	fun updateShiptype(
+	fun updateFacility(
 			@PathVariable gameId: Long,
 			@PathVariable facilityId: Long,
 			@RequestBody facility: FacilityModel

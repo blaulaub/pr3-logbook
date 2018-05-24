@@ -19,6 +19,27 @@
     <label for="workers">Workers:</label>
     <input formControlName="workers" type="number">
   </div>
+  <div formArrayName="consumptions">
+    <fieldset style="width: 28em">
+      <legend>Consumptions</legend>
+      <div *ngFor="let consumption of consumptions.controls; let i=index" [formGroupName]="i">
+        <fieldset style="width: 28em">
+          <legend>Consumption {{i+1}}</legend>
+          <div>
+            <label for="good">Good:</label>
+            <select class="form-control" formControlName="good">
+              <option *ngFor="let g of goods" [value]="g.name">{{g.name}}</option>
+            </select>
+          </div>
+          <div>
+            <label for="amount">Amount:</label>
+            <input formControlName="amount" type="number">
+          </div>
+        </fieldset>
+      </div>
+      <button (click)="addConsumption()" type="button">Add Consumption</button>
+    </fieldset>
+  </div>
   <div formGroupName="production">
     <fieldset style="width: 28em">
       <legend>Production</legend>
