@@ -58,6 +58,10 @@ export class FacilityComponent implements OnInit {
     return this.facilityForm.get('consumptions') as FormArray;
   }
 
+  get production(): FormGroup {
+    return this.facilityForm.get('production') as FormGroup;
+  }
+
   toTurnoverModel(t : Turnover) {
     if (t != null) {
       return {

@@ -1,0 +1,12 @@
+<div *ngIf="turnover" [formGroup]="turnover">
+  <div>
+    <label for="good">Good:</label>
+    <select class="form-control" formControlName="good">
+      <option *ngFor="let g of goods" [value]="g.name">{{g.name}}</option>
+    </select>
+  </div>
+  <div>
+    <label for="amount">Amount:</label>
+    <input formControlName="amount" type="number">
+  </div>
+</div>

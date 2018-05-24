@@ -24,17 +24,7 @@
       <legend>Consumptions</legend>
       <div *ngFor="let consumption of consumptions.controls; let i=index" [formGroupName]="i">
         <fieldset style="width: 28em">
-          <legend>Consumption {{i+1}}</legend>
-          <div>
-            <label for="good">Good:</label>
-            <select class="form-control" formControlName="good">
-              <option *ngFor="let g of goods" [value]="g.name">{{g.name}}</option>
-            </select>
-          </div>
-          <div>
-            <label for="amount">Amount:</label>
-            <input formControlName="amount" type="number">
-          </div>
+          <app-turnover-edit [goods]="goods" [turnover]="consumption"></app-turnover-edit>
         </fieldset>
       </div>
       <button (click)="addConsumption()" type="button">Add Consumption</button>
@@ -43,16 +33,7 @@
   <div formGroupName="production">
     <fieldset style="width: 28em">
       <legend>Production</legend>
-      <div>
-        <label for="good">Good:</label>
-        <select class="form-control" formControlName="good">
-          <option *ngFor="let g of goods" [value]="g.name">{{g.name}}</option>
-        </select>
-      </div>
-      <div>
-        <label for="amount">Amount:</label>
-        <input formControlName="amount" type="number">
-      </div>
+      <app-turnover-edit [goods]="goods" [turnover]="production"></app-turnover-edit>
     </fieldset>
   </div>
   <button type="submit">Update</button>
