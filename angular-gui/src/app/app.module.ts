@@ -22,6 +22,7 @@ import { ShiptypeAddComponent } from './games/shiptypes/shiptype-add/shiptype-ad
 import { ShiptypeComponent } from './games/shiptypes/shiptype/shiptype.component';
 import { FacilityComponent } from './games/facilities/facility/facility.component';
 import { TurnoverEditComponent } from './games/facilities/facility/turnover-edit/turnover-edit.component';
+import { CityComponent } from './games/cities/city/city.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TurnoverEditComponent } from './games/facilities/facility/turnover-edit
     ShiptypeAddComponent,
     ShiptypeComponent,
     FacilityComponent,
-    TurnoverEditComponent
+    TurnoverEditComponent,
+    CityComponent
   ],
   imports: [
     BrowserModule,

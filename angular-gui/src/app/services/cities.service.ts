@@ -16,6 +16,10 @@ export class CitiesService {
     return this.http.get<City[]>('/api/games/' + gameId + '/cities');
   }
 
+  getCity(gameId: number, cityId: number): Observable<City> {
+    return this.http.get<City>('/api/games/' + gameId + '/cities/' + cityId);
+  }
+
   addCity(gameId: number, name: string): Observable<City> {
     console.log("adding city " + name);
     return this.http.post<City>('/api/games/' + gameId + '/cities', null, {
