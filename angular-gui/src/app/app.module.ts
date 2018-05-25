@@ -23,6 +23,7 @@ import { ShiptypeComponent } from './games/shiptypes/shiptype/shiptype.component
 import { FacilityComponent } from './games/facilities/facility/facility.component';
 import { TurnoverEditComponent } from './games/facilities/facility/turnover-edit/turnover-edit.component';
 import { CityComponent } from './games/cities/city/city.component';
+import { GoodComponent } from './games/goods/good/good.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { CityComponent } from './games/cities/city/city.component';
     ShiptypeComponent,
     FacilityComponent,
     TurnoverEditComponent,
-    CityComponent
+    CityComponent,
+    GoodComponent
   ],
   imports: [
     BrowserModule,

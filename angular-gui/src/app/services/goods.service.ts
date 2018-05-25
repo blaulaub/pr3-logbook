@@ -16,6 +16,10 @@ export class GoodsService {
     return this.http.get<Good[]>('/api/games/' + gameId + '/goods');
   }
 
+  getGood(gameId: number, goodId: number): Observable<Good> {
+    return this.http.get<Good>('/api/games/' + gameId + '/goods/' + goodId);
+  }
+
   addGood(gameId: number, name: string): Observable<Good> {
     console.log("adding good " + name);
     return this.http.post<Good>('/api/games/' + gameId + '/goods', null, {

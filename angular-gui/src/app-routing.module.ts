@@ -8,6 +8,7 @@ import { CityComponent } from './app/games/cities/city/city.component';
 import { FacilitiesComponent } from './app/games/facilities/facilities.component';
 import { FacilityComponent } from './app/games/facilities/facility/facility.component';
 import { GoodsComponent } from './app/games/goods/goods.component';
+import { GoodComponent } from './app/games/goods/good/good.component';
 import { ShiptypesComponent } from './app/games/shiptypes/shiptypes.component';
 import { ShiptypeComponent } from './app/games/shiptypes/shiptype/shiptype.component';
 import { FleetsComponent } from './app/games/fleets/fleets.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'games/:gameId/facilities', component: FacilitiesComponent },
   { path: 'games/:gameId/facilities/:facilityId', component: FacilityComponent },
   { path: 'games/:gameId/goods', component: GoodsComponent },
+  { path: 'games/:gameId/goods/:goodId', component: GoodComponent },
   { path: 'games/:gameId/shiptypes', component: ShiptypesComponent },
   { path: 'games/:gameId/shiptypes/:shiptypeId', component: ShiptypeComponent },
   { path: 'games/:gameId/fleets', component: FleetsComponent }
