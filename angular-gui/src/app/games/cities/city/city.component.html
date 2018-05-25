@@ -1,3 +1,45 @@
 <p *ngIf="city">
   city {{city.name}} works!
 </p>
+<fieldset>
+  <legend>Common (game-dependent, time-independent)</legend>
+  <ul>
+    <li>City name</li>
+    <li>City products (or factory types)</li>
+  </ul>
+</fieldset>
+<fieldset>
+  <legend>Game- and Time-Dependent</legend>
+  <ul>
+    <li>population</li>
+    <li>capital or govenor's city?</li>
+    <li>number of player's warehouses</li>
+    <li>number of private/player's residential buildings</li>
+    <li>number of private/player's factories (production facilities)</li>
+    <li>actual warehouse retention settings</li>
+    <li>other warehouse settings (buy goods, sell goods, ...
+      )</li>
+    <li>goods on the market</li>
+    <li>goods in the warehouse</li>
+  </ul>
+</fieldset>
+<fieldset>
+  <legend>Control</legend>
+  <ul>
+    <li>place facility build order</li>
+    <li>sync actual with suggested warehouse retention settings</li>
+  </ul>
+</fieldset>
+<fieldset>
+  <legend>Informative</legend>
+  <ul>
+    <li>suggested warehouse retention settings</li>
+    <li>fleets serving this city</li>
+    <li>facility build history</li>
+  </ul>
+</fieldset>
+
+<p>
+  <a routerLink="/games/{{gameId}}/cities">... back to cities</a><br>
+  <a routerLink="/games/{{gameId}}">... back to game overview</a><br>
+</p>
