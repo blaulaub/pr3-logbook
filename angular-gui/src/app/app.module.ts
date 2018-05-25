@@ -24,6 +24,7 @@ import { FacilityComponent } from './games/facilities/facility/facility.componen
 import { TurnoverEditComponent } from './games/facilities/facility/turnover-edit/turnover-edit.component';
 import { CityComponent } from './games/cities/city/city.component';
 import { GoodComponent } from './games/goods/good/good.component';
+import { FleetComponent } from './games/fleets/fleet/fleet.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { GoodComponent } from './games/goods/good/good.component';
     FacilityComponent,
     TurnoverEditComponent,
     CityComponent,
-    GoodComponent
+    GoodComponent,
+    FleetComponent
   ],
   imports: [
     BrowserModule,

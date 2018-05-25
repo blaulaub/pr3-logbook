@@ -12,6 +12,7 @@ import { GoodComponent } from './app/games/goods/good/good.component';
 import { ShiptypesComponent } from './app/games/shiptypes/shiptypes.component';
 import { ShiptypeComponent } from './app/games/shiptypes/shiptype/shiptype.component';
 import { FleetsComponent } from './app/games/fleets/fleets.component';
+import { FleetComponent } from './app/games/fleets/fleet/fleet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/games', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'games/:gameId/goods/:goodId', component: GoodComponent },
   { path: 'games/:gameId/shiptypes', component: ShiptypesComponent },
   { path: 'games/:gameId/shiptypes/:shiptypeId', component: ShiptypeComponent },
-  { path: 'games/:gameId/fleets', component: FleetsComponent }
+  { path: 'games/:gameId/fleets', component: FleetsComponent },
+  { path: 'games/:gameId/fleets/:fleetId', component: FleetComponent }
 ];
 
 @NgModule({

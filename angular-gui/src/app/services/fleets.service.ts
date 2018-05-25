@@ -16,6 +16,10 @@ export class FleetsService {
     return this.http.get<Fleet[]>('/api/games/' + gameId + '/fleets');
   }
 
+  getFleet(gameId: number, fleetId: number): Observable<Fleet> {
+    return this.http.get<Fleet>('/api/games/' + gameId + '/fleets/' + fleetId);
+  }
+
   addFleet(gameId: number, name: string): Observable<Fleet> {
     console.log("adding fleet " + name);
     return this.http.post<Fleet>('/api/games/' + gameId + '/fleets', null, {
