@@ -1,3 +1,9 @@
+<div *ngIf="game">
+<h1>Kapitän {{ game.captainsName }}</h1>
+<div>
+  (begonnen {{ game.created | date: 'dd.MM.yyyy HH:mm'}})
+</div>
+<app-game-date></app-game-date>
 <ul>
   <li><a routerLink="/games/{{gameId}}/cities">Cities ...</a></li>
   <li><a routerLink="/games/{{gameId}}/facilities">Gebäude ...</a></li>
@@ -5,4 +11,9 @@
   <li><a routerLink="/games/{{gameId}}/shiptypes">Schiffstypen ...</a></li>
   <li><a routerLink="/games/{{gameId}}/fleets">Flotten ...</a></li>
 </ul>
+</div>
+<fieldset>
+  <legend>Settings</legend>
+  <app-game-settings></app-game-settings>
+</fieldset>
 <a routerLink="/games">... back to list of games</a>

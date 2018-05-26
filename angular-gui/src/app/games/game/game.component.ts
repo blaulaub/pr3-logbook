@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { Game } from '../../entities/data_model';
+import { GamesService } from '../../services/games.service';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -10,14 +13,18 @@ import { Location } from '@angular/common';
 export class GameComponent implements OnInit {
 
   gameId: number;
+  game: Game;
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private gamesService: GamesService
   ) { }
 
   ngOnInit() {
     this.gameId = +this.route.snapshot.paramMap.get('gameId');
+    this.gamesService.getGame(this.gameId)
+      .subscribe(game => this.game = game);
   }
 
 }

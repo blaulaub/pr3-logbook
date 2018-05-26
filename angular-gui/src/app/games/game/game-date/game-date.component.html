@@ -1,0 +1,17 @@
+<div>
+  <div *ngIf="!editOn">
+    Spiel-Datum {{ date | date: 'dd.MM.yyyy' }}
+    <button (click)="incDate()">+</button>
+    <button (click)="decDate()">-</button>
+    <button (click)="switchToEdit()">edit</button>
+  </div>
+  <div *ngIf="editOn">
+    Spiel-Datum
+    <input type="date"
+           [ngModel]="dateEdit | date: 'dd.MM.yyyy'"
+           (ngModelChange)="matchDate($event)">
+    <button (click)="acceptEdit()">set</button>
+    <button (click)="cancelEdit()">cancel</button>
+    {{ match | json }}
+  </div>
+</div>

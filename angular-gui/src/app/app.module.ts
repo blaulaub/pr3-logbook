@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
 
@@ -25,6 +25,8 @@ import { TurnoverEditComponent } from './games/facilities/facility/turnover-edit
 import { CityComponent } from './games/cities/city/city.component';
 import { GoodComponent } from './games/goods/good/good.component';
 import { FleetComponent } from './games/fleets/fleet/fleet.component';
+import { GameDateComponent } from './games/game/game-date/game-date.component';
+import { GameSettingsComponent } from './games/game/game-settings/game-settings.component';
 
 
 @NgModule({
@@ -48,12 +50,15 @@ import { FleetComponent } from './games/fleets/fleet/fleet.component';
     TurnoverEditComponent,
     CityComponent,
     GoodComponent,
-    FleetComponent
+    FleetComponent,
+    GameDateComponent,
+    GameSettingsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
