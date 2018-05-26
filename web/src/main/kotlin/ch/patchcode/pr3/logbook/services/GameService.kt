@@ -22,6 +22,17 @@ class GameService @Autowired constructor(
 		return game.get()
 	}
 
+	fun updateGame(gameId: Long, game: Game): Game {
+		if (gameId != game.id) throw IllegalArgumentException("URL gameId does not match model game id")
+		val oldGame = resolveGame(gameId)
+
+		oldGame.captainsName = game.captainsName
+		oldGame.created = game.created
+		oldGame.gameDate = game.gameDate
+
+		return gameRepository.save(oldGame).toDto()
+	}
+
 	fun deleteGame(gameId: Long) {
 		gameRepository.deleteById(gameId)
 	}

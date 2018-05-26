@@ -13,13 +13,15 @@ import javax.persistence.Id
 @Entity(name = "Game")
 data class GameJpa(
 		@Id @GeneratedValue val id: Long? = null,
-		@Column(nullable = false) val captainsName: String,
-		@Column(nullable = false) val created: LocalDateTime = LocalDateTime.now()
+		@Column(nullable = false) var captainsName: String,
+		@Column(nullable = false) var created: LocalDateTime = LocalDateTime.now(),
+		@Column var gameDate: LocalDateTime? = null
 ) {
 
 	fun toDto() = Game(
 			id = this.id!!,
 			captainsName = this.captainsName,
-			created = this.created
+			created = this.created,
+			gameDate = this.gameDate
 	)
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-game-date',
@@ -7,23 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameDateComponent implements OnInit {
 
+  @Input() date: Date;
+  @Output() onDateChanged: EventEmitter<Date> = new EventEmitter();
+
   editOn: boolean;
-  date: Date;
   dateEdit: Date;
   match: any;
 
   constructor() { }
 
   ngOnInit() {
-    this.date = new Date("1550-01-01");
   }
 
   incDate() {
-    this.date = new Date(this.date.getTime() + (1000 * 60 * 60 * 24));
+    this.date = new Date(new Date(this.date).getTime() + (1000 * 60 * 60 * 24));
+    this.onDateChanged.emit(this.date);
   }
 
   decDate() {
-    this.date = new Date(this.date.getTime() - (1000 * 60 * 60 * 24));
+    this.date = new Date(new Date(this.date).getTime() - (1000 * 60 * 60 * 24));
+    this.onDateChanged.emit(this.date);
   }
 
   switchToEdit() {
@@ -32,8 +35,9 @@ export class GameDateComponent implements OnInit {
   }
 
   acceptEdit() {
-    this.date = new Date(this.match[3], this.match[2]-1, this.match[1]);
+    this.date = new Date(Date.UTC(this.match[3], this.match[2]-1, this.match[1], 0, 0, 0, 0));
     this.editOn = false;
+    this.onDateChanged.emit(this.date);
   }
 
   cancelEdit() {

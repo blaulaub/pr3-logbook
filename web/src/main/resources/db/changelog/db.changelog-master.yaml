@@ -26,6 +26,9 @@ databaseChangeLog:
                   type: datetime
                   constraints:
                     nullable: false
+              - column:
+                  name: gameDate
+                  type: datetime
 
         - createTable:
             tableName: City

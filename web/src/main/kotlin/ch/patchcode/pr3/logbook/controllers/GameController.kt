@@ -15,6 +15,8 @@ import ch.patchcode.pr3.logbook.services.GameService
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 
 @RestController
 class GameController @Autowired constructor(
@@ -35,6 +37,13 @@ class GameController @Autowired constructor(
 	@GetMapping("/games/{gameId}")
 	@Transactional
 	fun getGame(@PathVariable gameId: Long): Game = gameService.resolveGame(gameId).toDto()
+
+	@PutMapping("/games/{gameId}")
+	@Transactional
+	fun updateGame(
+			@PathVariable gameId: Long,
+			@RequestBody game: Game
+	): Game = gameService.updateGame(gameId, game)
 
 	@DeleteMapping("/games/{gameId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

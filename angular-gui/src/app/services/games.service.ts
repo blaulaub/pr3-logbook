@@ -26,4 +26,11 @@ export class GamesService {
       params: new HttpParams().set('captainsName', captainsName)
     });
   }
+
+  updateGame(game: Game): Observable<Game> {
+    return this.http.put<Game>(
+      '/api/games/' + game.id,
+      game
+    )
+  }
 }

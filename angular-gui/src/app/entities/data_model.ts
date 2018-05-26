@@ -4,6 +4,8 @@ export class Game {
     public captainsName: string,
     public created: Date
   ) {}
+
+  gameDate: Date;
 }
 
 export class City {

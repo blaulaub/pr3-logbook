@@ -3,7 +3,7 @@
 <div>
   (begonnen {{ game.created | date: 'dd.MM.yyyy HH:mm'}})
 </div>
-<app-game-date></app-game-date>
+<app-game-date [date]="game.gameDate" (onDateChanged)="updateGameDate($event)"></app-game-date>
 <ul>
   <li><a routerLink="/games/{{gameId}}/cities">Cities ...</a></li>
   <li><a routerLink="/games/{{gameId}}/facilities">Gebäude ...</a></li>

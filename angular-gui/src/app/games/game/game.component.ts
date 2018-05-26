@@ -27,4 +27,10 @@ export class GameComponent implements OnInit {
       .subscribe(game => this.game = game);
   }
 
+  updateGameDate(date: Date) {
+    this.game.gameDate = date;
+    this.gamesService.updateGame(this.game)
+      .subscribe(game => this.game = game);
+  }
+
 }
