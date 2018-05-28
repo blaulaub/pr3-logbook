@@ -316,4 +316,38 @@ databaseChangeLog:
             referencedTableName: Game
             referencedColumnNames: id
             onDelete: CASCADE
-            
+
+        - createTable:
+            tableName: GameSettings
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: salaryPerDay
+                  type: double
+              - column:
+                  name: workerPerCitizenRatio
+                  type: double
+
+        - addForeignKeyConstraint:
+            constraintName: fk_GameSettings_Game_id
+            baseTableName: GameSettings
+            baseColumnNames: game_id
+            referencedTableName: Game
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addUniqueConstraint:
+            constraintName: uq_GameSettings_game
+            tableName: GameSettings
+            columnNames: game_id

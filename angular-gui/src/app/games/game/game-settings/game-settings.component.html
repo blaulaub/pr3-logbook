@@ -1,5 +1,11 @@
-<div>
-  <ul>
-    <li>Lohn pro Tag</li>
-  </ul>
-</div>
+<form *ngIf="gameSettingsForm" [formGroup]="gameSettingsForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="salaryPerDay">Salary per Day:</label>
+    <input formControlName="salaryPerDay" type="number">
+  </div>
+  <div>
+    <label for="workerPerCitizenRatio">Worker per Citizen Ratio:</label>
+    <input formControlName="workerPerCitizenRatio" type="number">
+  </div>
+  <button type="submit">Update</button>
+</form>

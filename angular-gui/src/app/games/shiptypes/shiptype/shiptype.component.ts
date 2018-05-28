@@ -53,7 +53,7 @@ export class ShiptypeComponent implements OnInit {
 
   onSubmit() {
     const shiptypeModel = this.shiptypeForm.value;
-    const saveShiptype : Shiptype = {
+    const saveShiptype: Shiptype = {
       id: this.shiptype.id,
       name: shiptypeModel.name,
       cargoSpace: shiptypeModel.cargoSpace,
@@ -67,8 +67,9 @@ export class ShiptypeComponent implements OnInit {
       dailyCost: shiptypeModel.dailyCost,
       price: shiptypeModel.price
     };
-    this.shiptypesService.updateShiptype(this.gameId, saveShiptype)
-    .subscribe(shiptype => {});
+    this.shiptypesService
+      .updateShiptype(this.gameId, saveShiptype)
+      .subscribe(shiptype => {});
   }
 
 }

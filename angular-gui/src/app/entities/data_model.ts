@@ -8,6 +8,11 @@ export class Game {
   gameDate: Date;
 }
 
+export class GameSettings {
+  salaryPerDay: number;
+  workerPerCitizenRatio: number;
+}
+
 export class City {
   constructor(
     public id: number,
