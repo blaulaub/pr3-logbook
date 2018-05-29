@@ -14,6 +14,7 @@ import { GoodsService } from '../../../services/goods.service';
 })
 export class FacilityComponent implements OnInit {
 
+  editOn: boolean;
   gameId: number;
   facility: Facility;
   goods: Good[];
@@ -36,10 +37,12 @@ export class FacilityComponent implements OnInit {
       .subscribe(goods => this.goods = goods);
     this.facilitiesService
       .getFacility(this.gameId, +this.route.snapshot.paramMap.get('facilityId'))
-      .subscribe(facility => {
-        this.facility = facility;
-        this.createForm();
-      });
+      .subscribe(facility => { this.facility = facility; });
+  }
+
+  switchToEdit() {
+    this.createForm();
+    this.editOn = true;
   }
 
   createForm() {
@@ -102,7 +105,14 @@ export class FacilityComponent implements OnInit {
       production: this.toTurnover(facilityModel.production)
     };
     this.facilitiesService.updateFacility(this.gameId, saveFacility)
-    .subscribe(facility => {});
+    .subscribe(facility => {
+      this.facility = facility;
+      this.editOn = false;
+    });
+  }
+
+  cancelEdit() {
+    this.editOn = false;
   }
 
   toTurnover(x : any) {

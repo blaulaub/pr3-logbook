@@ -1,43 +1,80 @@
-<form *ngIf="facilityForm" [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Facility:</label>
-    <input formControlName="name">
+<div *ngIf="facility">
+  <h1>{{facility.name}}</h1>
+  <div *ngIf="!editOn">
+    <div>
+      <label>Construction Cost:</label>
+      {{facility.constructionCost}}
+    </div>
+    <div>
+      <label>Construction Days:</label>
+      {{facility.constructionDays}}
+    </div>
+    <div>
+      <label>Maintenance per Day:</label>
+      {{facility.maintenancePerDay}}
+    </div>
+    <div>
+      <label>Workers:</label>
+      {{facility.workers}}
+    </div>
+    <div *ngIf="facility.consumption">
+      <label>Consumption:</label>
+      <span *ngFor="let consumption of facility.consumption; let isLast=last">
+        {{consumption.amount}}
+        <a routerLink="/games/{{gameId}}/goods/{{consumption.good.id}}">{{consumption.good.name}}</a>{{isLast ? '' : ', '}}
+      </span>
+    </div>
+    <div *ngIf="facility.production">
+      <label>Production:</label>
+      {{facility.production.amount}}
+      <a routerLink="/games/{{gameId}}/goods/{{facility.production.good.id}}">{{facility.production.good.name}}</a>
+    </div>
+    <button (click)="switchToEdit()">edit</button>
   </div>
-  <div>
-    <label for="constructionCost">Construction Cost:</label>
-    <input formControlName="constructionCost" type="number">
-  </div>
-  <div>
-    <label for="constructionDays">Construction Days:</label>
-    <input formControlName="constructionDays" type="number">
-  </div>
-  <div>
-    <label for="maintenancePerDay">Maintenance per Day:</label>
-    <input formControlName="maintenancePerDay" type="number">
-  </div>
-  <div>
-    <label for="workers">Workers:</label>
-    <input formControlName="workers" type="number">
-  </div>
-  <div formArrayName="consumptions">
-    <fieldset style="width: 28em">
-      <legend>Consumptions</legend>
-      <div *ngFor="let consumption of consumptions.controls; let i=index" [formGroupName]="i">
+  <div *ngIf="editOn">
+    <form *ngIf="facilityForm" [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Facility:</label>
+        <input formControlName="name">
+      </div>
+      <div>
+        <label for="constructionCost">Construction Cost:</label>
+        <input formControlName="constructionCost" type="number">
+      </div>
+      <div>
+        <label for="constructionDays">Construction Days:</label>
+        <input formControlName="constructionDays" type="number">
+      </div>
+      <div>
+        <label for="maintenancePerDay">Maintenance per Day:</label>
+        <input formControlName="maintenancePerDay" type="number">
+      </div>
+      <div>
+        <label for="workers">Workers:</label>
+        <input formControlName="workers" type="number">
+      </div>
+      <div formArrayName="consumptions">
         <fieldset style="width: 28em">
-          <app-turnover-edit [goods]="goods" [turnover]="consumption" (onClear)="clearConsumption(i)"></app-turnover-edit>
+          <legend>Consumptions</legend>
+          <div *ngFor="let consumption of consumptions.controls; let i=index" [formGroupName]="i">
+            <fieldset style="width: 28em">
+              <app-turnover-edit [goods]="goods" [turnover]="consumption" (onClear)="clearConsumption(i)"></app-turnover-edit>
+            </fieldset>
+          </div>
+          <button (click)="addConsumption()" type="button">Add Consumption</button>
         </fieldset>
       </div>
-      <button (click)="addConsumption()" type="button">Add Consumption</button>
-    </fieldset>
+      <div formGroupName="production">
+        <fieldset style="width: 28em">
+          <legend>Production</legend>
+          <app-turnover-edit [goods]="goods" [turnover]="production" (onClear)="clearProduction()"></app-turnover-edit>
+        </fieldset>
+      </div>
+      <button type="submit">set</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </form>
   </div>
-  <div formGroupName="production">
-    <fieldset style="width: 28em">
-      <legend>Production</legend>
-      <app-turnover-edit [goods]="goods" [turnover]="production" (onClear)="clearProduction()"></app-turnover-edit>
-    </fieldset>
-  </div>
-  <button type="submit">Update</button>
-</form>
+</div>
 
 <p>
   <a routerLink="/games/{{gameId}}/facilities">... back to facilities</a><br>

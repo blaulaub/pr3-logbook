@@ -1,3 +1,28 @@
-<p *ngIf="good">
-  good {{good.name}} works!
-</p>
+<div *ngIf="good">
+  <h1>{{good.name}}</h1>
+  <ul>
+    <li>
+      produced in <i>list of cities</i>
+    </li>
+    <li>
+      surplus or deficit
+      <ul>
+        <li>
+          global surplus or deficit is <i>amount</i>, corresponding to <i>N</i> facilities
+        </li>
+        <li>
+          surplus or deficit in player's logistic domain is <i>amount</i>, corresponding to <i>N</i> facilities
+        </li>
+      </ul>
+    </li>
+    <li>
+      produced by <i>facility</i>, producing <i>n</i> items per day at <i>per-item nominal production cost</i>, splitting into
+      <ul>
+        <li><i>P%</i> facility maintenance cost <i>N</i></li>
+        <li><i>P%</i> salary cost <i>N</i></li>
+        <li><i>P%</i> raw material <i>name_1</i> cost <i>N</i></li>
+        <li><i>P%</i> raw material <i>name_2</i> cost <i>N</i></li>
+      </ul>
+    </li>
+  </ul>
+</div>
