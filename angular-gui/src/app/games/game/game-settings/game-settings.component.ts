@@ -13,6 +13,7 @@ export class GameSettingsComponent implements OnInit {
 
   @Input() gameId: number;
 
+  editOn: boolean;
   gameSettings: GameSettings;
   gameSettingsForm: FormGroup;
 
@@ -24,10 +25,12 @@ export class GameSettingsComponent implements OnInit {
   ngOnInit() {
     this.gameSettingsService
       .getGameSettings(this.gameId)
-      .subscribe(gameSettings => {
-        this.gameSettings = gameSettings;
-        this.createForm();
-      });
+      .subscribe(gameSettings => { this.gameSettings = gameSettings; });
+  }
+
+  switchToEdit() {
+    this.createForm();
+    this.editOn = true;
   }
 
   createForm() {
@@ -45,6 +48,13 @@ export class GameSettingsComponent implements OnInit {
     };
     this.gameSettingsService
       .updateGameSettings(this.gameId, saveGameSettings)
-      .subscribe(gameSettings => {});
+      .subscribe(gameSettings => {
+        this.gameSettings = gameSettings;
+        this.editOn = false;
+      });
+  }
+
+  cancelEdit() {
+    this.editOn = false;
   }
 }

@@ -1,11 +1,27 @@
-<form *ngIf="gameSettingsForm" [formGroup]="gameSettingsForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="salaryPerDay">Salary per Day:</label>
-    <input formControlName="salaryPerDay" type="number">
+<div *ngIf="gameSettings">
+  <div *ngIf="!editOn">
+    <div>
+      <label>Salary per Day:</label>
+      {{gameSettings.salaryPerDay}}
+    </div>
+    <div>
+      <label>Worker per Citizen Ratio:</label>
+      {{gameSettings.workerPerCitizenRatio}}
+    </div>
+    <button (click)="switchToEdit()">edit</button>
   </div>
-  <div>
-    <label for="workerPerCitizenRatio">Worker per Citizen Ratio:</label>
-    <input formControlName="workerPerCitizenRatio" type="number">
+  <div *ngIf="editOn">
+    <form *ngIf="gameSettingsForm" [formGroup]="gameSettingsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="salaryPerDay">Salary per Day:</label>
+        <input formControlName="salaryPerDay" type="number">
+      </div>
+      <div>
+        <label for="workerPerCitizenRatio">Worker per Citizen Ratio:</label>
+        <input formControlName="workerPerCitizenRatio" type="number">
+      </div>
+      <button type="submit">set</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </form>
   </div>
-  <button type="submit">Update</button>
-</form>
+</div>
