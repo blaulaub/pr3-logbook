@@ -1,50 +1,99 @@
-<form *ngIf="shiptypeForm" [formGroup]="shiptypeForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Shiptype:</label>
-    <input formControlName="name">
+<div *ngIf="shiptype">
+  <h1>{{shiptype.name}}</h1>
+  <div *ngIf="!editOn">
+    <div>
+      <label>Cargo Space:</label>
+      {{shiptype.cargoSpace}}
+    </div>
+    <div>
+      <label>Maneuverability:</label>
+      {{shiptype.maneuverability}}
+    </div>
+    <div>
+      <label>Draft:</label>
+      {{shiptype.draft}}
+    </div>
+    <div>
+      <label>Min Speed:</label>
+      {{shiptype.minSpeed}}
+    </div>
+    <div>
+      <label>Max Speed:</label>
+      {{shiptype.maxSpeed}}
+    </div>
+    <div>
+      <label>Cannons:</label>
+      {{shiptype.cannons}}
+    </div>
+    <div>
+      <label>Sailors:</label>
+      {{shiptype.sailors}}
+    </div>
+    <div>
+      <label>Hit Points:</label>
+      {{shiptype.hitPoints}}
+    </div>
+    <div>
+      <label>Daily Cost:</label>
+      {{shiptype.dailyCost}}
+    </div>
+    <div>
+      <label>Price:</label>
+      {{shiptype.price}}
+    </div>
+    <button (click)="switchToEdit()">edit</button>
   </div>
-  <div>
-    <label for="cargoSpace">Cargo Space:</label>
-    <input formControlName="cargoSpace" type="number">
+  <div *ngIf="editOn">
+    <form *ngIf="shiptypeForm" [formGroup]="shiptypeForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Shiptype:</label>
+        <input formControlName="name">
+      </div>
+      <div>
+        <label for="cargoSpace">Cargo Space:</label>
+        <input formControlName="cargoSpace" type="number">
+      </div>
+      <div>
+        <label for="maneuverability">Maneuverability:</label>
+        <input formControlName="maneuverability" type="number">
+      </div>
+      <div>
+        <label for="draft">Draft:</label>
+        <input formControlName="draft" type="number">
+      </div>
+      <div>
+        <label for="minSpeed">Min Speed:</label>
+        <input formControlName="minSpeed" type="number">
+      </div>
+      <div>
+        <label for="maxSpeed">Max Speed:</label>
+        <input formControlName="maxSpeed" type="number">
+      </div>
+      <div>
+        <label for="cannons">Cannons:</label>
+        <input formControlName="cannons" type="number">
+      </div>
+      <div>
+        <label for="sailors">Sailors:</label>
+        <input formControlName="sailors" type="number">
+      </div>
+      <div>
+        <label for="hitPoints">Hit Points:</label>
+        <input formControlName="hitPoints" type="number">
+      </div>
+      <div>
+        <label for="dailyCost">Daily Cost:</label>
+        <input formControlName="dailyCost" type="number">
+      </div>
+      <div>
+        <label for="price">Price:</label>
+        <input formControlName="price" type="number">
+      </div>
+      <button type="submit">set</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </form>
   </div>
-  <div>
-    <label for="maneuverability">Maneuverability:</label>
-    <input formControlName="maneuverability" type="number">
-  </div>
-  <div>
-    <label for="draft">Draft:</label>
-    <input formControlName="draft" type="number">
-  </div>
-  <div>
-    <label for="minSpeed">Min Speed:</label>
-    <input formControlName="minSpeed" type="number">
-  </div>
-  <div>
-    <label for="maxSpeed">Max Speed:</label>
-    <input formControlName="maxSpeed" type="number">
-  </div>
-  <div>
-    <label for="cannons">Cannons:</label>
-    <input formControlName="cannons" type="number">
-  </div>
-  <div>
-    <label for="sailors">Sailors:</label>
-    <input formControlName="sailors" type="number">
-  </div>
-  <div>
-    <label for="hitPoints">Hit Points:</label>
-    <input formControlName="hitPoints" type="number">
-  </div>
-  <div>
-    <label for="dailyCost">Daily Cost:</label>
-    <input formControlName="dailyCost" type="number">
-  </div>
-  <div>
-    <label for="price">Price:</label>
-    <input formControlName="price" type="number">
-  </div>
-  <button type="submit">Update</button>
-</form>
+</div>
 
 <p>
   <a routerLink="/games/{{gameId}}/shiptypes">... back to shiptypes</a><br>

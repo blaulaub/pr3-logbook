@@ -13,6 +13,7 @@ import { ShiptypesService } from '../../../services/shiptypes.service';
 })
 export class ShiptypeComponent implements OnInit {
 
+  editOn: boolean;
   gameId: number;
   shiptype: Shiptype;
 
@@ -31,8 +32,12 @@ export class ShiptypeComponent implements OnInit {
       .getShiptype(this.gameId, +this.route.snapshot.paramMap.get('shiptypeId'))
       .subscribe(shiptype => {
         this.shiptype = shiptype;
-        this.createForm();
       });
+  }
+
+  switchToEdit() {
+    this.createForm();
+    this.editOn = true;
   }
 
   createForm() {
@@ -69,7 +74,14 @@ export class ShiptypeComponent implements OnInit {
     };
     this.shiptypesService
       .updateShiptype(this.gameId, saveShiptype)
-      .subscribe(shiptype => {});
+      .subscribe(shiptype => {
+        this.shiptype = shiptype;
+        this.editOn = false;
+      });
+  }
+
+  cancelEdit() {
+    this.editOn = false;
   }
 
 }
