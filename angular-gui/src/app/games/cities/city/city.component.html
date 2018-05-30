@@ -1,6 +1,8 @@
-<p *ngIf="city">
-  city {{city.name}} works!
-</p>
+<div *ngIf="city">
+  <h1>{{city.name}}</h1>
+  <app-city-products [gameId]="gameId" [cityId]="city.id"></app-city-products>
+</div>
+
 <fieldset>
   <legend>Common (game-dependent, time-independent)</legend>
   <ul>

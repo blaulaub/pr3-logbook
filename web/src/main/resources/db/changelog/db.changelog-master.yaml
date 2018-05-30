@@ -181,7 +181,6 @@ databaseChangeLog:
             tableName: Consumption
             columnNames: facility_id, good_id
 
-
         - createTable:
             tableName: Production
             columns:
@@ -351,3 +350,45 @@ databaseChangeLog:
             constraintName: uq_GameSettings_game
             tableName: GameSettings
             columnNames: game_id
+
+        - createTable:
+            tableName: CityProduct
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: city_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: good_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_CityProduct_City_id
+            baseTableName: CityProduct
+            baseColumnNames: city_id
+            referencedTableName: City
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            constraintName: fk_CityProduct_Good_id
+            baseTableName: CityProduct
+            baseColumnNames: good_id
+            referencedTableName: Good
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addUniqueConstraint:
+            constraintName: uq_CityProduct_city_good
+            tableName: CityProduct
+            columnNames: city_id, good_id

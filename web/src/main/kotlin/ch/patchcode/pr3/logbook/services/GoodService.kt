@@ -29,7 +29,7 @@ class GoodService @Autowired constructor(
 		goodRepository.deleteByGameAndId(game, goodId)
 	}
 
-	private fun resolveGood(goodId: Long): GoodJpa {
+	fun resolveGood(goodId: Long): GoodJpa {
 		val good = goodRepository.findById(goodId)
 		if (!good.isPresent) throw EntityNotFoundException("Good #" + goodId)
 		return good.get()

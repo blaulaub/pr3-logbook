@@ -31,13 +31,14 @@ export class FacilityComponent implements OnInit {
 
   ngOnInit() {
     this.gameId = +this.route.snapshot.paramMap.get('gameId');
-    // TODO data race; bundle both observables, createForm() when both are ready
-    this.goodsService
-      .getGoods(this.gameId)
-      .subscribe(goods => this.goods = goods);
     this.facilitiesService
       .getFacility(this.gameId, +this.route.snapshot.paramMap.get('facilityId'))
-      .subscribe(facility => { this.facility = facility; });
+      .subscribe(facility => {
+        this.facility = facility;
+        this.goodsService
+          .getGoods(this.gameId)
+          .subscribe(goods => this.goods = goods);
+      });
   }
 
   switchToEdit() {

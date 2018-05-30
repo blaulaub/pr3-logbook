@@ -27,6 +27,7 @@ import { GoodComponent } from './games/goods/good/good.component';
 import { FleetComponent } from './games/fleets/fleet/fleet.component';
 import { GameDateComponent } from './games/game/game-date/game-date.component';
 import { GameSettingsComponent } from './games/game/game-settings/game-settings.component';
+import { CityProductsComponent } from './games/cities/city/city-products/city-products.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { GameSettingsComponent } from './games/game/game-settings/game-settings.
     GoodComponent,
     FleetComponent,
     GameDateComponent,
-    GameSettingsComponent
+    GameSettingsComponent,
+    CityProductsComponent
   ],
   imports: [
     BrowserModule,

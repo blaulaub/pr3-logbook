@@ -1,0 +1,20 @@
+<div *ngIf="products">
+  <div *ngIf="!editOn">
+    <div>
+      Products:
+      <span *ngFor="let product of products; let isLast=last">
+        <a routerLink="/games/{{gameId}}/goods/{{product.id}}">{{product.name}}</a>{{isLast ? '' : ', '}}
+      </span>
+    </div>
+    <button (click)="switchToEdit()">edit</button>
+  </div>
+  <div *ngIf="editOn">
+    <form *ngIf="productsForm" [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+      <div>
+        Products: <label *ngFor="let good of goods"><input type="checkbox" formControlName="good{{good.id}}">{{good.name}}</label>
+      </div>
+      <button type="submit">set</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </form>
+  </div>
+</div>

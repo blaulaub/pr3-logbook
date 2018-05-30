@@ -27,15 +27,15 @@ export class FacilitiesComponent implements OnInit {
     this.getFacilities(this.gameId);
   }
 
-    getFacilities(gameId: number): void {
-      this.facilitiesService.getFacilities(gameId)
-        .subscribe(facilities => this.facilities = facilities);
-    }
+  getFacilities(gameId: number): void {
+    this.facilitiesService.getFacilities(gameId)
+      .subscribe(facilities => this.facilities = facilities);
+  }
 
-    facilityAdded(facility: Facility) {
-      if (facility != null) {
-        this.facilities.push(facility);
-      }
-      this.expandAdd = false;
+  facilityAdded(facility: Facility) {
+    if (facility != null) {
+      this.facilities.push(facility);
     }
+    this.expandAdd = false;
+  }
 }
