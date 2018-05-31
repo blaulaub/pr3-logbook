@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
-import { Facility, Good, Turnover } from '../../../entities/data_model';
-import { FacilitiesService } from '../../../services/facilities.service';
-import { GoodsService } from '../../../services/goods.service';
+import { Facility, Good, Turnover } from '../../../../entities/data_model';
+import { FacilitiesService } from '../../../../services/facilities.service';
+import { GoodsService } from '../../../../services/goods.service';
 
 @Component({
   selector: 'app-facility',

@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Facility } from '../../../entities/data_model';
-import { FacilitiesService } from '../../../services/facilities.service';
+import { Facility } from '../../../../entities/data_model';
+import { FacilitiesService } from '../../../../services/facilities.service';
 
 @Component({
   selector: 'app-facility-add',

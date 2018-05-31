@@ -11,9 +11,9 @@ import { CityComponent } from './games/game/cities/city/city.component';
 import { CityAddComponent } from './games/game/cities/city-add/city-add.component';
 import { CityDetailsComponent } from './games/game/cities/city/city-details/city-details.component';
 import { CityProductsComponent } from './games/game/cities/city/city-products/city-products.component';
-import { FacilitiesComponent } from './games/facilities/facilities.component';
-import { FacilityAddComponent } from './games/facilities/facility-add/facility-add.component';
-import { FacilityComponent } from './games/facilities/facility/facility.component';
+import { FacilitiesComponent } from './games/game/facilities/facilities.component';
+import { FacilityAddComponent } from './games/game/facilities/facility-add/facility-add.component';
+import { FacilityComponent } from './games/game/facilities/facility/facility.component';
 import { FleetsComponent } from './games/fleets/fleets.component';
 import { FleetComponent } from './games/fleets/fleet/fleet.component';
 import { FleetAddComponent } from './games/fleets/fleet-add/fleet-add.component';
@@ -28,7 +28,7 @@ import { GoodAddComponent } from './games/game/goods/good-add/good-add.component
 import { ShiptypesComponent } from './games/shiptypes/shiptypes.component';
 import { ShiptypeAddComponent } from './games/shiptypes/shiptype-add/shiptype-add.component';
 import { ShiptypeComponent } from './games/shiptypes/shiptype/shiptype.component';
-import { TurnoverEditComponent } from './games/facilities/facility/turnover-edit/turnover-edit.component';
+import { TurnoverEditComponent } from './games/game/facilities/facility/turnover-edit/turnover-edit.component';
 
 @NgModule({
   declarations: [

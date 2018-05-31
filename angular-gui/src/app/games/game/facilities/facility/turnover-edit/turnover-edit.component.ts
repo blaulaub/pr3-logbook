@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { Good } from '../../../../entities/data_model';
+import { Good } from '../../../../../entities/data_model';
 
 @Component({
   selector: 'app-turnover-edit',
