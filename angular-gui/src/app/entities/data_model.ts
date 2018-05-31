@@ -1,27 +1,5 @@
 import { Good } from '../games/game/goods/good';
 
-export class Facility {
-
-  constructor(
-    public id: number,
-    public name: string
-  ) {}
-
-  constructionCost: number;
-  constructionDays: number;
-  maintenancePerDay: number;
-  workers: number;
-  consumption: Turnover[];
-  production: Turnover;
-}
-
-export class Turnover {
-  constructor(
-    public good: Good,
-    public amount: number
-  ) {}
-}
-
 export class Fleet {
   constructor(
     public id: number,

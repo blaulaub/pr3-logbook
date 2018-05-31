@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Facility } from '../../../entities/data_model';
+import { Facility } from './facility';
 import { FacilitiesService } from '../../../services/facilities.service';
 
 @Component({

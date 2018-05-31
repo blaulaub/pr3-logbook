@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Facility } from '../entities/data_model';
+import { Facility } from '../games/game/facilities/facility';
 
 @Injectable({
   providedIn: 'root'

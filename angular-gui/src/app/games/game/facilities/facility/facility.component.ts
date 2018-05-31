@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
-import { Facility, Turnover } from '../../../../entities/data_model';
+import { Facility } from '../facility';
+import { Turnover } from './turnover';
 import { Good } from '../../goods/good';
 import { FacilitiesService } from '../../../../services/facilities.service';
 import { GoodsService } from '../../../../services/goods.service';
