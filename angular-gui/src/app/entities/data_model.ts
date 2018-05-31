@@ -1,13 +1,3 @@
-export class Game {
-  constructor(
-    public id: number,
-    public captainsName: string,
-    public created: Date
-  ) {}
-
-  gameDate: Date;
-}
-
 export class GameSettings {
   salaryPerDay: number;
   workerPerCitizenRatio: number;

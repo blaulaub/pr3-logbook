@@ -1,12 +1,20 @@
-<h2>Games</h2>
+<!-- this is what we show while list of games is not available yet -->
+<div *ngIf="!games">
+  <i>... loading list of games</i>
+</div>
 
-<ul>
-  <li *ngFor="let game of games">
-    <a routerLink="/games/{{game.id}}">
-      Captain: {{game.captainsName}}, Created: {{game.created}}
-    </a>
-  </li>
-</ul>
+<!-- this is the default content once games are available -->
+<div *ngIf="games">
+  <h1>Games</h1>
 
-<button *ngIf="!expandAdd" (click)="expandAdd = true">Add Game...</button>
-<app-game-add *ngIf="expandAdd" (onGameAdded)="gameAdded($event)"></app-game-add>
+  <ul>
+    <li *ngFor="let game of games">
+      <a routerLink="/games/{{game.id}}">
+        Captain: {{game.captainsName}}, Created: {{game.created}}
+      </a>
+    </li>
+  </ul>
+
+  <button *ngIf="!expandAdd" (click)="expandAdd = true">Add Game...</button>
+  <app-game-add *ngIf="expandAdd" (onGameAdded)="gameAdded($event)"></app-game-add>
+</div>
