@@ -25,9 +25,7 @@ export class CityComponent implements OnInit {
     this.gameId = +this.route.snapshot.paramMap.get('gameId');
     this.citiesService
       .getCity(this.gameId, +this.route.snapshot.paramMap.get('cityId'))
-      .subscribe(city => {
-        this.city = city;
-      });
+      .subscribe(city => this.city = city);
   }
 
 }

@@ -1,15 +1,16 @@
 <div *ngIf="city">
   <h1>{{city.name}}</h1>
-  <app-city-products [gameId]="gameId" [cityId]="city.id"></app-city-products>
+  <fieldset>
+    <legend>General</legend>
+    <app-city-products [gameId]="gameId" [cityId]="city.id"></app-city-products>
+  </fieldset>
+  <fieldset>
+    <legend>Details</legend>
+    <app-city-details [gameId]="gameId" [cityId]="city.id"></app-city-details>
+  </fieldset>
 </div>
 
 <fieldset>
-  <legend>Common (game-dependent, time-independent)</legend>
-  <ul>
-    <li>City name</li>
-    <li>City products (or factory types)</li>
-  </ul>
-</fieldset>
 <fieldset>
   <legend>Game- and Time-Dependent</legend>
   <ul>

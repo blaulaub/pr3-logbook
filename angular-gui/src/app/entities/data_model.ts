@@ -20,6 +20,14 @@ export class City {
   ) {}
 }
 
+export class CityDetails {
+  constructor() {}
+
+  updated: Date;
+  population: number;
+  warehouses: number;
+}
+
 export class Good {
   constructor(
     public id: number,

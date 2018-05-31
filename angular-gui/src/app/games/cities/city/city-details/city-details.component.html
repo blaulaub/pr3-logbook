@@ -1,0 +1,28 @@
+<div *ngIf="cityDetails">
+  <div *ngIf="!editOn">
+    <div>
+      Population: {{cityDetails.population}}
+    </div>
+    <div>
+      Warehouses: {{cityDetails.warehouses}}
+    </div>
+    <div>
+      <i>Last Updated: {{cityDetails.updated | date: 'dd.MM.yyyy'}}</i>
+    </div>
+    <button (click)="switchToEdit()">edit</button>
+  </div>
+  <div *ngIf="editOn">
+    <form *ngIf="cityDetailsForm" [formGroup]="cityDetailsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="population">Population:</label>
+        <input formControlName="population" type="number">
+      </div>
+      <div>
+        <label for="warehouses">Warehouses:</label>
+        <input formControlName="warehouses" type="number">
+      </div>
+      <button type="submit">set</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </form>
+  </div>
+</div>
