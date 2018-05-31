@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { City } from '../../../entities/data_model';
+import { City } from './city';
 import { CitiesService } from '../../../services/cities.service';
 
 @Component({
