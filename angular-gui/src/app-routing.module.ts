@@ -9,8 +9,8 @@ import { FacilitiesComponent } from './app/games/game/facilities/facilities.comp
 import { FacilityComponent } from './app/games/game/facilities/facility/facility.component';
 import { GoodsComponent } from './app/games/game/goods/goods.component';
 import { GoodComponent } from './app/games/game/goods/good/good.component';
-import { ShiptypesComponent } from './app/games/shiptypes/shiptypes.component';
-import { ShiptypeComponent } from './app/games/shiptypes/shiptype/shiptype.component';
+import { ShiptypesComponent } from './app/games/game/shiptypes/shiptypes.component';
+import { ShiptypeComponent } from './app/games/game/shiptypes/shiptype/shiptype.component';
 import { FleetsComponent } from './app/games/fleets/fleets.component';
 import { FleetComponent } from './app/games/fleets/fleet/fleet.component';
 

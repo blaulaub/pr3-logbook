@@ -25,9 +25,9 @@ import { GameAddComponent } from './games/game-add/game-add.component';
 import { GoodsComponent } from './games/game/goods/goods.component';
 import { GoodComponent } from './games/game/goods/good/good.component';
 import { GoodAddComponent } from './games/game/goods/good-add/good-add.component';
-import { ShiptypesComponent } from './games/shiptypes/shiptypes.component';
-import { ShiptypeAddComponent } from './games/shiptypes/shiptype-add/shiptype-add.component';
-import { ShiptypeComponent } from './games/shiptypes/shiptype/shiptype.component';
+import { ShiptypesComponent } from './games/game/shiptypes/shiptypes.component';
+import { ShiptypeAddComponent } from './games/game/shiptypes/shiptype-add/shiptype-add.component';
+import { ShiptypeComponent } from './games/game/shiptypes/shiptype/shiptype.component';
 import { TurnoverEditComponent } from './games/game/facilities/facility/turnover-edit/turnover-edit.component';
 
 @NgModule({

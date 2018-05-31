@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Shiptype } from '../../../entities/data_model';
-import { ShiptypesService } from '../../../services/shiptypes.service';
+import { Shiptype } from '../../../../entities/data_model';
+import { ShiptypesService } from '../../../../services/shiptypes.service';
 
 @Component({
   selector: 'app-shiptype-add',
