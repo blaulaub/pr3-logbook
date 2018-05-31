@@ -1,13 +1,5 @@
 import { Good } from '../games/game/goods/good';
 
-export class CityDetails {
-  constructor() {}
-
-  updated: Date;
-  population: number;
-  warehouses: number;
-}
-
 export class Facility {
 
   constructor(
