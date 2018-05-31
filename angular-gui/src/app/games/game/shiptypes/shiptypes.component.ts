@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Shiptype } from '../../../entities/data_model';
+import { Shiptype } from './shiptype';
 import { ShiptypesService } from '../../../services/shiptypes.service';
 
 @Component({

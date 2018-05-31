@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Shiptype } from '../../../../entities/data_model';
+import { Shiptype } from '../shiptype';
 import { ShiptypesService } from '../../../../services/shiptypes.service';
 
 @Component({
