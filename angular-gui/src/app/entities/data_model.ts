@@ -1,10 +1,5 @@
 import { Good } from '../games/game/goods/good';
 
-export class GameSettings {
-  salaryPerDay: number;
-  workerPerCitizenRatio: number;
-}
-
 export class CityDetails {
   constructor() {}
 

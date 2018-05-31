@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { GameSettings } from '../../../entities/data_model';
+import { GameSettings } from './game-settings';
 import { GameSettingsService } from '../../../services/game-settings.service';
 
 @Component({
