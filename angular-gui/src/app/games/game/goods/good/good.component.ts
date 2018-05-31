@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Good } from '../../../entities/data_model';
-import { GoodsService } from '../../../services/goods.service';
+import { Good } from '../../../../entities/data_model';
+import { GoodsService } from '../../../../services/goods.service';
 
 @Component({
   selector: 'app-good',

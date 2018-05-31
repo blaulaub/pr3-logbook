@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Good } from '../../../entities/data_model';
-import { GoodsService } from '../../../services/goods.service';
+import { Good } from '../../../../entities/data_model';
+import { GoodsService } from '../../../../services/goods.service';
 
 @Component({
   selector: 'app-good-add',
