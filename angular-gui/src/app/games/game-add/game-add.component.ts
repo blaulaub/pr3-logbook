@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Game } from '../entities/game';
+import { Game } from '../game';
 import { GamesService } from '../../services/games.service';
 
 @Component({
