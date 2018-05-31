@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Good } from '../../../../entities/data_model';
+import { Good } from '../good';
 import { GoodsService } from '../../../../services/goods.service';
 
 @Component({

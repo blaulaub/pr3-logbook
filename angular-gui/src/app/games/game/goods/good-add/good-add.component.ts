@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Good } from '../../../../entities/data_model';
+import { Good } from '../good';
 import { GoodsService } from '../../../../services/goods.service';
 
 @Component({
