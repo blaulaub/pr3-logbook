@@ -11,8 +11,8 @@ import { GoodsComponent } from './app/games/game/goods/goods.component';
 import { GoodComponent } from './app/games/game/goods/good/good.component';
 import { ShiptypesComponent } from './app/games/game/shiptypes/shiptypes.component';
 import { ShiptypeComponent } from './app/games/game/shiptypes/shiptype/shiptype.component';
-import { FleetsComponent } from './app/games/fleets/fleets.component';
-import { FleetComponent } from './app/games/fleets/fleet/fleet.component';
+import { FleetsComponent } from './app/games/game/fleets/fleets.component';
+import { FleetComponent } from './app/games/game/fleets/fleet/fleet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/games', pathMatch: 'full' },

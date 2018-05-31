@@ -14,9 +14,9 @@ import { CityProductsComponent } from './games/game/cities/city/city-products/ci
 import { FacilitiesComponent } from './games/game/facilities/facilities.component';
 import { FacilityAddComponent } from './games/game/facilities/facility-add/facility-add.component';
 import { FacilityComponent } from './games/game/facilities/facility/facility.component';
-import { FleetsComponent } from './games/fleets/fleets.component';
-import { FleetComponent } from './games/fleets/fleet/fleet.component';
-import { FleetAddComponent } from './games/fleets/fleet-add/fleet-add.component';
+import { FleetsComponent } from './games/game/fleets/fleets.component';
+import { FleetComponent } from './games/game/fleets/fleet/fleet.component';
+import { FleetAddComponent } from './games/game/fleets/fleet-add/fleet-add.component';
 import { GamesComponent } from './games/games.component';
 import { GameComponent } from './games/game/game.component';
 import { GameDateComponent } from './games/game/game-date/game-date.component';
