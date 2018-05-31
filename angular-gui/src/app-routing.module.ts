@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { GamesComponent } from './app/games/games.component';
 import { GameComponent } from './app/games/game/game.component';
-import { CitiesComponent } from './app/games/cities/cities.component';
-import { CityComponent } from './app/games/cities/city/city.component';
+import { CitiesComponent } from './app/games/game/cities/cities.component';
+import { CityComponent } from './app/games/game/cities/city/city.component';
 import { FacilitiesComponent } from './app/games/facilities/facilities.component';
 import { FacilityComponent } from './app/games/facilities/facility/facility.component';
 import { GoodsComponent } from './app/games/goods/goods.component';

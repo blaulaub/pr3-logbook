@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { City } from '../../../entities/data_model';
-import { CitiesService } from '../../../services/cities.service';
+import { City } from '../../../../entities/data_model';
+import { CitiesService } from '../../../../services/cities.service';
 
 @Component({
   selector: 'app-city-add',

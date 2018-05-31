@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
-import { Good } from '../../../../entities/data_model';
-import { GoodsService } from '../../../../services/goods.service';
-import { CityProductsService } from '../../../../services/city-products.service';
+import { Good } from '../../../../../entities/data_model';
+import { GoodsService } from '../../../../../services/goods.service';
+import { CityProductsService } from '../../../../../services/city-products.service';
 
 @Component({
   selector: 'app-city-products',

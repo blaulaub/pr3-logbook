@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
-import { CityDetails } from '../../../../entities/data_model';
+import { CityDetails } from '../../../../../entities/data_model';
 
 @Component({
   selector: 'app-city-details',
