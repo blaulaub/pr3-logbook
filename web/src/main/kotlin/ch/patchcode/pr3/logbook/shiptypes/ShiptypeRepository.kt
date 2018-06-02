@@ -1,6 +1,5 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.shiptypes
 
-import ch.patchcode.pr3.logbook.entities.ShiptypeJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import org.springframework.data.repository.CrudRepository
 

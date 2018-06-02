@@ -1,7 +1,6 @@
-package ch.patchcode.pr3.logbook.entities
+package ch.patchcode.pr3.logbook.shiptypes
 
-import ch.patchcode.pr3.logbook.model.ShiptypeModel
-import ch.patchcode.pr3.logbook.objects.Shiptype
+import ch.patchcode.pr3.logbook.entities.GameJpa
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -28,22 +27,6 @@ data class ShiptypeJpa(
 		@Column val price: Int? = null
 
 ) {
-
-	fun toDto() = Shiptype(
-			id = this.id!!,
-			game = this.game.toDto(),
-			name = this.name,
-			cargoSpace = this.cargoSpace,
-			maneuverability = this.maneuverability,
-			draft = this.draft,
-			minSpeed = this.minSpeed,
-			maxSpeed = this.maxSpeed,
-			cannons = this.cannons,
-			sailors = this.sailors,
-			hitPoints = this.hitPoints,
-			dailyCost = this.dailyCost,
-			price = this.price
-	)
 
 	fun toModel() = ShiptypeModel(
 			id = this.id!!,

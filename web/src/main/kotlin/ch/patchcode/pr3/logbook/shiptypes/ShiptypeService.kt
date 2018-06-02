@@ -1,12 +1,9 @@
-package ch.patchcode.pr3.logbook.services
+package ch.patchcode.pr3.logbook.shiptypes
 
-import ch.patchcode.pr3.logbook.repositories.ShiptypeRepository
+import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
+import ch.patchcode.pr3.logbook.services.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ch.patchcode.pr3.logbook.entities.ShiptypeJpa
-import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.model.ShiptypeModel
-import java.lang.IllegalArgumentException
 
 @Service
 class ShiptypeService @Autowired constructor(
