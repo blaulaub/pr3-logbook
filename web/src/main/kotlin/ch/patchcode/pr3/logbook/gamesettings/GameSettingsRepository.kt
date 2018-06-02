@@ -1,6 +1,5 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.gamesettings
 
-import ch.patchcode.pr3.logbook.entities.GameSettingsJpa
 import ch.patchcode.pr3.logbook.games.GameJpa
 import org.springframework.data.repository.CrudRepository
 

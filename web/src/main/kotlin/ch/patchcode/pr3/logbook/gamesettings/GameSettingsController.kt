@@ -1,7 +1,5 @@
-package ch.patchcode.pr3.logbook.controllers
+package ch.patchcode.pr3.logbook.gamesettings
 
-import ch.patchcode.pr3.logbook.model.GameSettingsModel
-import ch.patchcode.pr3.logbook.services.GameSettingsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
