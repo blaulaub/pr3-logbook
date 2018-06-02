@@ -1,11 +1,11 @@
 package ch.patchcode.pr3.logbook.services
 
-import ch.patchcode.pr3.logbook.entities.ConsumptionJpa
-import ch.patchcode.pr3.logbook.entities.FacilityJpa
-import ch.patchcode.pr3.logbook.entities.ProductionJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
+import ch.patchcode.pr3.logbook.facilities.ConsumptionJpa
+import ch.patchcode.pr3.logbook.facilities.FacilityJpa
+import ch.patchcode.pr3.logbook.facilities.FacilityModel
+import ch.patchcode.pr3.logbook.facilities.ProductionJpa
 import ch.patchcode.pr3.logbook.goods.GoodRepository
-import ch.patchcode.pr3.logbook.model.FacilityModel
 import ch.patchcode.pr3.logbook.repositories.FacilityRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

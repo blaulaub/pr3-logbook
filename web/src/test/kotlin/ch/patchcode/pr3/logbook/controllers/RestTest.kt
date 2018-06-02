@@ -4,7 +4,7 @@ import ch.patchcode.pr3.logbook.cities.CityJpa
 import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.cities.CityRepository
 import ch.patchcode.pr3.logbook.entities.GameJpa
-import ch.patchcode.pr3.logbook.model.FacilityModel
+import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.objects.Game
 import ch.patchcode.pr3.logbook.repositories.GameRepository
 import ch.patchcode.pr3.logbook.utils.contentAs

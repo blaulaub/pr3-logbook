@@ -1,6 +1,6 @@
-package ch.patchcode.pr3.logbook.entities
+package ch.patchcode.pr3.logbook.facilities
 
-import ch.patchcode.pr3.logbook.model.FacilityModel
+import ch.patchcode.pr3.logbook.entities.GameJpa
 import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.CascadeType
 import javax.persistence.Column
