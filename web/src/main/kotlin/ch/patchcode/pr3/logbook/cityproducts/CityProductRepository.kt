@@ -1,7 +1,6 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.cityproducts
 
 import ch.patchcode.pr3.logbook.cities.CityJpa
-import ch.patchcode.pr3.logbook.entities.CityProductJpa
 import ch.patchcode.pr3.logbook.goods.GoodJpa
 import org.springframework.data.repository.CrudRepository
 

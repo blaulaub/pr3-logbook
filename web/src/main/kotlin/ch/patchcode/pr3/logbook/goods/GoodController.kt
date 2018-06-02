@@ -1,7 +1,6 @@
 package ch.patchcode.pr3.logbook.goods
 
 import ch.patchcode.pr3.logbook.cities.CityModel
-import ch.patchcode.pr3.logbook.services.CityProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional
@@ -15,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class GoodController @Autowired constructor(
-		private val goodService: GoodService,
-		private val cityProductService: CityProductService
+		private val goodService: GoodService
 ) {
 
 	@GetMapping("/games/{gameId}/goods")
@@ -39,13 +37,6 @@ class GoodController @Autowired constructor(
 			@PathVariable gameId: Long,
 			@PathVariable goodId: Long
 	): GoodModel = goodService.getGood(gameId, goodId)
-
-	@GetMapping("/games/{gameId}/goods/{goodId}/producingCities")
-	@Transactional
-	fun getProducedIn(
-			@PathVariable gameId: Long,
-			@PathVariable goodId: Long
-	): List<CityModel> = cityProductService.findCitiesProducing(gameId, goodId)
 
 	@DeleteMapping("/games/{gameId}/goods/{goodId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

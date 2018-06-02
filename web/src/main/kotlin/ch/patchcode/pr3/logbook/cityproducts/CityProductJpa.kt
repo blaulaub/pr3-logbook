@@ -1,4 +1,4 @@
-package ch.patchcode.pr3.logbook.entities
+package ch.patchcode.pr3.logbook.cityproducts
 
 import ch.patchcode.pr3.logbook.cities.CityJpa
 import ch.patchcode.pr3.logbook.goods.GoodJpa

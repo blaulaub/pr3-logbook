@@ -1,7 +1,7 @@
-package ch.patchcode.pr3.logbook.controllers
+package ch.patchcode.pr3.logbook.cityproducts
 
+import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.goods.GoodModel
-import ch.patchcode.pr3.logbook.services.CityProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.GetMapping
@@ -29,5 +29,12 @@ class CityProductsController @Autowired constructor(
 			@PathVariable cityId: Long,
 			@RequestBody products: List<GoodModel>
 	): List<GoodModel> = cityProductService.updateCityProducts(gameId, cityId, products)
+
+	@GetMapping("/games/{gameId}/goods/{goodId}/producingCities")
+	@Transactional
+	fun getProducedIn(
+			@PathVariable gameId: Long,
+			@PathVariable goodId: Long
+	): List<CityModel> = cityProductService.findCitiesProducing(gameId, goodId)
 
 }
