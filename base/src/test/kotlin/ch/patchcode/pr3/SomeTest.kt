@@ -2,27 +2,18 @@ package ch.patchcode.pr3
 
 import org.junit.Test
 import ch.patchcode.pr3.logbook.objects.Game
-import ch.patchcode.pr3.logbook.objects.City
 import ch.patchcode.pr3.logbook.objects.Good
 import ch.patchcode.pr3.logbook.objects.Facility
 import ch.patchcode.pr3.logbook.objects.ConstructionMaterial
 import ch.patchcode.pr3.logbook.objects.FacilityConsumption
 import ch.patchcode.pr3.logbook.objects.FacilityProduction
 import java.time.LocalDate
-import ch.patchcode.pr3.logbook.objects.CityPopulation
-import ch.patchcode.pr3.logbook.objects.CityProduct
 
 class SomeTest {
 
 	@Test
 	fun `I can start a new game`() {
 		Game(1L, "Cpt Hook")
-	}
-
-	@Test
-	fun `I can discover a city within a game`() {
-		val game = Game(1L, "Cpt Hook")
-		City(1L, game, "Bad Nauheim")
 	}
 
 	@Test
@@ -73,21 +64,5 @@ class SomeTest {
 		FacilityConsumption(taylor, textiles, 1.0)
 		FacilityConsumption(taylor, dyes, 1.0)
 		FacilityProduction(taylor, clothes, 1.0)
-	}
-
-	@Test
-	fun `I can update the city population within a game`() {
-		val game = Game(1L, "Cpt Hook")
-		val dorf = City(1L, game, "Dorf")
-		CityPopulation(dorf, LocalDate.parse("1561-12-18"), 1200)
-		CityPopulation(dorf, LocalDate.parse("1562-03-12"), 1300)
-	}
-
-	@Test
-	fun `I can declare goods a city produces within a game`() {
-		val game = Game(1L, "Cpt Hook")
-		val dorf = City(1L, game, "Dorf")
-		CityProduct(1L, dorf, Good(1L, game, "Holz"))
-		CityProduct(2L, dorf, Good(2L, game, "Tuch"))
 	}
 }

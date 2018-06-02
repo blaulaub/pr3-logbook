@@ -1,7 +1,7 @@
-package ch.patchcode.pr3.logbook.entities
+package ch.patchcode.pr3.logbook.cities
 
+import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.model.CityModel
-import ch.patchcode.pr3.logbook.objects.City
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -17,12 +17,6 @@ data class CityJpa(
 		@ManyToOne(optional = false) val game: GameJpa,
 		@Column(nullable = false) val name: String
 ) {
-
-	fun toDto() = City(
-			id = this.id!!,
-			game = this.game.toDto(),
-			name = this.name
-	)
 
 	fun toModel() = CityModel(
 			id = this.id!!,

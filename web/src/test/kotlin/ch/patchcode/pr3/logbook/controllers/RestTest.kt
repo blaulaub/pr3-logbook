@@ -1,8 +1,9 @@
 package ch.patchcode.pr3.logbook.controllers
 
-import ch.patchcode.pr3.logbook.entities.CityJpa
+import ch.patchcode.pr3.logbook.cities.CityJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.model.CityModel
+import ch.patchcode.pr3.logbook.model.FacilityModel
 import ch.patchcode.pr3.logbook.objects.Game
 import ch.patchcode.pr3.logbook.repositories.CityRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository
@@ -22,20 +23,11 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
-import ch.patchcode.pr3.logbook.utils.CustomObjectMapper
-import ch.patchcode.pr3.logbook.model.GoodModel
-import ch.patchcode.pr3.logbook.model.FacilityModel
-import ch.patchcode.pr3.logbook.repositories.GoodRepository
-import ch.patchcode.pr3.logbook.repositories.FacilityRepository
-import ch.patchcode.pr3.logbook.entities.FacilityJpa
-import ch.patchcode.pr3.logbook.entities.GoodJpa
-import com.fasterxml.jackson.databind.ObjectMapper
 
 
 @RunWith(SpringRunner::class)

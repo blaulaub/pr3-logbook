@@ -1,35 +1,33 @@
 package ch.patchcode.pr3.logbook.controllers
 
-import org.junit.Test
-import org.springframework.transaction.annotation.Transactional
-import org.springframework.beans.factory.annotation.Autowired
-import ch.patchcode.pr3.logbook.repositories.GameRepository
-import org.springframework.test.web.servlet.MockMvc
-import org.junit.Before
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
-import org.springframework.web.context.WebApplicationContext
-import org.junit.runner.RunWith
-import org.springframework.test.context.junit4.SpringRunner
-import org.springframework.boot.test.context.SpringBootTest
+import ch.patchcode.pr3.logbook.cities.CityJpa
+import ch.patchcode.pr3.logbook.entities.CityProductJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import ch.patchcode.pr3.logbook.entities.GoodJpa
+import ch.patchcode.pr3.logbook.model.CityModel
+import ch.patchcode.pr3.logbook.model.GoodModel
+import ch.patchcode.pr3.logbook.repositories.CityProductRepository
+import ch.patchcode.pr3.logbook.repositories.CityRepository
+import ch.patchcode.pr3.logbook.repositories.GameRepository
+import ch.patchcode.pr3.logbook.repositories.GoodRepository
+import ch.patchcode.pr3.logbook.utils.contentAs
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.AllOf.allOf
+import org.hamcrest.collection.IsCollectionWithSize.hasSize
 import org.hamcrest.core.IsCollectionContaining.hasItem
 import org.hamcrest.core.IsEqual.equalTo
-import org.hamcrest.core.IsNot.not
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import ch.patchcode.pr3.logbook.utils.contentAs
-import ch.patchcode.pr3.logbook.model.GoodModel
-import ch.patchcode.pr3.logbook.repositories.GoodRepository
-import ch.patchcode.pr3.logbook.repositories.CityRepository
-import ch.patchcode.pr3.logbook.repositories.CityProductRepository
-import ch.patchcode.pr3.logbook.entities.CityJpa
-import ch.patchcode.pr3.logbook.entities.GoodJpa
-import ch.patchcode.pr3.logbook.entities.CityProductJpa
-import ch.patchcode.pr3.logbook.model.CityModel
-import org.hamcrest.collection.IsCollectionWithSize.hasSize
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.context.WebApplicationContext
 
 @RunWith(SpringRunner::class)
 @SpringBootTest

@@ -1,17 +1,19 @@
 package ch.patchcode.pr3.logbook.controllers
 
-import ch.patchcode.pr3.logbook.entities.CityJpa
+import ch.patchcode.pr3.logbook.cities.CityJpa
+import ch.patchcode.pr3.logbook.entities.CityProductJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.entities.GoodJpa
 import ch.patchcode.pr3.logbook.model.GoodModel
+import ch.patchcode.pr3.logbook.repositories.CityProductRepository
 import ch.patchcode.pr3.logbook.repositories.CityRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository
 import ch.patchcode.pr3.logbook.repositories.GoodRepository
 import ch.patchcode.pr3.logbook.utils.contentAs
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.collection.IsEmptyCollection.empty
 import org.hamcrest.collection.IsCollectionWithSize.hasSize
+import org.hamcrest.collection.IsEmptyCollection.empty
 import org.hamcrest.core.IsCollectionContaining.hasItem
 import org.junit.Before
 import org.junit.Test
@@ -27,8 +29,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import javax.transaction.Transactional
-import ch.patchcode.pr3.logbook.repositories.CityProductRepository
-import ch.patchcode.pr3.logbook.entities.CityProductJpa
 
 
 @RunWith(SpringRunner::class)
