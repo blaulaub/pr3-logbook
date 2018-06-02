@@ -1,7 +1,6 @@
-package ch.patchcode.pr3.logbook.entities
+package ch.patchcode.pr3.logbook.fleets
 
 import ch.patchcode.pr3.logbook.games.GameJpa
-import ch.patchcode.pr3.logbook.model.FleetModel
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

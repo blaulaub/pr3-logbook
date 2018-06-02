@@ -1,10 +1,7 @@
-package ch.patchcode.pr3.logbook.services
+package ch.patchcode.pr3.logbook.fleets
 
-import ch.patchcode.pr3.logbook.entities.FleetJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.games.GameService
-import ch.patchcode.pr3.logbook.model.FleetModel
-import ch.patchcode.pr3.logbook.repositories.FleetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

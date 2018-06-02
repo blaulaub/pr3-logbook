@@ -4,5 +4,3 @@ data class GameSettingsModel(
 		val salaryPerDay: Double? = null,
 		val workerPerCitizenRatio: Double? = null
 )
-
-data class FleetModel(val id: Long, val name: String)
