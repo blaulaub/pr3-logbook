@@ -1,4 +1,4 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.cities
 
 import ch.patchcode.pr3.logbook.cities.CityJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa

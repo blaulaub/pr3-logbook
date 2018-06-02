@@ -1,9 +1,9 @@
 package ch.patchcode.pr3.logbook.services
 
 import ch.patchcode.pr3.logbook.cities.CityJpa
+import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.model.CityModel
-import ch.patchcode.pr3.logbook.repositories.CityRepository
+import ch.patchcode.pr3.logbook.cities.CityRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
