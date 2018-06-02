@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { City } from './city';
-import { CitiesService } from '../../../services/cities.service';
+import { CitiesService } from './cities.service';
 
 @Component({
   selector: 'app-cities',

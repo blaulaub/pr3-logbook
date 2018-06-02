@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Shiptype } from '../shiptype';
-import { ShiptypesService } from '../../../../services/shiptypes.service';
+import { ShiptypesService } from '../shiptypes.service';
 
 @Component({
   selector: 'app-shiptype-add',

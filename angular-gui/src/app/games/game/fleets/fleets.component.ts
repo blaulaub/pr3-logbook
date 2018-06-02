@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Fleet } from './fleet';
-import { FleetsService } from '../../../services/fleets.service';
+import { FleetsService } from './fleets.service';
 
 @Component({
   selector: 'app-fleets',

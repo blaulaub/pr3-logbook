@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { GameSettings } from './game-settings';
-import { GameSettingsService } from '../../../services/game-settings.service';
+import { GameSettingsService } from './game-settings.service';
 
 @Component({
   selector: 'app-game-settings',

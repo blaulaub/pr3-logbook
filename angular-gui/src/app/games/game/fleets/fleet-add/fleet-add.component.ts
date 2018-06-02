@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Fleet } from '../fleet';
-import { FleetsService } from '../../../../services/fleets.service';
+import { FleetsService } from '../fleets.service';
 
 @Component({
   selector: 'app-fleet-add',

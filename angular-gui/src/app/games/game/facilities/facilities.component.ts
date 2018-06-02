@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Facility } from './facility';
-import { FacilitiesService } from '../../../services/facilities.service';
+import { FacilitiesService } from './facilities.service';
 
 @Component({
   selector: 'app-facilities',

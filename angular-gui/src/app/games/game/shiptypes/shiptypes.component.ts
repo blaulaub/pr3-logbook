@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Shiptype } from './shiptype';
-import { ShiptypesService } from '../../../services/shiptypes.service';
+import { ShiptypesService } from './shiptypes.service';
 
 @Component({
   selector: 'app-shiptypes',

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Game } from '../game';
-import { GamesService } from '../../services/games.service';
+import { GamesService } from '../games.service';
 
 @Component({
   selector: 'app-game',

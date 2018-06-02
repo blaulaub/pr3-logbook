@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Good } from '../good';
-import { GoodsService } from '../../../../services/goods.service';
+import { GoodsService } from '../goods.service';
 
 @Component({
   selector: 'app-good-add',

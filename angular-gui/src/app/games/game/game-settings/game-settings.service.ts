@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GameSettings } from '../games/game/game-settings/game-settings';
+
+import { GameSettings } from './game-settings';
 
 @Injectable({
   providedIn: 'root'

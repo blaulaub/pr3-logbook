@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Good } from '../good';
-import { GoodsService } from '../../../../services/goods.service';
+import { GoodsService } from '../goods.service';
 
 @Component({
   selector: 'app-good',

@@ -6,8 +6,8 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Facility } from '../facility';
 import { Turnover } from './turnover';
 import { Good } from '../../goods/good';
-import { FacilitiesService } from '../../../../services/facilities.service';
-import { GoodsService } from '../../../../services/goods.service';
+import { FacilitiesService } from '../facilities.service';
+import { GoodsService } from '../../goods/goods.service';
 
 @Component({
   selector: 'app-facility',

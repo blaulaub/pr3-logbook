@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Game } from '../game';
-import { GamesService } from '../../services/games.service';
+import { GamesService } from '../games.service';
 
 @Component({
   selector: 'app-game-add',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Good } from '../games/game/goods/good';
+import { Good } from '../../../goods/good';
 
 @Injectable({
   providedIn: 'root'
