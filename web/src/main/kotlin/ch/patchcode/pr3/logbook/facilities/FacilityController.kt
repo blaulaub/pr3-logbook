@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.controllers
 
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
-import ch.patchcode.pr3.logbook.services.FacilityService
+import ch.patchcode.pr3.logbook.facilities.FacilityService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional

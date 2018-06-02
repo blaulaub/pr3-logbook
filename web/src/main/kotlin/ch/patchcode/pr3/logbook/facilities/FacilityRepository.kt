@@ -1,7 +1,6 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.facilities
 
 import ch.patchcode.pr3.logbook.entities.GameJpa
-import ch.patchcode.pr3.logbook.facilities.FacilityJpa
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface FacilityRepository : JpaRepository<FacilityJpa, Long> {
