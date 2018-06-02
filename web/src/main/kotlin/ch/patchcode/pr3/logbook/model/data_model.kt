@@ -1,11 +1,11 @@
 package ch.patchcode.pr3.logbook.model
 
+import ch.patchcode.pr3.logbook.goods.GoodModel
+
 data class GameSettingsModel(
 		val salaryPerDay: Double? = null,
 		val workerPerCitizenRatio: Double? = null
 )
-
-data class GoodModel(val id: Long, val name: String)
 
 data class ConsumptionModel(
 		val good: GoodModel,

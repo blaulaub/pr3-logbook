@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.controllers
 
 import ch.patchcode.pr3.logbook.cities.CityModel
-import ch.patchcode.pr3.logbook.model.GoodModel
+import ch.patchcode.pr3.logbook.goods.GoodModel
 import ch.patchcode.pr3.logbook.services.CityProductService
 import ch.patchcode.pr3.logbook.services.GoodService
 import org.springframework.beans.factory.annotation.Autowired
