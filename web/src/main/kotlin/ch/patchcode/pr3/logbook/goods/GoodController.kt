@@ -1,8 +1,6 @@
-package ch.patchcode.pr3.logbook.controllers
+package ch.patchcode.pr3.logbook.goods
 
 import ch.patchcode.pr3.logbook.cities.CityModel
-import ch.patchcode.pr3.logbook.goods.GoodModel
-import ch.patchcode.pr3.logbook.goods.GoodService
 import ch.patchcode.pr3.logbook.services.CityProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
