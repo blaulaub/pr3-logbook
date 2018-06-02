@@ -1,0 +1,35 @@
+<div *ngIf="factoryCounts">
+  <div *ngIf="!editOn">
+    <table>
+      <tr>
+        <th>Factory</th>
+        <th>Competitors</th>
+        <th>Player</th>
+      </tr>
+      <tr *ngFor="let item of factoryCounts">
+        <td>{{item.facilityName}}</td>
+        <td>{{item.rivalCount}}</td>
+        <td>{{item.playerCount}}</td>
+      </tr>
+    </table>
+    <button (click)="switchToEdit()">edit</button>
+  </div>
+  <div *ngIf="editOn">
+    <form *ngIf="factoryCountsForm" [formGroup]="factoryCountsForm" (ngSubmit)="onSubmit()">
+      <table formArrayName="factories">
+        <tr>
+          <th>Factory</th>
+          <th>Competitors</th>
+          <th>Player</th>
+        </tr>
+        <tr *ngFor="let item of factories.controls" [formGroup]="item">
+          <td>{{item.get("facilityName").value}}</td>
+          <td><input formControlName="rivalCount" type="number"></td>
+          <td><input formControlName="playerCount" type="number"></td>
+        </tr>
+      </table>
+    </form>
+    <button type="submit">set</button>
+    <button (click)="cancelEdit()">cancel</button>
+  </div>
+</div>

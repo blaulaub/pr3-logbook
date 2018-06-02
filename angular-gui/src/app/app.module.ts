@@ -29,6 +29,7 @@ import { ShiptypesComponent } from './games/game/shiptypes/shiptypes.component';
 import { ShiptypeAddComponent } from './games/game/shiptypes/shiptype-add/shiptype-add.component';
 import { ShiptypeComponent } from './games/game/shiptypes/shiptype/shiptype.component';
 import { TurnoverEditComponent } from './games/game/facilities/facility/turnover-edit/turnover-edit.component';
+import { CityFactoriesComponent } from './games/game/cities/city/city-factories/city-factories.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { TurnoverEditComponent } from './games/game/facilities/facility/turnover
     GameDateComponent,
     GameSettingsComponent,
     CityProductsComponent,
-    CityDetailsComponent
+    CityDetailsComponent,
+    CityFactoriesComponent
   ],
   imports: [
     BrowserModule,

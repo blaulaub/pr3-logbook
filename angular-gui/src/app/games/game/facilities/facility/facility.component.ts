@@ -60,10 +60,12 @@ export class FacilityComponent implements OnInit {
     });
   }
 
+  // needed by html template
   get consumptions(): FormArray {
     return this.facilityForm.get('consumptions') as FormArray;
   }
 
+  // needed by html template
   get production(): FormGroup {
     return this.facilityForm.get('production') as FormGroup;
   }

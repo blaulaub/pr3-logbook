@@ -14,7 +14,8 @@ export class CityProductsService {
   ) { }
 
   getProducts(gameId: number, cityId: number): Observable<Good[]> {
-    return this.http.get<Good[]>('/api/games/' + gameId + '/cities/' + cityId + '/products');
+    return this.http.get<Good[]>(
+      '/api/games/' + gameId + '/cities/' + cityId + '/products');
   }
 
   updateProducts(gameId: number, cityId: number, products: Good[]): Observable<Good[]> {
