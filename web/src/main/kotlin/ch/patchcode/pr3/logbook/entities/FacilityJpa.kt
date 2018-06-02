@@ -1,18 +1,17 @@
 package ch.patchcode.pr3.logbook.entities
 
 import ch.patchcode.pr3.logbook.model.FacilityModel
-import ch.patchcode.pr3.logbook.objects.Facility
+import com.fasterxml.jackson.annotation.JsonIgnore
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.ManyToOne
-import javax.persistence.Table
-import javax.persistence.UniqueConstraint
 import javax.persistence.OneToMany
 import javax.persistence.OneToOne
-import com.fasterxml.jackson.annotation.JsonIgnore
-import javax.persistence.CascadeType
+import javax.persistence.Table
+import javax.persistence.UniqueConstraint
 
 @Entity(name = "Facility")
 @Table(uniqueConstraints = arrayOf(UniqueConstraint(
@@ -28,12 +27,6 @@ data class FacilityJpa(
 		@OneToMany(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) val consumption: MutableList<ConsumptionJpa> = ArrayList(),
 		@OneToOne(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) var production: ProductionJpa? = null
 ) {
-
-	fun toDto() = Facility(
-			id = this.id!!,
-			game = this.game.toDto(),
-			name = this.name
-	)
 
 	fun toModel() = FacilityModel(
 			id = this.id!!,

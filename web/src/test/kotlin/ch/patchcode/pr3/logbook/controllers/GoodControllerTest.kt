@@ -5,7 +5,7 @@ import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.cities.CityRepository
 import ch.patchcode.pr3.logbook.entities.CityProductJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
-import ch.patchcode.pr3.logbook.entities.GoodJpa
+import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.model.GoodModel
 import ch.patchcode.pr3.logbook.repositories.CityProductRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository

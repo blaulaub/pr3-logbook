@@ -2,16 +2,13 @@ package ch.patchcode.pr3.logbook.services
 
 import ch.patchcode.pr3.logbook.entities.ConsumptionJpa
 import ch.patchcode.pr3.logbook.entities.FacilityJpa
-import ch.patchcode.pr3.logbook.entities.GoodJpa
 import ch.patchcode.pr3.logbook.entities.ProductionJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.model.ConsumptionModel
 import ch.patchcode.pr3.logbook.model.FacilityModel
 import ch.patchcode.pr3.logbook.repositories.FacilityRepository
 import ch.patchcode.pr3.logbook.repositories.GoodRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import com.fasterxml.jackson.databind.ObjectMapper
 
 @Service
 class FacilityService @Autowired constructor(

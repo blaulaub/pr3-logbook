@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.repositories
 
-import ch.patchcode.pr3.logbook.entities.GoodJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
+import ch.patchcode.pr3.logbook.goods.GoodJpa
 import org.springframework.data.repository.CrudRepository
 
 interface GoodRepository : CrudRepository<GoodJpa, Long> {

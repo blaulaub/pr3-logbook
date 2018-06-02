@@ -1,14 +1,15 @@
 package ch.patchcode.pr3.logbook.entities
 
-import javax.persistence.ManyToOne
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
-import javax.persistence.Entity
-import javax.persistence.Table
-import javax.persistence.Column
-import javax.persistence.UniqueConstraint
+import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.model.ConsumptionModel
 import com.fasterxml.jackson.annotation.JsonIgnore
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.ManyToOne
+import javax.persistence.Table
+import javax.persistence.UniqueConstraint
 
 @Entity(name = "Consumption")
 @Table(uniqueConstraints = arrayOf(UniqueConstraint(

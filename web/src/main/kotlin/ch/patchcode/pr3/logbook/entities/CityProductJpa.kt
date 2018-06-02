@@ -1,6 +1,7 @@
 package ch.patchcode.pr3.logbook.entities
 
 import ch.patchcode.pr3.logbook.cities.CityJpa
+import ch.patchcode.pr3.logbook.goods.GoodJpa
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
