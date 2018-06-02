@@ -3,10 +3,10 @@ package ch.patchcode.pr3.logbook.controllers
 import ch.patchcode.pr3.logbook.cities.CityJpa
 import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.cities.CityRepository
-import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
-import ch.patchcode.pr3.logbook.objects.Game
-import ch.patchcode.pr3.logbook.repositories.GameRepository
+import ch.patchcode.pr3.logbook.games.GameJpa
+import ch.patchcode.pr3.logbook.games.GameModel
+import ch.patchcode.pr3.logbook.games.GameRepository
 import ch.patchcode.pr3.logbook.utils.contentAs
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.AllOf.allOf
@@ -58,7 +58,7 @@ class RestTest {
 
 		// assert
 		result.andExpect(status().isCreated())
-		assertThat(result.contentAs<Game>().captainsName, equalTo("Morgan"))
+		assertThat(result.contentAs<GameModel>().captainsName, equalTo("Morgan"))
 	}
 
 	@Test
@@ -73,9 +73,9 @@ class RestTest {
 
 		// assert
 		result.andExpect(status().isOk())
-		assertThat(result.contentAs<List<Game>>(), allOf(
-				hasItem(game1.toDto()),
-				hasItem(game2.toDto())))
+		assertThat(result.contentAs<List<GameModel>>(), allOf(
+				hasItem(game1.toModel()),
+				hasItem(game2.toModel())))
 	}
 
 	@Test
@@ -89,7 +89,7 @@ class RestTest {
 
 		// assert
 		result.andExpect(status().isOk())
-		assertThat(result.contentAs<Game>(), equalTo(game.toDto()))
+		assertThat(result.contentAs<GameModel>(), equalTo(game.toModel()))
 	}
 
 	@Test

@@ -1,6 +1,6 @@
 package ch.patchcode.pr3.logbook.goods
 
-import ch.patchcode.pr3.logbook.entities.GameJpa
+import ch.patchcode.pr3.logbook.games.GameJpa
 import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.Column
 import javax.persistence.Entity

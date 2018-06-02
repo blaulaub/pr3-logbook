@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.services
 
 import ch.patchcode.pr3.logbook.entities.GameSettingsJpa
-import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
+import ch.patchcode.pr3.logbook.games.GameService
 import ch.patchcode.pr3.logbook.model.GameSettingsModel
 import ch.patchcode.pr3.logbook.repositories.GameSettingsRepository
 import org.springframework.beans.factory.annotation.Autowired

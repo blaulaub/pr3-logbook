@@ -1,8 +1,8 @@
 package ch.patchcode.pr3.logbook.facilities
 
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
+import ch.patchcode.pr3.logbook.games.GameService
 import ch.patchcode.pr3.logbook.goods.GoodRepository
-import ch.patchcode.pr3.logbook.services.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

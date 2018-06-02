@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.entities
 
+import ch.patchcode.pr3.logbook.games.GameJpa
 import ch.patchcode.pr3.logbook.model.GameSettingsModel
-import ch.patchcode.pr3.logbook.objects.GameSettings
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -18,12 +18,6 @@ data class GameSettingsJpa(
 		@Column var salaryPerDay: Double? = null,
 		@Column var workerPerCitizenRatio: Double? = null
 ) {
-
-	fun toDto() = GameSettings(
-			game = this.game.toDto(),
-			salaryPerDay = this.salaryPerDay,
-			workerPerCitizenRatio = this.workerPerCitizenRatio
-	)
 
 	fun toModel() = GameSettingsModel(
 			salaryPerDay = this.salaryPerDay,

@@ -1,8 +1,8 @@
-package ch.patchcode.pr3.logbook.objects
+package ch.patchcode.pr3.logbook.games
 
 import java.time.LocalDateTime
 
-data class Game(
+data class GameModel(
 		val id: Long,
 		val captainsName: String,
 		val created: LocalDateTime = LocalDateTime.now(),

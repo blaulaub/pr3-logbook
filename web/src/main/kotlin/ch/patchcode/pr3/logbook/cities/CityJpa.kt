@@ -1,6 +1,6 @@
 package ch.patchcode.pr3.logbook.cities
 
-import ch.patchcode.pr3.logbook.entities.GameJpa
+import ch.patchcode.pr3.logbook.games.GameJpa
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

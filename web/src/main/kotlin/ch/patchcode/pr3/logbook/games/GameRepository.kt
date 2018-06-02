@@ -1,6 +1,5 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.games
 
 import org.springframework.data.repository.CrudRepository
-import ch.patchcode.pr3.logbook.entities.GameJpa
 
 interface GameRepository : CrudRepository<GameJpa, Long>

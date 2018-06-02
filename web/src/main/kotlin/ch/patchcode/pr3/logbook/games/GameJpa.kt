@@ -1,6 +1,5 @@
-package ch.patchcode.pr3.logbook.entities
+package ch.patchcode.pr3.logbook.games
 
-import ch.patchcode.pr3.logbook.objects.Game
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -18,7 +17,7 @@ data class GameJpa(
 		@Column var gameDate: LocalDateTime? = null
 ) {
 
-	fun toDto() = Game(
+	fun toModel() = GameModel(
 			id = this.id!!,
 			captainsName = this.captainsName,
 			created = this.created,

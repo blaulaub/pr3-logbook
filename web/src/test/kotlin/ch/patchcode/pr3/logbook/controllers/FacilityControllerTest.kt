@@ -1,14 +1,14 @@
 package ch.patchcode.pr3.logbook.controllers
 
-import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.facilities.ConsumptionModel
 import ch.patchcode.pr3.logbook.facilities.FacilityJpa
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.facilities.FacilityRepository
 import ch.patchcode.pr3.logbook.facilities.ProductionModel
+import ch.patchcode.pr3.logbook.games.GameJpa
+import ch.patchcode.pr3.logbook.games.GameRepository
 import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.goods.GoodRepository
-import ch.patchcode.pr3.logbook.repositories.GameRepository
 import ch.patchcode.pr3.logbook.utils.contentAs
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.MatcherAssert.assertThat

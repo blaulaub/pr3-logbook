@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.cities
 
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.services.GameService
+import ch.patchcode.pr3.logbook.games.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

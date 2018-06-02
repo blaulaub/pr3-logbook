@@ -1,9 +1,6 @@
-package ch.patchcode.pr3.logbook.services
+package ch.patchcode.pr3.logbook.games
 
-import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.objects.Game
-import ch.patchcode.pr3.logbook.repositories.GameRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -14,7 +11,7 @@ class GameService @Autowired constructor(
 
 	fun getAll() = gameRepository.findAll()
 
-	fun createGame(captainsName: String) = gameRepository.save(GameJpa(captainsName = captainsName)).toDto()
+	fun createGame(captainsName: String) = gameRepository.save(GameJpa(captainsName = captainsName)).toModel()
 
 	fun resolveGame(gameId: Long): GameJpa {
 		val game = gameRepository.findById(gameId)
@@ -22,7 +19,7 @@ class GameService @Autowired constructor(
 		return game.get()
 	}
 
-	fun updateGame(gameId: Long, game: Game): Game {
+	fun updateGame(gameId: Long, game: GameModel): GameModel {
 		if (gameId != game.id) throw IllegalArgumentException("URL gameId does not match model game id")
 		val oldGame = resolveGame(gameId)
 
@@ -30,7 +27,7 @@ class GameService @Autowired constructor(
 		oldGame.created = game.created
 		oldGame.gameDate = game.gameDate
 
-		return gameRepository.save(oldGame).toDto()
+		return gameRepository.save(oldGame).toModel()
 	}
 
 	fun deleteGame(gameId: Long) {

@@ -1,22 +1,17 @@
-package ch.patchcode.pr3.logbook.controllers
+package ch.patchcode.pr3.logbook.games
 
-import ch.patchcode.pr3.logbook.entities.GameJpa
-import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
-import ch.patchcode.pr3.logbook.objects.Game
-import ch.patchcode.pr3.logbook.repositories.GameRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
-import ch.patchcode.pr3.logbook.services.GameService
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class GameController @Autowired constructor(
@@ -25,25 +20,25 @@ class GameController @Autowired constructor(
 
 	@GetMapping("/games")
 	@Transactional
-	fun getGames(): List<Game> = gameService.getAll().map { it -> it.toDto() }
+	fun getGames(): List<GameModel> = gameService.getAll().map { it -> it.toModel() }
 
 	@PostMapping("/games")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Transactional
 	fun createGame(
 			@RequestParam captainsName: String
-	): Game = gameService.createGame(captainsName)
+	): GameModel = gameService.createGame(captainsName)
 
 	@GetMapping("/games/{gameId}")
 	@Transactional
-	fun getGame(@PathVariable gameId: Long): Game = gameService.resolveGame(gameId).toDto()
+	fun getGame(@PathVariable gameId: Long): GameModel = gameService.resolveGame(gameId).toModel()
 
 	@PutMapping("/games/{gameId}")
 	@Transactional
 	fun updateGame(
 			@PathVariable gameId: Long,
-			@RequestBody game: Game
-	): Game = gameService.updateGame(gameId, game)
+			@RequestBody game: GameModel
+	): GameModel = gameService.updateGame(gameId, game)
 
 	@DeleteMapping("/games/{gameId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

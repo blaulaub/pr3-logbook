@@ -1,7 +1,7 @@
 package ch.patchcode.pr3.logbook.entities
 
+import ch.patchcode.pr3.logbook.games.GameJpa
 import ch.patchcode.pr3.logbook.model.FleetModel
-import ch.patchcode.pr3.logbook.objects.Fleet
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -17,12 +17,6 @@ data class FleetJpa(
 		@ManyToOne(optional = false) val game: GameJpa,
 		@Column(nullable = false) val name: String
 ) {
-
-	fun toDto() = Fleet(
-			id = this.id!!,
-			game = this.game.toDto(),
-			name = this.name
-	)
 
 	fun toModel() = FleetModel(
 			id = this.id!!,
