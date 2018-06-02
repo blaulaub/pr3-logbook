@@ -1,6 +1,7 @@
 package ch.patchcode.pr3.logbook.services
 
 import ch.patchcode.pr3.logbook.cities.CityModel
+import ch.patchcode.pr3.logbook.cities.CityService
 import ch.patchcode.pr3.logbook.entities.CityProductJpa
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.model.GoodModel

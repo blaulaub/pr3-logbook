@@ -1,7 +1,5 @@
-package ch.patchcode.pr3.logbook.controllers
+package ch.patchcode.pr3.logbook.cities
 
-import ch.patchcode.pr3.logbook.cities.CityModel
-import ch.patchcode.pr3.logbook.services.CityService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional
