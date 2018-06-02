@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Good } from '../good';
+import { City } from '../../cities/city';
 import { GoodsService } from '../goods.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class GoodComponent implements OnInit {
 
   gameId: number;
   good: Good;
+  producedIn: City[];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +29,11 @@ export class GoodComponent implements OnInit {
       .getGood(this.gameId, +this.route.snapshot.paramMap.get('goodId'))
       .subscribe(good => {
         this.good = good;
+        this.goodsService
+          .getProducedIn(this.gameId, good.id)
+             .subscribe(cities => {
+               this.producedIn = cities;
+             });
       });
   }
 

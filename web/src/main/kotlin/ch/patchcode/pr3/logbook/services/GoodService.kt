@@ -17,7 +17,7 @@ class GoodService @Autowired constructor(
 
 	fun createGood(gameId: Long, name: String) = goodRepository.save(GoodJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 
-	fun getCity(gameId: Long, goodId: Long): GoodModel {
+	fun getGood(gameId: Long, goodId: Long): GoodModel {
 		gameService.resolveGame(gameId)
 		val good = resolveGood(goodId)
 		if (good.game.id != gameId) throw EntityNotFoundException("Good #" + goodId)

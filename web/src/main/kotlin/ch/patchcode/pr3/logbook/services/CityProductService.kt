@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.entities.CityProductJpa
+import ch.patchcode.pr3.logbook.objects.City
+import ch.patchcode.pr3.logbook.model.CityModel
 
 @Service
 class CityProductService @Autowired constructor(
@@ -42,5 +44,12 @@ class CityProductService @Autowired constructor(
 				.forEach { it -> cityProductRepository.save(it) }
 
 		return cityProductRepository.findByCity(city).map { it -> it.good.toModel() }
+	}
+	
+	fun findCitiesProducing(gameId: Long, goodId: Long): List<CityModel> {
+		gameService.resolveGame(gameId)
+		val good = goodService.resolveGood(goodId)
+		if (good.game.id != gameId) throw EntityNotFoundException("Good #" + goodId)
+		return cityProductRepository.findByGood(good).map{ it -> it.city.toModel() };
 	}
 }

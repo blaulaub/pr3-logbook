@@ -14,32 +14,42 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.DeleteMapping
+import ch.patchcode.pr3.logbook.model.CityModel
+import ch.patchcode.pr3.logbook.services.CityProductService
 
 @RestController
 class GoodController @Autowired constructor(
-		private val goodService: GoodService
+		private val goodService: GoodService,
+		private val cityProductService: CityProductService
 ) {
 
 	@GetMapping("/games/{gameId}/goods")
 	@Transactional
-	fun getCities(
+	fun getGoods(
 			@PathVariable gameId: Long
 	): List<GoodModel> = goodService.findByGame(gameId)
 
 	@PostMapping("/games/{gameId}/goods")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Transactional
-	fun createCity(
+	fun createGood(
 			@PathVariable gameId: Long,
 			@RequestParam name: String
 	): GoodModel = goodService.createGood(gameId, name)
 
 	@GetMapping("/games/{gameId}/goods/{goodId}")
 	@Transactional
-	fun getCity(
+	fun getGood(
 			@PathVariable gameId: Long,
 			@PathVariable goodId: Long
-	): GoodModel = goodService.getCity(gameId, goodId)
+	): GoodModel = goodService.getGood(gameId, goodId)
+
+	@GetMapping("/games/{gameId}/goods/{goodId}/producingCities")
+	@Transactional
+	fun getProducedIn(
+			@PathVariable gameId: Long,
+			@PathVariable goodId: Long
+	): List<CityModel> = cityProductService.findCitiesProducing(gameId, goodId)
 
 	@DeleteMapping("/games/{gameId}/goods/{goodId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

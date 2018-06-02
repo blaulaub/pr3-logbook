@@ -7,5 +7,6 @@ import org.springframework.data.repository.CrudRepository
 
 interface CityProductRepository: CrudRepository<CityProductJpa, Long> {
 	fun findByCity(city: CityJpa): Iterable<CityProductJpa>
+	fun findByGood(good: GoodJpa): Iterable<CityProductJpa>
 	fun deleteByCityAndGood(city: CityJpa, good: GoodJpa)
 }

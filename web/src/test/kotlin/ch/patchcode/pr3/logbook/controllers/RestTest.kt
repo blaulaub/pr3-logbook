@@ -214,18 +214,4 @@ class RestTest {
 		result.andExpect(status().isCreated())
 		assertThat(result.contentAs<FacilityModel>().name, equalTo("Sägewerk"))
 	}
-
-	@Test
-	@Transactional
-	fun `can post new good in a game`() {
-		// arrange
-		val game = gameRepository.save(GameJpa(captainsName = "Morgan"))
-
-		// act
-		val result = mvc.perform(post("/games/{gameId}/goods", game.id).param("name", "Holz"))
-
-		// assert
-		result.andExpect(status().isCreated())
-		assertThat(result.contentAs<GoodModel>().name, equalTo("Holz"))
-	}
 }

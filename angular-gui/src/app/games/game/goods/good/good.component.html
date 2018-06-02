@@ -2,7 +2,10 @@
   <h1>{{good.name}}</h1>
   <ul>
     <li>
-      produced in <i>list of cities</i>
+      produced in:
+      <span *ngFor="let city of producedIn; let isLast=last">
+        <a routerLink="/games/{{gameId}}/cities/{{city.id}}">{{city.name}}</a>{{isLast ? '' : ', '}}
+      </span>
     </li>
     <li>
       surplus or deficit
