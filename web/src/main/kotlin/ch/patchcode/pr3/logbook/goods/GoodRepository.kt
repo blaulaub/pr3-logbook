@@ -1,4 +1,4 @@
-package ch.patchcode.pr3.logbook.repositories
+package ch.patchcode.pr3.logbook.goods
 
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.goods.GoodJpa

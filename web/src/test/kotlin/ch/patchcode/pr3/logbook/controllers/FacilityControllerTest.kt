@@ -3,12 +3,12 @@ package ch.patchcode.pr3.logbook.controllers
 import ch.patchcode.pr3.logbook.entities.FacilityJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.goods.GoodJpa
+import ch.patchcode.pr3.logbook.goods.GoodRepository
 import ch.patchcode.pr3.logbook.model.ConsumptionModel
 import ch.patchcode.pr3.logbook.model.FacilityModel
 import ch.patchcode.pr3.logbook.model.ProductionModel
 import ch.patchcode.pr3.logbook.repositories.FacilityRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository
-import ch.patchcode.pr3.logbook.repositories.GoodRepository
 import ch.patchcode.pr3.logbook.utils.contentAs
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.MatcherAssert.assertThat

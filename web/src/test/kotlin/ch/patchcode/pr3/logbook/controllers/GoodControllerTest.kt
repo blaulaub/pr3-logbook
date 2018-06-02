@@ -7,9 +7,9 @@ import ch.patchcode.pr3.logbook.entities.CityProductJpa
 import ch.patchcode.pr3.logbook.entities.GameJpa
 import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.goods.GoodModel
+import ch.patchcode.pr3.logbook.goods.GoodRepository
 import ch.patchcode.pr3.logbook.repositories.CityProductRepository
 import ch.patchcode.pr3.logbook.repositories.GameRepository
-import ch.patchcode.pr3.logbook.repositories.GoodRepository
 import ch.patchcode.pr3.logbook.utils.contentAs
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.collection.IsCollectionWithSize.hasSize
