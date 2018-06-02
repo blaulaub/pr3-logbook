@@ -31,7 +31,7 @@ class GameController @Autowired constructor(
 
 	@GetMapping("/games/{gameId}")
 	@Transactional
-	fun getGame(@PathVariable gameId: Long): GameModel = gameService.resolveGame(gameId).toModel()
+	fun getGame(@PathVariable gameId: Long): GameModel = gameService.getGame(gameId)
 
 	@PutMapping("/games/{gameId}")
 	@Transactional

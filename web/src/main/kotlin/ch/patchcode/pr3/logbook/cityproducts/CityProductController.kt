@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class CityProductsController @Autowired constructor(
+class CityProductController @Autowired constructor(
 		private val cityProductService: CityProductService
 ) {
 

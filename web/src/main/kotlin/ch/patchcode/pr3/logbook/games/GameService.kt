@@ -11,6 +11,8 @@ class GameService @Autowired constructor(
 
 	fun getAll() = gameRepository.findAll()
 
+	fun getGame(gameId: Long): GameModel = resolveGame(gameId).toModel()
+
 	fun createGame(captainsName: String) = gameRepository.save(GameJpa(captainsName = captainsName)).toModel()
 
 	fun resolveGame(gameId: Long): GameJpa {
