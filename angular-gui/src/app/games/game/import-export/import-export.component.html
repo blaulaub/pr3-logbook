@@ -1,0 +1,10 @@
+<div>
+  <label>Export
+    <a href="/api/games/{{gameId}}/raw"><button>Browse...</button></a>
+  </label>
+</div>
+<div>
+  <label>Import
+    <input type="file" (change)="fileChange($event)" placeholder="upload" accept=".json">
+  </label>
+</div>

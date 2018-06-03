@@ -33,4 +33,6 @@ export class GameComponent implements OnInit {
       .subscribe(game => this.game = game);
   }
 
+  x: any
+
 }

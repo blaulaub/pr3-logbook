@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository
 interface ShiptypeRepository : CrudRepository<ShiptypeJpa, Long> {
 	fun findByGame(game: GameJpa): Iterable<ShiptypeJpa>
 	fun deleteByGameAndId(game: GameJpa, id: Long)
+	fun deleteByGameId(gameId: Long)
 }

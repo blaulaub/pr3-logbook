@@ -5,6 +5,7 @@ import ch.patchcode.pr3.logbook.games.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import ch.patchcode.pr3.logbook.games.GameJpa
 
 @Service
 class GoodService @Autowired constructor(
@@ -31,6 +32,8 @@ class GoodService @Autowired constructor(
 		val game = gameService.resolveGame(gameId)
 		goodRepository.deleteByGameAndId(game, goodId)
 	}
+
+	fun deleteByGameId(gameId: Long) = goodRepository.deleteByGameId(gameId)
 
 	fun resolveGood(goodId: Long): GoodJpa {
 		val good = goodRepository.findById(goodId)

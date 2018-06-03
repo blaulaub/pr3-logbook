@@ -55,6 +55,8 @@ class ShiptypeService @Autowired constructor(
 		shiptypeRepository.deleteByGameAndId(game, shiptypeId)
 	}
 
+	fun deleteByGameId(gameId: Long) = shiptypeRepository.deleteByGameId(gameId)
+	
 	private fun resolveShiptype(shiptypeId: Long): ShiptypeJpa {
 		val shiptype = shiptypeRepository.findById(shiptypeId)
 		if (!shiptype.isPresent) throw EntityNotFoundException("Shiptype #" + shiptypeId)

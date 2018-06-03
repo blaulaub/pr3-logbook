@@ -7,4 +7,5 @@ interface GoodRepository : CrudRepository<GoodJpa, Long> {
 	fun findByGame(game: GameJpa): Iterable<GoodJpa>
 	fun findOneByGameAndName(game: GameJpa, name: String): GoodJpa?
 	fun deleteByGameAndId(game: GameJpa, id: Long)
+	fun deleteByGameId(gameId: Long)
 }

@@ -18,6 +18,6 @@
 </fieldset>
 <fieldset>
   <legend>Manage</legend>
-  <a href="/api/games/{{gameId}}/save"><button>Export to file</button></a>
+  <app-import-export [gameId]="gameId"></app-import-export>
 </fieldset>
 <a routerLink="/games">... back to list of games</a>
