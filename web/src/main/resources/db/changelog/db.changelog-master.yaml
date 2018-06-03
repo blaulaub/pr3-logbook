@@ -392,3 +392,55 @@ databaseChangeLog:
             constraintName: uq_CityProduct_city_good
             tableName: CityProduct
             columnNames: city_id, good_id
+
+        - createTable:
+            tableName: FactoryCount
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: city_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rivalCount
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: playerCount
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_FactoryCount_City_id
+            baseTableName: FactoryCount
+            baseColumnNames: city_id
+            referencedTableName: City
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            constraintName: fk_FactoryCount_Facility_id
+            baseTableName: FactoryCount
+            baseColumnNames: facility_id
+            referencedTableName: Facility
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addUniqueConstraint:
+            constraintName: uq_FactoryCount_city_facility
+            tableName: FactoryCount
+            columnNames: city_id, facility_id

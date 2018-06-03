@@ -2,6 +2,7 @@ package ch.patchcode.pr3.logbook.facilities
 
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.games.GameService
+import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.goods.GoodRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -75,7 +76,9 @@ class FacilityService @Autowired constructor(
 		facilityRepository.deleteByGameAndId(game, facilityId)
 	}
 
-	private fun resolveFacility(facilityId: Long): FacilityJpa {
+	fun resolveByProduct(product: GoodJpa) = facilityRepository.findOneByProductionGood(product)
+	
+	fun resolveFacility(facilityId: Long): FacilityJpa {
 		val facility = facilityRepository.findById(facilityId)
 		if (!facility.isPresent) throw EntityNotFoundException("Facility #" + facilityId)
 		return facility.get()
