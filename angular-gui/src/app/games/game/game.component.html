@@ -16,4 +16,8 @@
   <legend>Settings</legend>
   <app-game-settings [gameId]="gameId"></app-game-settings>
 </fieldset>
+<fieldset>
+  <legend>Manage</legend>
+  <a href="/api/games/{{gameId}}/save"><button>Export to file</button></a>
+</fieldset>
 <a routerLink="/games">... back to list of games</a>
