@@ -4,11 +4,11 @@ import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.cities.CityService
 import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.games.GameService
-import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.goods.GoodModel
 import ch.patchcode.pr3.logbook.goods.GoodService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CityProductService @Autowired constructor(
@@ -18,6 +18,7 @@ class CityProductService @Autowired constructor(
 		private val goodService: GoodService
 ) {
 
+	@Transactional
 	fun findByGameAndCity(gameId: Long, cityId: Long): List<GoodModel> = resolveByGameAndCity(gameId, cityId).map { it -> it.good.toModel() }
 
 	fun resolveByGameAndCity(gameId: Long, cityId: Long): Iterable<CityProductJpa> {
@@ -28,6 +29,7 @@ class CityProductService @Autowired constructor(
 		return cityProductRepository.findByCity(city)
 	}
 
+	@Transactional
 	fun updateCityProducts(gameId: Long, cityId: Long, products: List<GoodModel>): List<GoodModel> {
 		gameService.resolveGame(gameId)
 		val city = cityService.resolveCity(cityId)
@@ -51,6 +53,7 @@ class CityProductService @Autowired constructor(
 		return cityProductRepository.findByCity(city).map { it -> it.good.toModel() }
 	}
 
+	@Transactional
 	fun findCitiesProducing(gameId: Long, goodId: Long): List<CityModel> {
 		gameService.resolveGame(gameId)
 		val good = goodService.resolveGood(goodId)

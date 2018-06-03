@@ -4,6 +4,7 @@ import ch.patchcode.pr3.logbook.exception.EntityNotFoundException
 import ch.patchcode.pr3.logbook.games.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class GoodService @Autowired constructor(
@@ -11,10 +12,13 @@ class GoodService @Autowired constructor(
 		private val gameService: GameService
 ) {
 
+	@Transactional
 	fun findByGame(gameId: Long) = goodRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
+	@Transactional
 	fun createGood(gameId: Long, name: String) = goodRepository.save(GoodJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 
+	@Transactional
 	fun getGood(gameId: Long, goodId: Long): GoodModel {
 		gameService.resolveGame(gameId)
 		val good = resolveGood(goodId)
@@ -22,6 +26,7 @@ class GoodService @Autowired constructor(
 		return good.toModel()
 	}
 
+	@Transactional
 	fun deleteGood(gameId: Long, goodId: Long) {
 		val game = gameService.resolveGame(gameId)
 		goodRepository.deleteByGameAndId(game, goodId)
@@ -32,5 +37,4 @@ class GoodService @Autowired constructor(
 		if (!good.isPresent) throw EntityNotFoundException("Good #" + goodId)
 		return good.get()
 	}
-
 }

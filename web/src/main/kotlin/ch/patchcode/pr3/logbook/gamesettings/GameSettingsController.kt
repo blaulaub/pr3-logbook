@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import javax.transaction.Transactional
 
 @RestController
 class GameSettingsController @Autowired constructor(
@@ -14,16 +13,13 @@ class GameSettingsController @Autowired constructor(
 ) {
 
 	@GetMapping("/games/{gameId}/gameSettings")
-	@Transactional
 	fun getGameSettings(
 			@PathVariable gameId: Long
 	): GameSettingsModel = gameSettingsService.findByGame(gameId)
 
 	@PutMapping("/games/{gameId}/gameSettings")
-	@Transactional
 	fun updateGameSettings(
 			@PathVariable gameId: Long,
 			@RequestBody gamesSetting: GameSettingsModel
 	): GameSettingsModel = gameSettingsService.updateGameSettings(gameId, gamesSetting)
-
 }

@@ -9,6 +9,7 @@ import ch.patchcode.pr3.logbook.cityproducts.CityProductService
 import org.springframework.stereotype.Service
 import org.slf4j.LoggerFactory
 import ch.patchcode.pr3.logbook.facilities.FacilityJpa
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CityFactoryService @Autowired constructor(
@@ -23,6 +24,7 @@ class CityFactoryService @Autowired constructor(
 		val log = LoggerFactory.getLogger(CityFactoryService::class.java)
 	}
 
+	@Transactional
 	fun findByGameAndCity(gameId: Long, cityId: Long): List<FactoryCountModel> {
 		gameService.resolveGame(gameId)
 		val city = cityService.resolveCity(cityId)
@@ -46,6 +48,7 @@ class CityFactoryService @Autowired constructor(
 		return items.map { it -> it.toModel() }
 	}
 
+	@Transactional
 	fun updateFactoryCounts(gameId: Long, cityId: Long, counts: List<FactoryCountModel>): List<FactoryCountModel> {
 		gameService.resolveGame(gameId)
 		val city = cityService.resolveCity(cityId)

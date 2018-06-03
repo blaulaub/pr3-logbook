@@ -2,7 +2,6 @@ package ch.patchcode.pr3.logbook.facilities
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -19,28 +18,24 @@ class FacilityController @Autowired constructor(
 ) {
 
 	@GetMapping("/games/{gameId}/facilities")
-	@Transactional
 	fun getCities(
 			@PathVariable gameId: Long
 	): List<FacilityModel> = facilityService.findByGame(gameId)
 
 	@PostMapping("/games/{gameId}/facilities")
 	@ResponseStatus(HttpStatus.CREATED)
-	@Transactional
 	fun createFacility(
 			@PathVariable gameId: Long,
 			@RequestParam name: String
 	): FacilityModel = facilityService.createFacility(gameId, name)
 
 	@GetMapping("/games/{gameId}/facilities/{facilityId}")
-	@Transactional
 	fun getFacility(
 			@PathVariable gameId: Long,
 			@PathVariable facilityId: Long
 	): FacilityModel = facilityService.getFacility(gameId, facilityId)
 
 	@PutMapping("/games/{gameId}/facilities/{facilityId}")
-	@Transactional
 	fun updateFacility(
 			@PathVariable gameId: Long,
 			@PathVariable facilityId: Long,
@@ -49,7 +44,6 @@ class FacilityController @Autowired constructor(
 
 	@DeleteMapping("/games/{gameId}/facilities/{facilityId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@Transactional
 	fun deleteFacility(@PathVariable gameId: Long, @PathVariable facilityId: Long) {
 		facilityService.deleteFacility(gameId, facilityId)
 	}

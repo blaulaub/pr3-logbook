@@ -6,6 +6,7 @@ import ch.patchcode.pr3.logbook.goods.GoodJpa
 import ch.patchcode.pr3.logbook.goods.GoodRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class FacilityService @Autowired constructor(
@@ -14,10 +15,13 @@ class FacilityService @Autowired constructor(
 		private val gameService: GameService
 ) {
 
+	@Transactional
 	fun findByGame(gameId: Long) = facilityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
+	@Transactional
 	fun createFacility(gameId: Long, name: String) = facilityRepository.save(FacilityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 
+	@Transactional
 	fun getFacility(gameId: Long, facilityId: Long): FacilityModel {
 		gameService.resolveGame(gameId)
 		val facility = resolveFacility(facilityId)
@@ -25,6 +29,7 @@ class FacilityService @Autowired constructor(
 		return facility.toModel()
 	}
 
+	@Transactional
 	fun updateFacility(gameId: Long, facilityId: Long, facility: FacilityModel): FacilityModel {
 		if (facilityId != facility.id) throw IllegalArgumentException("URL facilityId does not match model facility id")
 		val game = gameService.resolveGame(gameId)
@@ -71,6 +76,7 @@ class FacilityService @Autowired constructor(
 		return facilityRepository.save(oldFacility).toModel()
 	}
 
+	@Transactional
 	fun deleteFacility(gameId: Long, facilityId: Long) {
 		val game = gameService.resolveGame(gameId)
 		facilityRepository.deleteByGameAndId(game, facilityId)
