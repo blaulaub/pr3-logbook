@@ -109,11 +109,12 @@ export class FacilityComponent implements OnInit {
       consumption: facilityModel.consumptions.map(x => this.toTurnover(x)),
       production: this.toTurnover(facilityModel.production)
     };
-    this.facilitiesService.updateFacility(this.gameId, saveFacility)
-    .subscribe(facility => {
-      this.facility = facility;
-      this.editOn = false;
-    });
+    this.facilitiesService
+      .updateFacility(this.gameId, saveFacility)
+      .subscribe(facility => {
+        this.facility = facility;
+        this.editOn = false;
+      });
   }
 
   cancelEdit() {

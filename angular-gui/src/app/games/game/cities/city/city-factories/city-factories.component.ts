@@ -52,12 +52,7 @@ export class CityFactoriesComponent implements OnInit {
 
   onSubmit() {
     const countModel = this.factoryCountsForm.value;
-    const saveFactoryCounts = countModel.factories.map(x => new FactoryCount() {
-      facilityId: x.facilityId,
-      facilityName: x.facilityName,
-      playerCount: x.playerCount,
-      rivalCount: x.rivalCount
-    });
+    const saveFactoryCounts = countModel.factories.map(x => this.toFactoryCount(x));
     this.cityFactoriesService
       .updateFactoryCounts(this.gameId, this.cityId, saveFactoryCounts)
       .subscribe(counts => {
@@ -68,5 +63,14 @@ export class CityFactoriesComponent implements OnInit {
 
   cancelEdit() {
     this.editOn = false;
+  }
+
+  toFactoryCount(x: any): FactoryCount {
+    return {
+      facilityId: x.facilityId,
+      facilityName: x.facilityName,
+      playerCount: x.playerCount,
+      rivalCount: x.rivalCount
+    }
   }
 }
