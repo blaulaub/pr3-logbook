@@ -8,4 +8,5 @@ interface FacilityRepository : CrudRepository<FacilityJpa, Long> {
 	fun findByGame(game: GameJpa): Iterable<FacilityJpa>
 	fun findOneByProductionGood(good: GoodJpa): FacilityJpa?
 	fun deleteByGameAndId(game: GameJpa, id: Long)
+	fun deleteByGameId(gameId: Long)
 }

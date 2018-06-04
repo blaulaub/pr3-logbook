@@ -82,8 +82,10 @@ class FacilityService @Autowired constructor(
 		facilityRepository.deleteByGameAndId(game, facilityId)
 	}
 
+	fun deleteByGameId(gameId: Long) = facilityRepository.deleteByGameId(gameId)
+
 	fun resolveByProduct(product: GoodJpa) = facilityRepository.findOneByProductionGood(product)
-	
+
 	fun resolveFacility(facilityId: Long): FacilityJpa {
 		val facility = facilityRepository.findById(facilityId)
 		if (!facility.isPresent) throw EntityNotFoundException("Facility #" + facilityId)

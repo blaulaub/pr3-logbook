@@ -17,6 +17,9 @@ class GoodService @Autowired constructor(
 	fun findByGame(gameId: Long) = goodRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
 	@Transactional
+	fun findByGameAndName(gameId: Long, name: String) = goodRepository.findOneByGameAndName(gameService.resolveGame(gameId), name)?.toModel()
+
+	@Transactional
 	fun createGood(gameId: Long, name: String) = goodRepository.save(GoodJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 
 	@Transactional

@@ -10,6 +10,7 @@ data class SaveGame(
 		val gameDate: LocalDateTime?,
 		val settings: SaveGameSettings,
 		val goods: List<SaveGameGood>,
+		val facilities: List<SaveGameFacility>,
 		val shiptypes: List<SaveGameShiptype>
 )
 
@@ -20,6 +21,21 @@ data class SaveGameSettings(
 
 data class SaveGameGood(
 		val name: String
+)
+
+data class SaveGameFacility(
+		val name: String,
+		val constructionCost: Int?,
+		val constructionDays: Int?,
+		val maintenancePerDay: Int?,
+		val workers: Int?,
+		val consumption: List<SaveGameTurnover>,
+		val production: SaveGameTurnover?
+)
+
+data class SaveGameTurnover(
+		val good: String,
+		val amount: Double
 )
 
 data class SaveGameShiptype(

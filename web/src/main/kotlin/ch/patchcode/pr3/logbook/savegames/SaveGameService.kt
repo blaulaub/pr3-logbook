@@ -1,23 +1,28 @@
 package ch.patchcode.pr3.logbook.savegames
 
+import ch.patchcode.pr3.logbook.facilities.ConsumptionModel
+import ch.patchcode.pr3.logbook.facilities.FacilityModel
+import ch.patchcode.pr3.logbook.facilities.FacilityService
+import ch.patchcode.pr3.logbook.facilities.ProductionModel
 import ch.patchcode.pr3.logbook.games.GameModel
 import ch.patchcode.pr3.logbook.games.GameService
 import ch.patchcode.pr3.logbook.gamesettings.GameSettingsModel
 import ch.patchcode.pr3.logbook.gamesettings.GameSettingsService
 import ch.patchcode.pr3.logbook.goods.GoodModel
 import ch.patchcode.pr3.logbook.goods.GoodService
+import ch.patchcode.pr3.logbook.shiptypes.ShiptypeModel
 import ch.patchcode.pr3.logbook.shiptypes.ShiptypeService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ch.patchcode.pr3.logbook.shiptypes.ShiptypeModel
 
 @Service
 class SaveGameService @Autowired constructor(
 		private val gameService: GameService,
 		private val gameSettingsService: GameSettingsService,
 		private val goodService: GoodService,
+		private val facilityService: FacilityService,
 		private val shiptypeService: ShiptypeService
 ) {
 
@@ -34,6 +39,7 @@ class SaveGameService @Autowired constructor(
 				gameDate = game.gameDate,
 				settings = getSettings(gameId),
 				goods = getGoods(gameId),
+				facilities = getFacilities(gameId),
 				shiptypes = getShiptypes(gameId)
 		)
 	}
@@ -48,6 +54,7 @@ class SaveGameService @Autowired constructor(
 		))
 		putSettings(gameId, data.settings)
 		putGoods(gameId, data.goods)
+		putFacilities(gameId, data.facilities)
 		putShiptypes(gameId, data.shiptypes)
 		log.info("not fully implemented: save {}", data)
 	}
@@ -76,6 +83,60 @@ class SaveGameService @Autowired constructor(
 		goodService.deleteByGameId(gameId)
 		return goods.map { good -> goodService.createGood(gameId, good.name) };
 	}
+
+	private fun getFacilities(gameId: Long): List<SaveGameFacility> {
+		val facilities = facilityService.findByGame(gameId)
+		return facilities.map { facility ->
+			SaveGameFacility(
+					name = facility.name,
+					constructionCost = facility.constructionCost,
+					constructionDays = facility.constructionDays,
+					maintenancePerDay = facility.maintenancePerDay,
+					workers = facility.workers,
+					consumption = facility.consumption.map { consumption -> consumption.toTurnover() },
+					production = facility.production?.toTurnover()
+			)
+		}
+	}
+
+	fun ConsumptionModel.toTurnover() = SaveGameTurnover(
+			good = this.good.name,
+			amount = this.amount
+	)
+
+	fun ProductionModel.toTurnover() = SaveGameTurnover(
+			good = this.good.name,
+			amount = this.amount
+	)
+
+	private fun putFacilities(gameId: Long, facilities: List<SaveGameFacility>): List<FacilityModel> {
+		facilityService.deleteByGameId(gameId)
+		return facilities.map { facility -> putFacility(gameId, facility) }
+	}
+
+	private fun putFacility(gameId: Long, facility: SaveGameFacility): FacilityModel {
+		val entity = facilityService.createFacility(gameId, facility.name)
+		return facilityService.updateFacility(gameId, entity.id, FacilityModel(
+				id = entity.id,
+				name = facility.name,
+				constructionCost = facility.constructionCost,
+				constructionDays = facility.constructionDays,
+				maintenancePerDay = facility.maintenancePerDay,
+				workers = facility.workers,
+				consumption = facility.consumption.map { consumption -> consumption.toConsumptionModel(gameId) },
+				production = facility.production?.toProductionModel(gameId)
+		))
+	}
+
+	fun SaveGameTurnover.toConsumptionModel(gameId: Long) = ConsumptionModel(
+			good = goodService.findByGameAndName(gameId, this.good)!!,
+			amount = this.amount
+	)
+
+	fun SaveGameTurnover.toProductionModel(gameId: Long) = ProductionModel(
+			good = goodService.findByGameAndName(gameId, this.good)!!,
+			amount = this.amount
+	)
 
 	private fun getShiptypes(gameId: Long): List<SaveGameShiptype> {
 		val types = shiptypeService.findByGame(gameId)
