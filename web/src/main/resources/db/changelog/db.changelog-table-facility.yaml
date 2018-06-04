@@ -47,3 +47,8 @@ databaseChangeLog:
         referencedTableName: Game
         referencedColumnNames: id
         onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_Facility_game_name
+        tableName: Facility
+        columnNames: game_id, name
