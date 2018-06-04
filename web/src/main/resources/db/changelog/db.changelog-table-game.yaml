@@ -1,0 +1,32 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: game-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: Game
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: captainsName
+            type: varchar(50)
+            constraints:
+              nullable: false
+        - column:
+            name: created
+            type: datetime
+            constraints:
+              nullable: false
+        - column:
+            name: gameDate
+            type: datetime

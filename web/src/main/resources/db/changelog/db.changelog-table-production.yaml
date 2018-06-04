@@ -1,0 +1,55 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: production-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: Production
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: facility_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: good_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: amount
+            type: double
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_Production_Facility_id
+        baseTableName: Production
+        baseColumnNames: facility_id
+        referencedTableName: Facility
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addForeignKeyConstraint:
+        constraintName: fk_Production_Good_id
+        baseTableName: Production
+        baseColumnNames: good_id
+        referencedTableName: Good
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_Production_facility_good
+        tableName: Production
+        columnNames: facility_id, good_id

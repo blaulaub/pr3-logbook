@@ -1,0 +1,55 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: consumption-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: Consumption
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: facility_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: good_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: amount
+            type: double
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_Consumption_Facility_id
+        baseTableName: Consumption
+        baseColumnNames: facility_id
+        referencedTableName: Facility
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addForeignKeyConstraint:
+        constraintName: fk_Consumption_Good_id
+        baseTableName: Consumption
+        baseColumnNames: good_id
+        referencedTableName: Good
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_Consumption_facility_good
+        tableName: Consumption
+        columnNames: facility_id, good_id
