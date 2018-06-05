@@ -17,6 +17,13 @@
       <label>Workers:</label>
       {{facility.workers}}
     </div>
+    <div *ngIf="facility.material">
+      <label>Construction Material:</label>
+      <span *ngFor="let material of facility.material; let isLast=last">
+        {{material.amount}}
+        <a routerLink="/games/{{gameId}}/goods/{{material.good.id}}">{{material.good.name}}</a>{{isLast ? '' : ', '}}
+      </span>
+    </div>
     <div *ngIf="facility.consumption">
       <label>Consumption:</label>
       <span *ngFor="let consumption of facility.consumption; let isLast=last">
@@ -53,6 +60,17 @@
         <label for="workers">Workers:</label>
         <input formControlName="workers" type="number">
       </div>
+      <div formArrayName="materials">
+        <fieldset style="width: 28em">
+          <legend>Construction Materials</legend>
+          <div *ngFor="let material of materials.controls; let i=index" [formGroupName]="i">
+            <fieldset style="width: 28em">
+              <app-turnover-edit [goods]="goods" [turnover]="material" (onClear)="clearMaterial(i)"></app-turnover-edit>
+            </fieldset>
+          </div>
+          <button (click)="addMaterial()" type="button">Add another material</button>
+        </fieldset>
+      </div>
       <div formArrayName="consumptions">
         <fieldset style="width: 28em">
           <legend>Consumptions</legend>
@@ -61,7 +79,7 @@
               <app-turnover-edit [goods]="goods" [turnover]="consumption" (onClear)="clearConsumption(i)"></app-turnover-edit>
             </fieldset>
           </div>
-          <button (click)="addConsumption()" type="button">Add Consumption</button>
+          <button (click)="addConsumption()" type="button">Add another consumption</button>
         </fieldset>
       </div>
       <div formGroupName="production">

@@ -55,9 +55,15 @@ export class FacilityComponent implements OnInit {
       constructionDays: this.facility.constructionDays,
       maintenancePerDay: this.facility.maintenancePerDay,
       workers: this.facility.workers,
+      materials: this.fb.array( this.facility.material.map(x => this.fb.group(this.toTurnoverModel(x))) ),
       consumptions: this.fb.array( this.facility.consumption.map(x => this.fb.group(this.toTurnoverModel(x))) ),
       production: this.fb.group(this.toTurnoverModel(this.facility.production))
     });
+  }
+
+  // needed by html template
+  get materials(): FormArray {
+    return this.facilityForm.get('materials') as FormArray;
   }
 
   // needed by html template
@@ -84,6 +90,14 @@ export class FacilityComponent implements OnInit {
     }
   }
 
+  addMaterial() {
+    this.materials.push(this.fb.group(this.toTurnoverModel(null)));
+  }
+
+  clearMaterial(i: number) {
+    this.materials.removeAt(i);
+  }
+
   addConsumption() {
     this.consumptions.push(this.fb.group(this.toTurnoverModel(null)));
   }
@@ -106,6 +120,7 @@ export class FacilityComponent implements OnInit {
       constructionDays: facilityModel.constructionDays,
       maintenancePerDay: facilityModel.maintenancePerDay,
       workers: facilityModel.workers,
+      material: facilityModel.materials.map(x => this.toTurnover(x)),
       consumption: facilityModel.consumptions.map(x => this.toTurnover(x)),
       production: this.toTurnover(facilityModel.production)
     };

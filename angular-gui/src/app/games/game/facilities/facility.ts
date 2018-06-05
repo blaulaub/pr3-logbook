@@ -11,6 +11,7 @@ export class Facility {
   constructionDays: number;
   maintenancePerDay: number;
   workers: number;
+  material: Turnover[];
   consumption: Turnover[];
   production: Turnover;
 }
