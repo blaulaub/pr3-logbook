@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import ch.patchcode.pr3.logbook.cityFactories.CityFactoryService
+import ch.patchcode.pr3.logbook.cityproducts.CityProductService
 
 @Service
 class SaveGameService @Autowired constructor(
@@ -25,7 +27,9 @@ class SaveGameService @Autowired constructor(
 		private val goodService: GoodService,
 		private val facilityService: FacilityService,
 		private val shiptypeService: ShiptypeService,
-		private val cityService: CityService
+		private val cityService: CityService,
+		private val cityProductService: CityProductService,
+		private val cityFactoryService: CityFactoryService
 ) {
 
 	companion object {
@@ -179,12 +183,46 @@ class SaveGameService @Autowired constructor(
 
 	private fun getCities(gameId: Long): List<SaveGameCity> {
 		val cities = cityService.findByGame(gameId)
-		return cities.map { city -> SaveGameCity(name = city.name) }
+		return cities.map { city ->
+			SaveGameCity(
+					name = city.name,
+					factories = getCityFactoryCounts(gameId, city)
+			)
+		}
 	}
 
-	private fun putCities(gameId: Long, goods: List<SaveGameCity>): List<CityModel> {
+	private fun getCityFactoryCounts(gameId: Long, city: CityModel): List<SaveGameFactoryCount> {
+		val factoryCounts = cityFactoryService.findByGameAndCity(gameId, city.id)
+		return factoryCounts.map { count ->
+			SaveGameFactoryCount(
+					name = count.facilityName,
+					rivalCount = count.rivalCount,
+					playerCount = count.playerCount
+			)
+		}
+	}
+
+	private fun putCities(gameId: Long, cities: List<SaveGameCity>) {
 		cityService.deleteByGameId(gameId)
-		return goods.map { city -> cityService.createCity(gameId, city.name) };
+		for (city in cities) {
+			// cities
+			val cityModel = cityService.createCity(gameId, city.name)
+
+			// city products
+			val goods: List<GoodModel> = city.factories
+					.map { factoryCount -> facilityService.findOneByGameIdAndName(gameId, factoryCount.name) }
+					.map { factory -> factory.production?.good }
+					.filterNotNull()
+					.map { good -> goodService.findByGameAndName(gameId, good.name) }
+					.filterNotNull()
+			cityProductService.updateCityProducts(gameId, cityModel.id, goods)
+
+			// city factory counts
+			for (factoryCount in city.factories) {
+				val factory = facilityService.findOneByGameIdAndName(gameId, factoryCount.name)
+				    // TODO city factories, kinda like this:
+			}
+		}
 	}
 
 }

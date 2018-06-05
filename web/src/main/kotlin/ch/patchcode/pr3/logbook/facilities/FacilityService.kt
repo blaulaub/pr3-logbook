@@ -18,6 +18,8 @@ class FacilityService @Autowired constructor(
 	@Transactional
 	fun findByGame(gameId: Long) = facilityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
+	fun findOneByGameIdAndName(gameId: Long, facilityName: String) = facilityRepository.findOneByGameIdAndName(gameId, facilityName).toModel()
+
 	@Transactional
 	fun createFacility(gameId: Long, name: String) = facilityRepository.save(FacilityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
 

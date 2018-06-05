@@ -55,5 +55,12 @@ data class SaveGameShiptype(
 )
 
 data class SaveGameCity(
-		val name: String
+		val name: String,
+		val factories: List<SaveGameFactoryCount>
+)
+
+data class SaveGameFactoryCount(
+		val name: String,
+		val rivalCount: Int,
+		val playerCount: Int
 )
