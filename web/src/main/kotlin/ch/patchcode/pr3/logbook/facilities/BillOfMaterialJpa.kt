@@ -10,10 +10,10 @@ import javax.persistence.ManyToOne
 import javax.persistence.Table
 import javax.persistence.UniqueConstraint
 
-@Entity(name = "Production")
+@Entity(name = "BillOfMaterial")
 @Table(uniqueConstraints = arrayOf(UniqueConstraint(
 		columnNames = arrayOf("facility_id", "good_id"))))
-data class ProductionJpa(
+data class BillOfMaterialJpa(
 		@Id @GeneratedValue val id: Long? = null,
 		@ManyToOne(optional = false) @JsonIgnore override val facility: FacilityJpa,
 		@ManyToOne(optional = false) override val good: GoodJpa,

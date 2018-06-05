@@ -29,6 +29,7 @@ data class SaveGameFacility(
 		val constructionDays: Int?,
 		val maintenancePerDay: Int?,
 		val workers: Int?,
+		val material: List<SaveGameTurnover>,
 		val consumption: List<SaveGameTurnover>,
 		val production: SaveGameTurnover?
 )

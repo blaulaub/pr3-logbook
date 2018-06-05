@@ -92,6 +92,7 @@ class SaveGameService @Autowired constructor(
 					constructionDays = facility.constructionDays,
 					maintenancePerDay = facility.maintenancePerDay,
 					workers = facility.workers,
+					material = facility.material.map { item -> item.toTurnover() },
 					consumption = facility.consumption.map { consumption -> consumption.toTurnover() },
 					production = facility.production?.toTurnover()
 			)
@@ -117,6 +118,7 @@ class SaveGameService @Autowired constructor(
 				constructionDays = facility.constructionDays,
 				maintenancePerDay = facility.maintenancePerDay,
 				workers = facility.workers,
+				material = facility.material.map { item -> item.toTurnoverModel(gameId) },
 				consumption = facility.consumption.map { consumption -> consumption.toTurnoverModel(gameId) },
 				production = facility.production?.toTurnoverModel(gameId)
 		))

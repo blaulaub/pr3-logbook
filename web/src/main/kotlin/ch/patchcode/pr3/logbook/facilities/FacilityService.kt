@@ -42,12 +42,30 @@ class FacilityService @Autowired constructor(
 		oldFacility.maintenancePerDay = facility.maintenancePerDay
 		oldFacility.workers = facility.workers
 
+		val oldMaterial = oldFacility.material.associateBy({ item -> item.good.name }, { item -> item })
+		val newMaterial = facility.material.associateBy({ item -> item.good.name }, { item -> item })
+
+		val obsoleteMaterial = oldMaterial.keys.minus(newMaterial.keys)
+
+		oldFacility.material.removeAll { item -> obsoleteMaterial.contains(item.good.name) }
+		for (item in newMaterial.values) {
+			var itemJpa = oldMaterial.get(item.good.name)
+			if (itemJpa == null) {
+				val good = goodRepository.findOneByGameAndName(game, item.good.name)!!
+				itemJpa = BillOfMaterialJpa(
+						facility = oldFacility,
+						good = good)
+				oldFacility.material.add(itemJpa)
+			}
+			itemJpa.amount = item.amount
+		}
+
 		val oldConsumptions = oldFacility.consumption.associateBy({ item -> item.good.name }, { item -> item })
 		val newConsumptions = facility.consumption.associateBy({ item -> item.good.name }, { item -> item })
 
-		val obsolete = oldConsumptions.keys.minus(newConsumptions.keys)
+		val obsoleteConsumptions = oldConsumptions.keys.minus(newConsumptions.keys)
 
-		oldFacility.consumption.removeAll { item -> obsolete.contains(item.good.name) }
+		oldFacility.consumption.removeAll { item -> obsoleteConsumptions.contains(item.good.name) }
 		for (item in newConsumptions.values) {
 			var itemJpa = oldConsumptions.get(item.good.name)
 			if (itemJpa == null) {

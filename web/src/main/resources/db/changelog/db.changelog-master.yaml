@@ -6,6 +6,7 @@ databaseChangeLog:
 - include: {relativeToChangelogFile: true, file: db.changelog-table-good.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-facility.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-shiptype.yaml}
+- include: {relativeToChangelogFile: true, file: db.changelog-table-billofmaterial.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-consumption.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-production.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-fleet.yaml}

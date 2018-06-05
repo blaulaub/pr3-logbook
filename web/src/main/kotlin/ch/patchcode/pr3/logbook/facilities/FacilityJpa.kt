@@ -23,6 +23,7 @@ data class FacilityJpa(
 		@Column var constructionDays: Int? = null,
 		@Column var maintenancePerDay: Int? = null,
 		@Column var workers: Int? = null,
+		@OneToMany(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) val material: MutableList<BillOfMaterialJpa> = ArrayList(),
 		@OneToMany(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) val consumption: MutableList<ConsumptionJpa> = ArrayList(),
 		@OneToOne(mappedBy = "facility", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true) var production: ProductionJpa? = null
 ) {
@@ -34,6 +35,7 @@ data class FacilityJpa(
 			constructionDays = this.constructionDays,
 			maintenancePerDay = this.maintenancePerDay,
 			workers = this.workers,
+			material = this.material.map{ it -> it.toModel() }.toList(),
 			consumption = this.consumption.map{ it -> it.toModel() }.toList(),
 			production = this.production?.toModel()
 	)

@@ -15,13 +15,7 @@ import javax.persistence.UniqueConstraint
 		columnNames = arrayOf("facility_id", "good_id"))))
 data class ConsumptionJpa(
 		@Id @GeneratedValue val id: Long? = null,
-		@ManyToOne(optional = false) @JsonIgnore val facility: FacilityJpa,
-		@ManyToOne(optional = false) val good: GoodJpa,
-		@Column(nullable = false) var amount: Double = 0.0
-) {
-
-	fun toModel() = TurnoverModel(
-			good = this.good.toModel(),
-			amount = this.amount
-	)
-}
+		@ManyToOne(optional = false) @JsonIgnore override val facility: FacilityJpa,
+		@ManyToOne(optional = false) override val good: GoodJpa,
+		@Column(nullable = false) override var amount: Double = 0.0
+) : Turnover

@@ -13,5 +13,6 @@ data class FacilityModel(
 		val constructionDays: Int? = null,
 		val maintenancePerDay: Int? = null,
 		val workers: Int? = null,
+		val material: List<TurnoverModel> = ArrayList(),
 		val consumption: List<TurnoverModel> = ArrayList(),
 		val production: TurnoverModel? = null)

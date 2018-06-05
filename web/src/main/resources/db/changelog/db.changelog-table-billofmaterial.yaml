@@ -1,0 +1,55 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: billofmaterial-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: BillOfMaterial
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: facility_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: good_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: amount
+            type: double
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_BillOfMaterial_Facility_id
+        baseTableName: BillOfMaterial
+        baseColumnNames: facility_id
+        referencedTableName: Facility
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addForeignKeyConstraint:
+        constraintName: fk_BillOfMaterial_Good_id
+        baseTableName: BillOfMaterial
+        baseColumnNames: good_id
+        referencedTableName: Good
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_BillOfMaterial_facility_good
+        tableName: BillOfMaterial
+        columnNames: facility_id, good_id
