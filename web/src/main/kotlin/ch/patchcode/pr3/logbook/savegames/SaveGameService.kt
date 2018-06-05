@@ -1,5 +1,7 @@
 package ch.patchcode.pr3.logbook.savegames
 
+import ch.patchcode.pr3.logbook.cities.CityModel
+import ch.patchcode.pr3.logbook.cities.CityService
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.facilities.FacilityService
 import ch.patchcode.pr3.logbook.facilities.TurnoverModel
@@ -22,7 +24,8 @@ class SaveGameService @Autowired constructor(
 		private val gameSettingsService: GameSettingsService,
 		private val goodService: GoodService,
 		private val facilityService: FacilityService,
-		private val shiptypeService: ShiptypeService
+		private val shiptypeService: ShiptypeService,
+		private val cityService: CityService
 ) {
 
 	companion object {
@@ -39,7 +42,8 @@ class SaveGameService @Autowired constructor(
 				settings = getSettings(gameId),
 				goods = getGoods(gameId),
 				facilities = getFacilities(gameId),
-				shiptypes = getShiptypes(gameId)
+				shiptypes = getShiptypes(gameId),
+				cities = getCities(gameId)
 		)
 	}
 
@@ -55,6 +59,7 @@ class SaveGameService @Autowired constructor(
 		putGoods(gameId, data.goods)
 		putFacilities(gameId, data.facilities)
 		putShiptypes(gameId, data.shiptypes)
+		putCities(gameId, data.cities)
 		log.info("not fully implemented: save {}", data)
 	}
 
@@ -171,4 +176,15 @@ class SaveGameService @Autowired constructor(
 
 		))
 	}
+
+	private fun getCities(gameId: Long): List<SaveGameCity> {
+		val cities = cityService.findByGame(gameId)
+		return cities.map { city -> SaveGameCity(name = city.name) }
+	}
+
+	private fun putCities(gameId: Long, goods: List<SaveGameCity>): List<CityModel> {
+		cityService.deleteByGameId(gameId)
+		return goods.map { city -> cityService.createCity(gameId, city.name) };
+	}
+
 }

@@ -11,7 +11,8 @@ data class SaveGame(
 		val settings: SaveGameSettings,
 		val goods: List<SaveGameGood>,
 		val facilities: List<SaveGameFacility>,
-		val shiptypes: List<SaveGameShiptype>
+		val shiptypes: List<SaveGameShiptype>,
+		val cities: List<SaveGameCity>
 )
 
 data class SaveGameSettings(
@@ -51,4 +52,8 @@ data class SaveGameShiptype(
     val hitPoints: Int?,
     val dailyCost: Int?,
     val price: Int?
+)
+
+data class SaveGameCity(
+		val name: String
 )

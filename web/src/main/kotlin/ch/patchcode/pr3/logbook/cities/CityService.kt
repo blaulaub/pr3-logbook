@@ -32,6 +32,8 @@ class CityService @Autowired constructor(
 		cityRepository.deleteByGameAndId(game, cityId)
 	}
 
+	fun deleteByGameId(gameId: Long) = cityRepository.deleteByGameId(gameId)
+
 	fun resolveCity(cityId: Long): CityJpa {
 		val city = cityRepository.findById(cityId)
 		if (!city.isPresent) throw EntityNotFoundException("City #" + cityId)
