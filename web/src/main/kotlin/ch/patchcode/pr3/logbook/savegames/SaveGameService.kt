@@ -1,9 +1,8 @@
 package ch.patchcode.pr3.logbook.savegames
 
-import ch.patchcode.pr3.logbook.facilities.ConsumptionModel
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.facilities.FacilityService
-import ch.patchcode.pr3.logbook.facilities.ProductionModel
+import ch.patchcode.pr3.logbook.facilities.TurnoverModel
 import ch.patchcode.pr3.logbook.games.GameModel
 import ch.patchcode.pr3.logbook.games.GameService
 import ch.patchcode.pr3.logbook.gamesettings.GameSettingsModel
@@ -99,12 +98,7 @@ class SaveGameService @Autowired constructor(
 		}
 	}
 
-	fun ConsumptionModel.toTurnover() = SaveGameTurnover(
-			good = this.good.name,
-			amount = this.amount
-	)
-
-	fun ProductionModel.toTurnover() = SaveGameTurnover(
+	fun TurnoverModel.toTurnover() = SaveGameTurnover(
 			good = this.good.name,
 			amount = this.amount
 	)
@@ -123,17 +117,12 @@ class SaveGameService @Autowired constructor(
 				constructionDays = facility.constructionDays,
 				maintenancePerDay = facility.maintenancePerDay,
 				workers = facility.workers,
-				consumption = facility.consumption.map { consumption -> consumption.toConsumptionModel(gameId) },
-				production = facility.production?.toProductionModel(gameId)
+				consumption = facility.consumption.map { consumption -> consumption.toTurnoverModel(gameId) },
+				production = facility.production?.toTurnoverModel(gameId)
 		))
 	}
 
-	fun SaveGameTurnover.toConsumptionModel(gameId: Long) = ConsumptionModel(
-			good = goodService.findByGameAndName(gameId, this.good)!!,
-			amount = this.amount
-	)
-
-	fun SaveGameTurnover.toProductionModel(gameId: Long) = ProductionModel(
+	fun SaveGameTurnover.toTurnoverModel(gameId: Long) = TurnoverModel(
 			good = goodService.findByGameAndName(gameId, this.good)!!,
 			amount = this.amount
 	)

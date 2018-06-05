@@ -1,10 +1,9 @@
 package ch.patchcode.pr3.logbook.controllers
 
-import ch.patchcode.pr3.logbook.facilities.ConsumptionModel
 import ch.patchcode.pr3.logbook.facilities.FacilityJpa
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.facilities.FacilityRepository
-import ch.patchcode.pr3.logbook.facilities.ProductionModel
+import ch.patchcode.pr3.logbook.facilities.TurnoverModel
 import ch.patchcode.pr3.logbook.games.GameJpa
 import ch.patchcode.pr3.logbook.games.GameRepository
 import ch.patchcode.pr3.logbook.goods.GoodJpa
@@ -85,8 +84,8 @@ class FacilityControllerTest {
 				constructionDays = 1002,
 				maintenancePerDay = 1003,
 				workers = 1004,
-				consumption = listOf(ConsumptionModel(good = goodIn.toModel(), amount = 10.0)),
-				production = ProductionModel(good = goodEx.toModel(), amount = 2.0)
+				consumption = listOf(TurnoverModel(good = goodIn.toModel(), amount = 10.0)),
+				production = TurnoverModel(good = goodEx.toModel(), amount = 2.0)
 		)
 		val result = mvc.perform(put("/games/{gameId}/facilities/{facilityId}", game.id, facility.id)
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -123,7 +122,7 @@ class FacilityControllerTest {
 				maintenancePerDay = 1003,
 				workers = 1004,
 				consumption = listOf(),
-				production = ProductionModel(good = goodEx.toModel(), amount = 2.0)
+				production = TurnoverModel(good = goodEx.toModel(), amount = 2.0)
 		)
 		mvc.perform(put("/games/{gameId}/facilities/{facilityId}", game.id, facility.id)
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -139,7 +138,7 @@ class FacilityControllerTest {
 				maintenancePerDay = before.maintenancePerDay,
 				workers = before.workers,
 				consumption = before.consumption,
-				production = ProductionModel(good = goodEx.toModel(), amount = 4.0)
+				production = TurnoverModel(good = goodEx.toModel(), amount = 4.0)
 		)
 
 		val result = mvc.perform(put("/games/{gameId}/facilities/{facilityId}", game.id, facility.id)

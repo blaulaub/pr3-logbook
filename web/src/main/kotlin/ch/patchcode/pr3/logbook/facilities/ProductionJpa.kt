@@ -20,7 +20,7 @@ data class ProductionJpa(
 		@Column(nullable = false) var amount: Double = 0.0
 ) {
 
-	fun toModel() = ProductionModel(
+	fun toModel() = TurnoverModel(
 			good = this.good.toModel(),
 			amount = this.amount
 	)
