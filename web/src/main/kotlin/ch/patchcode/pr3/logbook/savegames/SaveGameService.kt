@@ -2,6 +2,9 @@ package ch.patchcode.pr3.logbook.savegames
 
 import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.cities.CityService
+import ch.patchcode.pr3.logbook.cityFactories.CityFactoryService
+import ch.patchcode.pr3.logbook.cityFactories.FactoryCountModel
+import ch.patchcode.pr3.logbook.cityproducts.CityProductService
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.facilities.FacilityService
 import ch.patchcode.pr3.logbook.facilities.TurnoverModel
@@ -17,8 +20,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ch.patchcode.pr3.logbook.cityFactories.CityFactoryService
-import ch.patchcode.pr3.logbook.cityproducts.CityProductService
 
 @Service
 class SaveGameService @Autowired constructor(
@@ -218,11 +219,18 @@ class SaveGameService @Autowired constructor(
 			cityProductService.updateCityProducts(gameId, cityModel.id, goods)
 
 			// city factory counts
-			for (factoryCount in city.factories) {
-				val factory = facilityService.findOneByGameIdAndName(gameId, factoryCount.name)
-				    // TODO city factories, kinda like this:
-			}
+			cityFactoryService.updateFactoryCounts(gameId, cityModel.id, city.factories.map { it -> toModel(gameId, it) })
 		}
+	}
+
+	private fun toModel(gameId: Long, factoryCount: SaveGameFactoryCount): FactoryCountModel {
+		val factory = facilityService.findOneByGameIdAndName(gameId, factoryCount.name)
+		return FactoryCountModel(
+				facilityId = factory.id,
+				facilityName = factory.name,
+				rivalCount = factoryCount.rivalCount,
+				playerCount = factoryCount.playerCount
+		)
 	}
 
 }
