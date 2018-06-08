@@ -1,0 +1,47 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: citydetails-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: CityDetails
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: city_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: population
+            type: int
+            constraints:
+              nullable: false
+        - column:
+            name: warehouses
+            type: int
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_CityDetails_City_id
+        baseTableName: CityDetails
+        baseColumnNames: city_id
+        referencedTableName: City
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_CityDetails_city
+        tableName: CityDetails
+        columnNames: city_id

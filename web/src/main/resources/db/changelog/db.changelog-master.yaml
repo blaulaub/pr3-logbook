@@ -3,6 +3,7 @@ databaseChangeLog:
 - include: {relativeToChangelogFile: true, file: db.changelog-table-game.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-gamesettings.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-city.yaml}
+- include: {relativeToChangelogFile: true, file: db.changelog-table-citydetails.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-good.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-facility.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-shiptype.yaml}

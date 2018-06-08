@@ -4,6 +4,8 @@ import ch.patchcode.pr3.logbook.cities.CityModel
 import ch.patchcode.pr3.logbook.cities.CityService
 import ch.patchcode.pr3.logbook.cityFactories.CityFactoryService
 import ch.patchcode.pr3.logbook.cityFactories.FactoryCountModel
+import ch.patchcode.pr3.logbook.citydetails.CityDetailsModel
+import ch.patchcode.pr3.logbook.citydetails.CityDetailsService
 import ch.patchcode.pr3.logbook.cityproducts.CityProductService
 import ch.patchcode.pr3.logbook.facilities.FacilityModel
 import ch.patchcode.pr3.logbook.facilities.FacilityService
@@ -29,6 +31,7 @@ class SaveGameService @Autowired constructor(
 		private val facilityService: FacilityService,
 		private val shiptypeService: ShiptypeService,
 		private val cityService: CityService,
+		private val cityDetailsService: CityDetailsService,
 		private val cityProductService: CityProductService,
 		private val cityFactoryService: CityFactoryService
 ) {
@@ -187,9 +190,18 @@ class SaveGameService @Autowired constructor(
 		return cities.map { city ->
 			SaveGameCity(
 					name = city.name,
+					details = getCityDetails(gameId, city),
 					factories = getCityFactoryCounts(gameId, city)
 			)
 		}
+	}
+
+	private fun getCityDetails(gameId: Long, city: CityModel): SaveGameCityDetails {
+		val details = cityDetailsService.findByGameAndCity(gameId, city.id)
+		return SaveGameCityDetails(
+				population = details.population,
+				warehouses = details.warehouses
+		)
 	}
 
 	private fun getCityFactoryCounts(gameId: Long, city: CityModel): List<SaveGameFactoryCount> {
@@ -208,6 +220,11 @@ class SaveGameService @Autowired constructor(
 		for (city in cities) {
 			// cities
 			val cityModel = cityService.createCity(gameId, city.name)
+
+			cityDetailsService.updateCityDetails(gameId, cityModel.id, CityDetailsModel(
+					population = city.details.population,
+					warehouses = city.details.warehouses
+			))
 
 			// city products
 			val goods: List<GoodModel> = city.factories

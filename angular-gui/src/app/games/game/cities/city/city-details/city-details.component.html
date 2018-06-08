@@ -6,9 +6,6 @@
     <div>
       Warehouses: {{cityDetails.warehouses}}
     </div>
-    <div>
-      <i>Last Updated: {{cityDetails.updated | date: 'dd.MM.yyyy'}}</i>
-    </div>
     <button (click)="switchToEdit()">edit</button>
   </div>
   <div *ngIf="editOn">

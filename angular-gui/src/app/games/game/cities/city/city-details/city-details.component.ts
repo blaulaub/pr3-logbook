@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import { CityDetails } from './city-details';
+import { CityDetailsService } from './city-details.service';
 
 @Component({
   selector: 'app-city-details',
@@ -19,17 +20,13 @@ export class CityDetailsComponent implements OnInit {
   cityDetailsForm: FormGroup;
 
   constructor(
+    private cityDetailsService: CityDetailsService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    // TODO replace this mock code
-    console.error("not implemented");
-    this.cityDetails = {
-      updated: new Date(),
-      population: 1200,
-      warehouses: 0
-    }
+    this.cityDetailsService.getCityDetails(this.gameId, this.cityId)
+      .subscribe(details => this.cityDetails = details);
   }
 
   switchToEdit() {
@@ -46,15 +43,16 @@ export class CityDetailsComponent implements OnInit {
 
   onSubmit() {
     const cityDetailsModel = this.cityDetailsForm.value;
-
-    // TODO replace this mock code
-    console.error("not implemented");
-    this.cityDetails = {
-      updated: new Date(),
+    const saveCityDetails : CityDetails = {
       population: cityDetailsModel.population,
       warehouses: cityDetailsModel.warehouses
-    }
-    this.editOn = false;
+    };
+    this.cityDetailsService
+      .updateCityDetails(this.gameId, this.cityId, saveCityDetails)
+      .subscribe(details => {
+        this.cityDetails = details;
+        this.editOn = false;
+      });
   }
 
   cancelEdit() {
