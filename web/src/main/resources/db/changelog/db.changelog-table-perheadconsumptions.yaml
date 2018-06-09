@@ -1,0 +1,42 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: perheadconsumptions-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: PerHeadConsumption
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: good_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: consumptionPerHundred
+            type: double
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_PerHeadConsumption_Good_id
+        baseTableName: PerHeadConsumption
+        baseColumnNames: good_id
+        referencedTableName: Good
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_PerHeadConsumption_good
+        tableName: PerHeadConsumption
+        columnNames: good_id

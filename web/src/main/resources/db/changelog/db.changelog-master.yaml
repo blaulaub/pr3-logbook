@@ -13,3 +13,4 @@ databaseChangeLog:
 - include: {relativeToChangelogFile: true, file: db.changelog-table-fleet.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-cityproduct.yaml}
 - include: {relativeToChangelogFile: true, file: db.changelog-table-factorycount.yaml}
+- include: {relativeToChangelogFile: true, file: db.changelog-table-perheadconsumptions.yaml}

@@ -14,7 +14,7 @@ class GoodService @Autowired constructor(
 ) {
 
 	@Transactional
-	fun findByGame(gameId: Long) = goodRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
+	fun findByGame(gameId: Long) = resolveByGameId(gameId).map { it -> it.toModel() }
 
 	@Transactional
 	fun findByGameAndName(gameId: Long, name: String) = goodRepository.findOneByGameAndName(gameService.resolveGame(gameId), name)?.toModel()
@@ -42,5 +42,13 @@ class GoodService @Autowired constructor(
 		val good = goodRepository.findById(goodId)
 		if (!good.isPresent) throw EntityNotFoundException("Good #" + goodId)
 		return good.get()
+	}
+	
+	fun resolveByGameId(gameId: Long): Iterable<GoodJpa> = goodRepository.findByGame(gameService.resolveGame(gameId))
+	
+	fun resolveByGameIdAndName(gameId: Long, name: String) : GoodJpa {
+		val good = goodRepository.findOneByGameAndName(gameService.resolveGame(gameId), name)
+		if (good == null) throw EntityNotFoundException("Good " + name)
+		return good
 	}
 }

@@ -21,7 +21,8 @@ data class SaveGameSettings(
 )
 
 data class SaveGameGood(
-		val name: String
+		val name: String,
+		val consumptionPerHundred: Double
 )
 
 data class SaveGameFacility(

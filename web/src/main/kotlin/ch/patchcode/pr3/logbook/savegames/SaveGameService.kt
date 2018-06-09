@@ -22,12 +22,15 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import ch.patchcode.pr3.logbook.perheadconsumptions.PerHeadConsumptionService
+import ch.patchcode.pr3.logbook.perheadconsumptions.PerHeadConsumptionModel
 
 @Service
 class SaveGameService @Autowired constructor(
 		private val gameService: GameService,
 		private val gameSettingsService: GameSettingsService,
 		private val goodService: GoodService,
+		private val perHeadConsumptionService: PerHeadConsumptionService,
 		private val facilityService: FacilityService,
 		private val shiptypeService: ShiptypeService,
 		private val cityService: CityService,
@@ -88,12 +91,29 @@ class SaveGameService @Autowired constructor(
 
 	private fun getGoods(gameId: Long): List<SaveGameGood> {
 		val goods = goodService.findByGame(gameId)
-		return goods.map { good -> SaveGameGood(name = good.name) }
+		return goods.map { good ->
+			SaveGameGood(
+					name = good.name,
+					consumptionPerHundred = perHeadConsumptionService.findByGameAndGoodName(gameId, good.name).consumptionPerHundred
+			)
+		}
 	}
 
 	private fun putGoods(gameId: Long, goods: List<SaveGameGood>): List<GoodModel> {
 		goodService.deleteByGameId(gameId)
-		return goods.map { good -> goodService.createGood(gameId, good.name) };
+		return goods.map { good -> putGood(gameId, good) }
+	}
+
+	private fun putGood(gameId: Long, good: SaveGameGood): GoodModel {
+		val goodModel = goodService.createGood(gameId, good.name)
+		perHeadConsumptionService.updatePerHeadConsumptions(
+				gameId,
+				listOf(PerHeadConsumptionModel(
+						good = goodModel.name,
+						consumptionPerHundred = good.consumptionPerHundred
+				))
+		)
+		return goodModel
 	}
 
 	private fun getFacilities(gameId: Long): List<SaveGameFacility> {

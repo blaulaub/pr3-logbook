@@ -31,6 +31,7 @@ import { ShiptypeComponent } from './games/game/shiptypes/shiptype/shiptype.comp
 import { TurnoverEditComponent } from './games/game/facilities/facility/turnover-edit/turnover-edit.component';
 import { CityFactoriesComponent } from './games/game/cities/city/city-factories/city-factories.component';
 import { ImportExportComponent } from './games/game/import-export/import-export.component';
+import { PerHeadConsumptionsComponent } from './games/game/per-head-consumptions/per-head-consumptions.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ImportExportComponent } from './games/game/import-export/import-export.
     CityProductsComponent,
     CityDetailsComponent,
     CityFactoriesComponent,
-    ImportExportComponent
+    ImportExportComponent,
+    PerHeadConsumptionsComponent
   ],
   imports: [
     BrowserModule,

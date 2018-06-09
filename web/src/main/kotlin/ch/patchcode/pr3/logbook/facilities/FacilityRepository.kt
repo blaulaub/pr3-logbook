@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository
 
 interface FacilityRepository : CrudRepository<FacilityJpa, Long> {
 	fun findByGame(game: GameJpa): Iterable<FacilityJpa>
-	fun findOneByGameIdAndName(gameId: Long, name: String): FacilityJpa
+	fun findOneByGameIdAndName(gameId: Long, name: String): FacilityJpa?
 	fun findOneByProductionGood(good: GoodJpa): FacilityJpa?
 	fun deleteByGameAndId(game: GameJpa, id: Long)
 	fun deleteByGameId(gameId: Long)

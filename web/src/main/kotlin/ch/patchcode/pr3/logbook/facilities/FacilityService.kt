@@ -18,7 +18,11 @@ class FacilityService @Autowired constructor(
 	@Transactional
 	fun findByGame(gameId: Long) = facilityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
-	fun findOneByGameIdAndName(gameId: Long, facilityName: String) = facilityRepository.findOneByGameIdAndName(gameId, facilityName).toModel()
+	fun findOneByGameIdAndName(gameId: Long, facilityName: String): FacilityModel {
+		val facility = facilityRepository.findOneByGameIdAndName(gameId, facilityName)
+		if (facility == null) throw  EntityNotFoundException("Facility " + facilityName)
+		return facility.toModel()
+	}
 
 	@Transactional
 	fun createFacility(gameId: Long, name: String) = facilityRepository.save(FacilityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()

@@ -1,0 +1,21 @@
+<div *ngIf="consumptions">
+  <div *ngIf="!editOn">
+    <div *ngFor="let consumption of consumptions">
+      <label>{{consumption.good}}:</label>
+      {{consumption.consumptionPerHundred}}
+    </div>
+    <button (click)="switchToEdit()">edit</button>
+  </div>
+  <div *ngIf="editOn">
+    <form *ngIf="consumptionsForm" [formGroup]="consumptionsForm" (ngSubmit)="onSubmit()">
+      <div formArrayName="consumptions">
+        <div *ngFor="let item of consumptionForms.controls" [formGroup]="item">
+          <label>{{item.get("good").value}}:</label>
+          <input formControlName="consumptionPerHundred" type="number">
+        </div>
+      </div>
+      <button type="submit">set</button>
+      <button (click)="cancelEdit()">cancel</button>
+    </form>
+  </div>
+</div>
