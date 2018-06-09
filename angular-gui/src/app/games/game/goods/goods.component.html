@@ -1,12 +1,27 @@
 <h2>Goods</h2>
 
-<ul>
-  <li *ngFor="let good of goods">
-    <a routerLink="/games/{{gameId}}/goods/{{good.id}}">
-      Good: {{ good.name }}
-    </a>
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Good</th>
+      <th>Global Balance</th>
+      <th>Competitor Factories</th>
+      <th>Player Factories</th>
+      <th>City Consumption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let good of goods">
+      <td>
+        <a routerLink="/games/{{gameId}}/goods/{{good.id}}">{{ good.name }}</a>
+      </td>
+      <td *ngIf="goodBalances">{{ getGlobalBalance(good.name) | number:'.0' }}</td>
+      <td *ngIf="goodBalances">{{ getRivalFactoryBalance(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getPlayerFactoryBalance(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getCityConsumptionBalance(good.name) }}</td>
+    </tr>
+  </tbody>
+</table>
 
 <button *ngIf="!expandAdd" (click)="expandAdd = true">Add Good...</button>
 <app-good-add *ngIf="expandAdd" [gameId]="gameId" (onGoodAdded)="goodAdded($event)"></app-good-add>

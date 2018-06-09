@@ -16,7 +16,7 @@ class FacilityService @Autowired constructor(
 ) {
 
 	@Transactional
-	fun findByGame(gameId: Long) = facilityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
+	fun findByGame(gameId: Long): List<FacilityModel> = facilityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
 	fun findOneByGameIdAndName(gameId: Long, facilityName: String): FacilityModel {
 		val facility = facilityRepository.findOneByGameIdAndName(gameId, facilityName)

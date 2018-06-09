@@ -13,7 +13,7 @@ class CityService @Autowired constructor(
 ) {
 
 	@Transactional
-	fun findByGame(gameId: Long) = cityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
+	fun findByGame(gameId: Long): List<CityModel> = cityRepository.findByGame(gameService.resolveGame(gameId)).map { it -> it.toModel() }
 
 	@Transactional
 	fun createCity(gameId: Long, name: String) = cityRepository.save(CityJpa(game = gameService.resolveGame(gameId), name = name)).toModel()
