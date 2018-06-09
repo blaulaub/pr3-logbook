@@ -1,16 +1,30 @@
 <div *ngIf="factoryCounts">
   <div *ngIf="!editOn">
     <table>
-      <tr>
-        <th>Factory</th>
-        <th>Competitors</th>
-        <th>Player</th>
-      </tr>
-      <tr *ngFor="let item of factoryCounts">
-        <td>{{item.facilityName}}</td>
-        <td>{{item.rivalCount}}</td>
-        <td>{{item.playerCount}}</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Factory</th>
+          <th>Rivals</th>
+          <th>Player</th>
+          <th>Both</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of factoryCounts">
+          <td>{{item.facilityName}}</td>
+          <td>{{item.rivalCount}}</td>
+          <td>{{item.playerCount}}</td>
+          <td>{{item.rivalCount + item.playerCount}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td>{{rivalTotal}}</td>
+          <td>{{playerTotal}}</td>
+          <td>{{rivalTotal + playerTotal}}</td>
+        </tr>
+      </tfoot>
     </table>
     <button (click)="switchToEdit()">edit</button>
   </div>

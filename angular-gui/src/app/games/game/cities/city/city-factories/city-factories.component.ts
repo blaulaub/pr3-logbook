@@ -50,6 +50,22 @@ export class CityFactoriesComponent implements OnInit {
     return this.factoryCountsForm.get('factories') as FormArray;
   }
 
+  get rivalTotal(): number {
+    let sum = null;
+    for (let factory of this.factoryCounts) {
+      sum += factory.rivalCount;
+    }
+    return sum;
+  }
+
+  get playerTotal(): number {
+    let sum = null;
+    for (let factory of this.factoryCounts) {
+      sum += factory.playerCount;
+    }
+    return sum;
+  }
+
   onSubmit() {
     const countModel = this.factoryCountsForm.value;
     const saveFactoryCounts = countModel.factories.map(x => this.toFactoryCount(x));
