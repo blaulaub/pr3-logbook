@@ -1,0 +1,7 @@
+th:not(:first-child) {
+  width: 10em;
+}
+
+td:not(:first-child) {
+  text-align: center;
+}

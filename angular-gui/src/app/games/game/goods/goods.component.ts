@@ -38,18 +38,37 @@ export class GoodsComponent implements OnInit {
 
   getGlobalBalance(goodName: String) {
     const x = this.goodBalances.filter(it => it.good == goodName)[0];
-    return Math.round(x.byRivalFactories + x.byPlayerFactories + x.byCityConsumption);
+    return Math.round(x.byRivalFactoryConsumption + x.byPlayerFactoryConsumption + x.byCityConsumption
+    + x.byRivalFactoryProduction + x.byPlayerFactoryProduction);
   }
 
-  getRivalFactoryBalance(goodName: String) {
-    return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byRivalFactories);
+  getGlobalConsumption(goodName: String) {
+    const x = this.goodBalances.filter(it => it.good == goodName)[0];
+    return Math.round(x.byRivalFactoryConsumption + x.byPlayerFactoryConsumption + x.byCityConsumption);
   }
 
-  getPlayerFactoryBalance(goodName: String) {
-    return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byPlayerFactories);
+  getGlobalProduction(goodName: String) {
+    const x = this.goodBalances.filter(it => it.good == goodName)[0];
+    return Math.round(x.byRivalFactoryProduction + x.byPlayerFactoryProduction);
   }
 
-  getCityConsumptionBalance(goodName: String) {
+  getRivalFactoryConsumption(goodName: String) {
+    return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byRivalFactoryConsumption);
+  }
+
+  getRivalFactoryProduction(goodName: String) {
+    return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byRivalFactoryProduction);
+  }
+
+  getPlayerFactoryConsumption(goodName: String) {
+    return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byPlayerFactoryConsumption);
+  }
+
+  getPlayerFactoryProduction(goodName: String) {
+    return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byPlayerFactoryProduction);
+  }
+
+  getCityConsumption(goodName: String) {
     return Math.round(this.goodBalances.filter(it => it.good == goodName)[0].byCityConsumption);
   }
 

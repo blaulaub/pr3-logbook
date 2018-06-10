@@ -5,9 +5,13 @@
     <tr>
       <th>Good</th>
       <th>Global Balance</th>
-      <th>Competitor Factories</th>
-      <th>Player Factories</th>
+      <th>Global Consumption</th>
+      <th>Competitor Factory Consumption</th>
+      <th>Player Factory Consumption</th>
       <th>City Consumption</th>
+      <th>Global Production</th>
+      <th>Competitor Factory Production</th>
+      <th>Player Factory Production</th>
     </tr>
   </thead>
   <tbody>
@@ -16,9 +20,13 @@
         <a routerLink="/games/{{gameId}}/goods/{{good.id}}">{{ good.name }}</a>
       </td>
       <td *ngIf="goodBalances">{{ getGlobalBalance(good.name) | number:'.0' }}</td>
-      <td *ngIf="goodBalances">{{ getRivalFactoryBalance(good.name) }}</td>
-      <td *ngIf="goodBalances">{{ getPlayerFactoryBalance(good.name) }}</td>
-      <td *ngIf="goodBalances">{{ getCityConsumptionBalance(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getGlobalConsumption(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getRivalFactoryConsumption(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getPlayerFactoryConsumption(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getCityConsumption(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getGlobalConsumption(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getRivalFactoryProduction(good.name) }}</td>
+      <td *ngIf="goodBalances">{{ getPlayerFactoryProduction(good.name) }}</td>
     </tr>
   </tbody>
 </table>

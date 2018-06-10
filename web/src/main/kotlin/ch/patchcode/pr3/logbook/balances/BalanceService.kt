@@ -46,14 +46,14 @@ class BalanceService @Autowired constructor(
 				if (facility != null) {
 					facility.consumption.forEach { it ->
 						run {
-							balances.get(it.good.name)!!.byPlayerFactories -= it.amount * factory.playerCount
-							balances.get(it.good.name)!!.byRivalFactories -= it.amount * factory.rivalCount
+							balances.get(it.good.name)!!.byPlayerFactoryConsumption -= it.amount * factory.playerCount
+							balances.get(it.good.name)!!.byRivalFactoryConsumption -= it.amount * factory.rivalCount
 						}
 					}
 					val production = facility.production
 					if (production != null) {
-						balances.get(production.good.name)!!.byPlayerFactories += production.amount * factory.playerCount
-						balances.get(production.good.name)!!.byRivalFactories += production.amount * factory.rivalCount
+						balances.get(production.good.name)!!.byPlayerFactoryProduction += production.amount * factory.playerCount
+						balances.get(production.good.name)!!.byRivalFactoryProduction += production.amount * factory.rivalCount
 					}
 				}
 			}
