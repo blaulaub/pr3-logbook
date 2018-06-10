@@ -15,11 +15,15 @@ data class CityDetailsJpa(
 		@Id @GeneratedValue val id: Long? = null,
 		@OneToOne(optional = false) val city: CityJpa,
 		@Column(nullable = false) var population: Int,
-		@Column(nullable = false) var warehouses: Int
+		@Column(nullable = false) var warehouses: Int,
+		@Column(nullable = false) var support: Double,
+		@Column(nullable = false) var isExportCity: Boolean		
 ) {
 
 	fun toModel() = CityDetailsModel(
 			population = this.population,
-			warehouses = this.warehouses
+			warehouses = this.warehouses,
+			support = this.support,
+			isExportCity = this.isExportCity
 	)
 }

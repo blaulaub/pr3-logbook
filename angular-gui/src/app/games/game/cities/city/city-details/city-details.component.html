@@ -6,6 +6,12 @@
     <div>
       Warehouses: {{cityDetails.warehouses}}
     </div>
+    <div>
+      Support: {{cityDetails.support}}
+    </div>
+    <div>
+      ExportCity: {{cityDetails.isExportCity ? "yes" : "no"}}
+    </div>
     <button (click)="switchToEdit()">edit</button>
   </div>
   <div *ngIf="editOn">
@@ -17,6 +23,14 @@
       <div>
         <label for="warehouses">Warehouses:</label>
         <input formControlName="warehouses" type="number">
+      </div>
+      <div>
+        <label for="support">Support:</label>
+        <input formControlName="support" type="number">
+      </div>
+      <div>
+        <label for="isExportCity">Export City:</label>
+        <input formControlName="isExportCity" type="checkbox">
       </div>
       <button type="submit">set</button>
       <button (click)="cancelEdit()">cancel</button>

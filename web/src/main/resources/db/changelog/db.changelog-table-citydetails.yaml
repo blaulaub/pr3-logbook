@@ -45,3 +45,29 @@ databaseChangeLog:
         constraintName: uq_CityDetails_city
         tableName: CityDetails
         columnNames: city_id
+
+- changeSet:
+
+    id: citydetails-0002
+    author: cfuchs
+
+    changes:
+    
+    - addColumn:
+        tableName: CityDetails
+        columns:
+        - column:
+            name: support
+            type: double
+            defaultValueNumeric: 0.0
+            constraints:
+              nullable: false
+        - column:
+            name: isExportCity
+            type: bit
+            defaultValueBoolean: false 
+            constraints:
+              nullable: false
+        
+       
+        

@@ -37,7 +37,9 @@ export class CityDetailsComponent implements OnInit {
   createForm() {
     this.cityDetailsForm = this.fb.group({
       population: this.cityDetails.population,
-      warehouses: this.cityDetails.warehouses
+      warehouses: this.cityDetails.warehouses,
+      support: this.cityDetails.support,
+      isExportCity: this.cityDetails.isExportCity
     });
   }
 
@@ -45,7 +47,9 @@ export class CityDetailsComponent implements OnInit {
     const cityDetailsModel = this.cityDetailsForm.value;
     const saveCityDetails : CityDetails = {
       population: cityDetailsModel.population,
-      warehouses: cityDetailsModel.warehouses
+      warehouses: cityDetailsModel.warehouses,
+      support: cityDetailsModel.support,
+      isExportCity: cityDetailsModel.isExportCity
     };
     this.cityDetailsService
       .updateCityDetails(this.gameId, this.cityId, saveCityDetails)

@@ -3,4 +3,6 @@ export class CityDetails {
 
   population: number;
   warehouses: number;
+  support: number;
+  isExportCity: boolean;
 }

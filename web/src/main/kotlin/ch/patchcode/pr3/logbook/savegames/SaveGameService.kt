@@ -220,7 +220,9 @@ class SaveGameService @Autowired constructor(
 		val details = cityDetailsService.findByGameAndCity(gameId, city.id)
 		return SaveGameCityDetails(
 				population = details.population,
-				warehouses = details.warehouses
+				warehouses = details.warehouses,
+				support = details.support,
+				isExportCity = details.isExportCity
 		)
 	}
 
@@ -243,7 +245,9 @@ class SaveGameService @Autowired constructor(
 
 			cityDetailsService.updateCityDetails(gameId, cityModel.id, CityDetailsModel(
 					population = city.details.population,
-					warehouses = city.details.warehouses
+					warehouses = city.details.warehouses,
+					support = city.details.support,
+					isExportCity = city.details.isExportCity
 			))
 
 			// city products

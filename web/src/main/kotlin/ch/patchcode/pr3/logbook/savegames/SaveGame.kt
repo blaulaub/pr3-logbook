@@ -63,7 +63,9 @@ data class SaveGameCity(
 
 data class SaveGameCityDetails(
 		val population: Int,
-		val warehouses: Int
+		val warehouses: Int,
+		val support: Double,
+		val isExportCity: Boolean
 )
 
 data class SaveGameFactoryCount(
