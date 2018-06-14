@@ -1,0 +1,89 @@
+databaseChangeLog:
+
+- changeSet:
+
+    id: route-0001
+    author: cfuchs
+
+    changes:
+
+    - createTable:
+        tableName: Route
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: fleet_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: travelDays
+            type: double
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_Route_Fleet_id
+        baseTableName: Route
+        baseColumnNames: fleet_id
+        referencedTableName: Fleet
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_Route_fleet
+        tableName: Route
+        columnNames: fleet_id
+        
+    - createTable:
+        tableName: RoutePoint
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: route_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: position
+            type: int
+            constraints:
+              nullable: false
+        - column:
+            name: city_id
+            type: bigint
+            constraints:
+              nullable: false
+
+    - addForeignKeyConstraint:
+        constraintName: fk_RoutePoint_Route_id
+        baseTableName: RoutePoint
+        baseColumnNames: route_id
+        referencedTableName: Route
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addForeignKeyConstraint:
+        constraintName: fk_RoutePoint_City_id
+        baseTableName: RoutePoint
+        baseColumnNames: city_id
+        referencedTableName: City
+        referencedColumnNames: id
+        onDelete: CASCADE
+
+    - addUniqueConstraint:
+        constraintName: uq_RoutePoint_route_position
+        tableName: RoutePoint
+        columnNames: route_id, position

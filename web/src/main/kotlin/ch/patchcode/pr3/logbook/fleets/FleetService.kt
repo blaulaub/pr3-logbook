@@ -21,7 +21,7 @@ class FleetService @Autowired constructor(
 	@Transactional
 	fun getFleet(gameId: Long, fleetId: Long): FleetModel {
 		gameService.resolveGame(gameId)
-		val fleet = resolveFleet(fleetId)
+		val fleet = resolveFleet(gameId, fleetId)
 		if (fleet.game.id != gameId) throw EntityNotFoundException("Fleet #" + fleetId)
 		return fleet.toModel()
 	}
@@ -32,9 +32,11 @@ class FleetService @Autowired constructor(
 		fleetRepository.deleteByGameAndId(game, fleetId)
 	}
 
-	private fun resolveFleet(fleetId: Long): FleetJpa {
-		val fleet = fleetRepository.findById(fleetId)
-		if (!fleet.isPresent) throw EntityNotFoundException("Fleet #" + fleetId)
-		return fleet.get()
+	fun resolveFleet(gameId: Long, fleetId: Long): FleetJpa {
+		val optionalFleet = fleetRepository.findById(fleetId)
+		if (!optionalFleet.isPresent) throw EntityNotFoundException("Fleet #" + fleetId)
+		val fleet = optionalFleet.get()
+		if (fleet.game.id != gameId) throw EntityNotFoundException("Fleet #" + fleetId)
+		return fleet
 	}
 }
