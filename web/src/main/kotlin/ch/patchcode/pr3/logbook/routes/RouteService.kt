@@ -26,39 +26,53 @@ class RouteService @Autowired constructor(
 	@Transactional
 	fun updateRoute(gameId: Long, fleetId: Long, route: RouteModel): RouteModel {
 		try {
-		val fleet = fleetService.resolveFleet(gameId, fleetId)
-		val oldRoute = routeRepository.findOneByFleetId(fleetId) ?: RouteJpa(fleet = fleet, travelDays = 0.0)
+			val fleet = fleetService.resolveFleet(gameId, fleetId)
 
-		val oldPoints: Map<String, MutableList<RoutePointJpa>> = oldRoute.routePoints.groupByTo(mutableMapOf()) { it.city.name }
-		// TODO in an elegant way: match/map the existing cities to the old cities.
+			var oldRoute = routeRepository.findOneByFleetId(fleetId) ?: RouteJpa(fleet = fleet, travelDays = 0.0)
 
-		var i: Int = 0
-		for (point: RoutePointModel in route.routePoints) {
+			// round 0: make positions negative (avoid collisions during modification)
+			val size = oldRoute.routePoints.size
+			oldRoute.routePoints.forEachIndexed { index, item -> item.position = index - size }
+			oldRoute = routeRepository.saveAndFlush(oldRoute)
 
-			// ensure there is the right entity in the old route point list
-			if (i < oldRoute.routePoints.size) {
-				// we can compare the old route point against the new route point
-				val oldPoint: RoutePointJpa = oldRoute.routePoints.get(i)
-				if (point.city == oldPoint.city.name) {
-					tryRemoveFromLookup(oldPoints, point.city)!!
+			// round 1: resort/insert route points
+			val oldPoints: Map<String, MutableList<RoutePointJpa>> = oldRoute.routePoints.groupByTo(mutableMapOf()) { it.city.name }
+
+			var i: Int = 0
+			for (point: RoutePointModel in route.routePoints) {
+
+				// ensure there is the right entity in the old route point list
+				if (i < oldRoute.routePoints.size) {
+					// we can compare the old route point against the new route point
+					val oldPoint: RoutePointJpa = oldRoute.routePoints.get(i)
+					if (point.city == oldPoint.city.name) {
+						tryRemoveFromLookup(oldPoints, point.city)!!
+					} else {
+						// let's see if there is a match further ahead
+						insertMissing(gameId, point.city, oldRoute, i, oldPoints)
+					}
 				} else {
-					// let's see if there is a match further ahead
+					// there is only the new route point, so it is different from the old route point
+					// let's see if there is a match left
 					insertMissing(gameId, point.city, oldRoute, i, oldPoints)
 				}
-			} else {
-				// there is only the new route point, so it is different from the old route point
-				// let's see if there is a match left
-				insertMissing(gameId, point.city, oldRoute, i, oldPoints)
+
+				// now update the route point jpa
+				oldRoute.routePoints.get(i).position = i
+				// ... nothing else to do yet.
+
+				// finally, increment the index
+				++i
+			}
+			
+			// and truncate any left-over places
+			while (oldRoute.routePoints.size > i) {
+				oldRoute.routePoints.removeAt(oldRoute.routePoints.size - 1)
 			}
 
-			// now update the route point jpa
-			// ... nothing to do yet.
-		}
+			oldRoute.travelDays = route.travelDays;
 
-
-		oldRoute.travelDays = route.travelDays;
-
-		return routeRepository.save(oldRoute).toModel()
+			return routeRepository.save(oldRoute).toModel()
 		} catch (e: Exception) {
 			e.printStackTrace()
 			throw e
